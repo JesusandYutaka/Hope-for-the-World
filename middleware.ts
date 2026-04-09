@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const ALLOWED_IP = "219.104.168.5";
+const ALLOWED_IPS = ["219.104.168.5", "122.196.67.123"];
 
 export function middleware(request: NextRequest) {
   // Vercel は x-forwarded-for にクライアントIPを入れる
   const forwarded = request.headers.get("x-forwarded-for");
   const ip = forwarded ? forwarded.split(",")[0].trim() : "";
 
-  if (ip !== ALLOWED_IP) {
+  if (!ALLOWED_IPS.includes(ip)) {
     return new NextResponse("Access Denied", { status: 403 });
   }
 
