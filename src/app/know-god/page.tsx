@@ -1,0 +1,92 @@
+import PageHero from "@/components/PageHero";
+import Link from "next/link";
+
+const steps = [
+  {
+    num: "01",
+    title: "神はあなたを愛しておられます",
+    verse: "神はそのひとり子をお与えになったほどに世を愛された。",
+    ref: "ヨハネ 3:16",
+    text: "神様はあなたを深く愛しておられます。その愛は条件がなく、あなたの過去や行いに関係なく注がれています。",
+  },
+  {
+    num: "02",
+    title: "すべての人は罪を犯しました",
+    verse: "すべての人は罪を犯して、神の栄光を受けられなくなっています。",
+    ref: "ローマ 3:23",
+    text: "聖書は、私たちが神様から離れた状態（罪）にあることを教えています。この罪が神様との関係を断ち切っています。",
+  },
+  {
+    num: "03",
+    title: "イエスは解決策を与えてくださいました",
+    verse: "キリストはわたしたちの罪のために死なれました。",
+    ref: "Ⅰコリント 15:3",
+    text: "イエス・キリストは私たちの罪の代わりに十字架で死なれ、三日目に復活されました。これによって神様との関係が回復されます。",
+  },
+  {
+    num: "04",
+    title: "信じて、受け入れる",
+    verse: "心でイエスは主であると信じ、口で告白するなら、救われます。",
+    ref: "ローマ 10:9",
+    text: "イエス様を主として信じ、心に迎え入れることで、神様の子どもとなることができます。",
+  },
+];
+
+export default function KnowGodPage() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Know God"
+        title="神を知りたい人へ"
+        subtitle="神様があなたを待っておられます。一歩踏み出しませんか。"
+      />
+
+      <section className="py-24 px-4 bg-white">
+        <div className="max-w-3xl mx-auto">
+          <div className="space-y-10">
+            {steps.map((s) => (
+              <div key={s.num} className="flex gap-8">
+                <div className="flex-shrink-0 w-14 h-14 rounded-full bg-[#1a2e5a] flex items-center justify-center">
+                  <span className="text-[#C9A84C] font-serif font-bold text-sm">{s.num}</span>
+                </div>
+                <div className="flex-1 pt-2">
+                  <h3 className="text-lg font-serif font-bold text-[#1a2e5a] mb-3">{s.title}</h3>
+                  <blockquote className="border-l-2 border-[#C9A84C] pl-4 mb-3">
+                    <p className="text-gray-700 italic text-sm leading-relaxed">&ldquo;{s.verse}&rdquo;</p>
+                    <cite className="text-xs text-[#C9A84C] not-italic">{s.ref}</cite>
+                  </blockquote>
+                  <p className="text-gray-500 text-sm leading-relaxed">{s.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Prayer */}
+          <div className="mt-20 p-10 rounded-2xl bg-gradient-to-br from-[#1a2e5a] to-[#0d1b3e] text-white text-center">
+            <span className="text-[#C9A84C] text-xs tracking-widest uppercase">Sinner&apos;s Prayer</span>
+            <h3 className="text-2xl font-serif font-bold mt-3 mb-6">信仰の祈り</h3>
+            <p className="text-white/70 text-sm leading-loose mb-8 max-w-xl mx-auto">
+              「イエス様、あなたが神の子であること、私の罪のために死なれ、復活されたことを信じます。
+              どうか私の罪を赦し、私の心に来てください。あなたを私の主・救い主として受け入れます。
+              あなたに従って生きることを選びます。アーメン。」
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/prayer"
+                className="px-8 py-3.5 bg-[#C9A84C] hover:bg-[#e8c97a] text-[#1a2e5a] font-bold rounded-full transition-all hover:scale-105 text-sm"
+              >
+                祈りのサポートを求める
+              </Link>
+              <Link
+                href="/contact"
+                className="px-8 py-3.5 border border-white/30 hover:border-[#C9A84C] text-white hover:text-[#C9A84C] font-medium rounded-full transition-all text-sm"
+              >
+                お問い合わせ
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

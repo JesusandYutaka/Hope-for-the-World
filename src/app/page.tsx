@@ -1,4 +1,5 @@
 import HeroSection from "@/components/HeroSection";
+import Image from "next/image";
 import Link from "next/link";
 
 const vision = [
@@ -51,6 +52,46 @@ export default function HomePage() {
                 <p className="text-xs text-gray-400 mt-4 italic">{item.verse}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Self Introduction */}
+      <section className="py-24 px-4 bg-[#fafafa]">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-[#C9A84C] text-sm font-medium tracking-[0.3em] uppercase mb-3">Who We Are</p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1a2e5a]">私たちの自己紹介</h2>
+          </div>
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            {/* Photo */}
+            <div className="w-full md:w-2/5 flex-shrink-0">
+              <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/5]">
+                <Image
+                  src="/images/profile.jpg"
+                  alt="プロフィール写真"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                />
+              </div>
+            </div>
+            {/* Text placeholder */}
+            <div className="w-full md:w-3/5 space-y-6">
+              <div className="w-10 h-0.5 bg-[#C9A84C]" />
+              <h3 className="text-2xl font-serif font-bold text-[#1a2e5a]">
+                名前 / Name
+              </h3>
+              <div className="space-y-4 text-gray-500 leading-relaxed">
+                <p className="bg-[#f0f0f0] rounded-lg h-5 w-3/4 animate-pulse" />
+                <p className="bg-[#f0f0f0] rounded-lg h-5 w-full animate-pulse" />
+                <p className="bg-[#f0f0f0] rounded-lg h-5 w-5/6 animate-pulse" />
+                <p className="bg-[#f0f0f0] rounded-lg h-5 w-2/3 animate-pulse" />
+              </div>
+              <p className="text-sm text-gray-400 italic border-l-2 border-[#C9A84C]/40 pl-4">
+                ✏️ 文章を準備中です
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -115,30 +156,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Quick Links */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            { href: "/worship", label: "賛美Ministry", desc: "オリジナル賛美・楽譜" },
-            { href: "/resources", label: "リソース", desc: "論文・教会情報" },
-            { href: "/contact", label: "ミニストリー依頼", desc: "メッセージ・賛美依頼" },
-            { href: "https://www.studentinjapan.com", label: "Student in Japan", desc: "福音・学生ミニストリー", external: true },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              target={"external" in item && item.external ? "_blank" : undefined}
-              rel={"external" in item && item.external ? "noopener noreferrer" : undefined}
-              className="p-6 rounded-xl border border-[#e8f0fe] hover:border-[#C9A84C]/40 hover:shadow-md transition-all group"
-            >
-              <h4 className="font-bold text-[#1a2e5a] group-hover:text-[#C9A84C] transition-colors text-sm mb-1">
-                {item.label} {"external" in item && item.external ? "↗" : ""}
-              </h4>
-              <p className="text-xs text-gray-400">{item.desc}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
     </>
   );
 }

@@ -1,72 +1,231 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const navLinks = [
-  { href: "/know-jesus", label: "イエス様を知る" },
-  { href: "/worship", label: "賛美Ministry" },
-  { href: "/messages", label: "メッセージ" },
-  { href: "/resources", label: "リソース" },
-  { href: "/prayer", label: "祈りのパートナー" },
+type NavItem =
+  | { href: string; label: string; children?: undefined }
+  | { label: string; href?: undefined; children: { href: string; label: string }[] };
+
+const navLinks: NavItem[] = [
+  { href: "/worship", label: "賛美ミニストリー" },
+  {
+    label: "コンテンツ",
+    children: [
+      { href: "/daily", label: "日々の励まし" },
+      { href: "/missions", label: "宣教論文" },
+    ],
+  },
+  {
+    label: "コミュニティ",
+    children: [
+      { href: "/fellowship", label: "交わり" },
+      { href: "/prayer-partner", label: "祈りのパートナー" },
+      { href: "/testimony", label: "証の部屋" },
+    ],
+  },
+  { href: "/know-god", label: "神を知りたい人へ" },
   { href: "/contact", label: "ミニストリー依頼" },
 ];
 
-export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+function DropdownMenu({ item }: { item: NavItem & { children: { href: string; label: string }[] } }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#1a2e5a]/90 backdrop-blur-md border-b border-[#C9A84C]/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <div
+      ref={ref}
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <button
+        className="relative flex items-center gap-1 text-white/75 hover:text-white text-[13px] font-light tracking-wider transition-colors duration-300 group"
+        onClick={() => setOpen((v) => !v)}
+      >
+        {item.label}
+        <svg
+          className={`w-3 h-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+        <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[#C9A84C] group-hover:w-full transition-all duration-300" />
+      </button>
+
+      {/* Dropdown panel — pt-3 bridges the gap so mouse doesn't leave the container */}
+      <div
+        className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 min-w-[140px] transition-all duration-200 ${
+          open ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-1 pointer-events-none"
+        }`}
+      >
+        <div
+          className="py-2"
+          style={{
+            background: "rgba(8, 15, 30, 0.92)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            border: "1px solid rgba(201,168,76,0.15)",
+            borderRadius: "8px",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
+          }}
+        >
+          {item.children.map((child) => (
+            <Link
+              key={child.href}
+              href={child.href}
+              className="block px-5 py-2.5 text-[12px] text-white/70 hover:text-[#C9A84C] hover:bg-white/5 tracking-wider transition-colors duration-200 whitespace-nowrap"
+            >
+              {child.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [openMobileGroup, setOpenMobileGroup] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <header
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+      style={
+        scrolled
+          ? {
+              background: "rgba(10, 18, 35, 0.75)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+              borderBottom: "1px solid rgba(201, 168, 76, 0.15)",
+              boxShadow: "0 4px 30px rgba(0,0,0,0.2)",
+            }
+          : {
+              background: "linear-gradient(to bottom, rgba(5,12,25,0.55) 0%, transparent 100%)",
+              backdropFilter: "blur(0px)",
+              WebkitBackdropFilter: "blur(0px)",
+              borderBottom: "1px solid transparent",
+            }
+      }
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="flex items-center justify-between h-20">
+
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <span className="text-[#C9A84C] text-xl font-serif font-bold tracking-wide group-hover:text-[#e8c97a] transition-colors">
+          <Link href="/" className="group flex flex-col leading-none">
+            <span className="text-[#C9A84C] font-serif font-bold text-lg tracking-widest group-hover:text-[#e8d080] transition-colors duration-300">
               Hope for the World
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-white/80 hover:text-[#C9A84C] text-sm font-medium transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+          <nav className="hidden lg:flex items-center gap-7">
+            {navLinks.map((link) =>
+              link.children ? (
+                <DropdownMenu key={link.label} item={link as NavItem & { children: { href: string; label: string }[] }} />
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href!}
+                  className="relative text-white/75 hover:text-white text-[13px] font-light tracking-wider transition-colors duration-300 group"
+                >
+                  {link.label}
+                  <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[#C9A84C] group-hover:w-full transition-all duration-300" />
+                </Link>
+              )
+            )}
+
+            {/* CTA button */}
+            <Link
+              href="/prayer"
+              className="ml-2 px-5 py-2 border border-[#C9A84C]/60 hover:border-[#C9A84C] text-[#C9A84C] hover:text-[#e8d080] text-[12px] tracking-[0.15em] font-medium rounded-full transition-all duration-300 hover:bg-[#C9A84C]/10"
+            >
+              祈りのリクエスト
+            </Link>
           </nav>
 
           {/* Mobile menu button */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden text-white p-2"
+            className="lg:hidden flex flex-col gap-1.5 p-2 group"
             aria-label="メニュー"
           >
-            <div className={`w-6 h-0.5 bg-white transition-all ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`} />
-            <div className={`w-6 h-0.5 bg-white my-1.5 transition-all ${menuOpen ? "opacity-0" : ""}`} />
-            <div className={`w-6 h-0.5 bg-white transition-all ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
+            <span className={`block w-6 h-px bg-white transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
+            <span className={`block w-4 h-px bg-white/60 transition-all duration-300 ${menuOpen ? "opacity-0 w-0" : ""}`} />
+            <span className={`block w-6 h-px bg-white transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
           </button>
         </div>
       </div>
 
       {/* Mobile Nav */}
-      {menuOpen && (
-        <nav className="lg:hidden bg-[#1a2e5a] border-t border-[#C9A84C]/20 px-4 pb-4">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="block py-3 text-white/80 hover:text-[#C9A84C] text-sm font-medium border-b border-white/10 transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
+      <div
+        className={`lg:hidden overflow-hidden transition-all duration-400 ${menuOpen ? "max-h-[600px]" : "max-h-0"}`}
+        style={{
+          background: "rgba(8, 15, 30, 0.92)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+        }}
+      >
+        <nav className="px-6 pb-6 pt-2 flex flex-col gap-1">
+          {navLinks.map((link) =>
+            link.children ? (
+              <div key={link.label}>
+                <button
+                  onClick={() => setOpenMobileGroup(openMobileGroup === link.label ? null : link.label)}
+                  className="w-full flex items-center justify-between py-3 text-white/70 hover:text-[#C9A84C] text-sm tracking-wider border-b border-white/8 transition-colors duration-200"
+                >
+                  {link.label}
+                  <svg
+                    className={`w-3 h-3 transition-transform duration-200 ${openMobileGroup === link.label ? "rotate-180" : ""}`}
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {openMobileGroup === link.label && (
+                  <div className="pl-4 flex flex-col">
+                    {link.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        onClick={() => setMenuOpen(false)}
+                        className="py-2.5 text-white/55 hover:text-[#C9A84C] text-sm tracking-wider transition-colors duration-200"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href!}
+                onClick={() => setMenuOpen(false)}
+                className="py-3 text-white/70 hover:text-[#C9A84C] text-sm tracking-wider border-b border-white/8 transition-colors duration-200 last:border-0"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
         </nav>
-      )}
+      </div>
     </header>
   );
 }

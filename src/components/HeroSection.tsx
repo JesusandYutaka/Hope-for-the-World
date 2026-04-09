@@ -1,21 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const scriptures = [
-  {
-    verse: "あなたがたの光を人々の前で輝かせなさい。",
-    ref: "マタイ 5:16",
-  },
-  {
-    verse: "地の果てにまでわたしの救いをもたらす者とする。",
-    ref: "イザヤ 49:6",
-  },
-  {
-    verse: "水が海を覆うように、地は主の栄光を知ることで満たされる。",
-    ref: "ハバクク 2:14",
-  },
+  { verse: "あなたがたの光を人々の前で輝かせなさい。", ref: "マタイ 5:16" },
+  { verse: "地の果てにまでわたしの救いをもたらす者とする。", ref: "イザヤ 49:6" },
+  { verse: "水が海を覆うように、地は主の栄光を知ることで満たされる。", ref: "ハバクク 2:14" },
 ];
 
 export default function HeroSection() {
@@ -37,50 +29,87 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0d1b3e] via-[#1a2e5a] to-[#0a1628]" />
 
-      {/* Radial light effect */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[600px] h-[600px] rounded-full bg-[#C9A84C]/10 blur-[120px]" />
-      </div>
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-blue-400/5 blur-[80px]" />
-      <div className="absolute bottom-1/3 right-1/4 w-48 h-48 rounded-full bg-[#C9A84C]/8 blur-[60px]" />
+      {/* Background photo */}
+      <Image
+        src="/images/hero-sunset.jpg"
+        alt="海の夕日"
+        fill
+        priority
+        className="object-cover object-center"
+        sizes="100vw"
+      />
 
-      {/* Subtle star-like dots */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none"
+      {/* Overlay: top dark for text readability, bottom subtle dark */}
+      <div
+        className="absolute inset-0"
         style={{
-          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
+          background:
+            "linear-gradient(to bottom, " +
+            "rgba(10,20,40,0.40) 0%, " +
+            "rgba(10,20,40,0.20) 30%, " +
+            "rgba(10,20,40,0.05) 55%, " +
+            "rgba(10,20,40,0.15) 80%, " +
+            "rgba(10,20,40,0.30) 100%)",
         }}
       />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        {/* Title */}
-        <p className="text-[#C9A84C] text-sm font-medium tracking-[0.3em] uppercase mb-4">
-          Christian Ministry
-        </p>
-        <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-2 leading-tight">
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto flex flex-col items-center">
+
+        {/* Eyebrow line */}
+        <div className="flex items-center gap-4 mb-8">
+          <span className="block w-10 h-px bg-white/60" />
+          <span
+            className="text-white text-[11px] font-medium tracking-[0.45em] uppercase"
+            style={{ textShadow: "0 1px 12px rgba(0,0,0,0.7), 0 0 30px rgba(0,0,0,0.5)" }}
+          >
+            世界に希望を届ける
+          </span>
+          <span className="block w-10 h-px bg-white/60" />
+        </div>
+
+        {/* Main title */}
+        <h1
+          className="font-serif font-bold leading-[1.05] mb-6 drop-shadow-lg"
+          style={{
+            fontSize: "clamp(3rem, 9vw, 6.5rem)",
+            letterSpacing: "-0.01em",
+            textShadow: "0 2px 40px rgba(0,0,0,0.4)",
+            background: "linear-gradient(160deg, #ffffff 40%, rgba(255,230,160,0.9) 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
           Hope for the World
         </h1>
-        <p className="text-white/60 text-lg md:text-xl mb-12 tracking-wide">
-          世界に希望を届ける
-        </p>
+
+        {/* Thin divider */}
+        <div className="w-16 h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent mb-10" />
 
         {/* Scripture slider */}
-        <div className="min-h-[90px] flex flex-col items-center justify-center mb-12">
+        <div className="min-h-[100px] flex flex-col items-center justify-center mb-8">
           <blockquote
-            className="text-white/90 text-lg md:text-2xl font-light italic leading-relaxed max-w-2xl transition-opacity duration-700"
+            className="transition-opacity duration-700 max-w-2xl"
             style={{ opacity: visible ? 1 : 0 }}
           >
-            &ldquo;{s.verse}&rdquo;
+            <p
+              className="text-white/90 font-light italic leading-relaxed drop-shadow"
+              style={{
+                fontSize: "clamp(1rem, 2.2vw, 1.35rem)",
+                letterSpacing: "0.02em",
+                textShadow: "0 1px 20px rgba(0,0,0,0.5)",
+              }}
+            >
+              &ldquo;{s.verse}&rdquo;
+            </p>
           </blockquote>
           <cite
-            className="text-[#C9A84C] text-sm mt-3 not-italic tracking-widest transition-opacity duration-700"
+            className="text-[#ffd080]/90 text-xs mt-4 not-italic tracking-[0.3em] uppercase drop-shadow transition-opacity duration-700"
             style={{ opacity: visible ? 1 : 0 }}
           >
-            — {s.ref}
+            {s.ref}
           </cite>
         </div>
 
@@ -89,8 +118,13 @@ export default function HeroSection() {
           {scriptures.map((_, i) => (
             <button
               key={i}
-              onClick={() => { setVisible(false); setTimeout(() => { setCurrent(i); setVisible(true); }, 300); }}
-              className={`w-2 h-2 rounded-full transition-all ${i === current ? "bg-[#C9A84C] w-6" : "bg-white/30"}`}
+              onClick={() => {
+                setVisible(false);
+                setTimeout(() => { setCurrent(i); setVisible(true); }, 300);
+              }}
+              className={`h-px rounded-full transition-all duration-300 ${
+                i === current ? "bg-[#C9A84C] w-8" : "bg-white/30 w-4"
+              }`}
               aria-label={`みことば ${i + 1}`}
             />
           ))}
@@ -100,13 +134,15 @@ export default function HeroSection() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/know-jesus"
-            className="px-8 py-4 bg-[#C9A84C] hover:bg-[#e8c97a] text-[#1a2e5a] font-bold rounded-full transition-all shadow-lg shadow-[#C9A84C]/30 hover:shadow-[#C9A84C]/50 hover:scale-105"
+            className="group relative px-9 py-3.5 overflow-hidden rounded-full text-sm tracking-[0.12em] font-medium transition-all duration-300 hover:scale-105"
+            style={{ background: "rgba(201,168,76,0.95)", color: "#0e0900" }}
           >
-            イエス様を知る
+            <span className="relative z-10">イエス様を知る</span>
+            <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           </Link>
           <Link
             href="/prayer"
-            className="px-8 py-4 border-2 border-white/40 hover:border-[#C9A84C] text-white hover:text-[#C9A84C] font-bold rounded-full transition-all hover:scale-105"
+            className="px-9 py-3.5 rounded-full text-sm tracking-[0.12em] font-light text-white/90 hover:text-white border border-white/30 hover:border-[#C9A84C]/60 transition-all duration-300 hover:scale-105 hover:bg-white/5 backdrop-blur-sm"
           >
             祈りのリクエスト
           </Link>
@@ -114,7 +150,7 @@ export default function HeroSection() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 animate-bounce">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 animate-bounce">
         <span className="text-xs tracking-widest">SCROLL</span>
         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
