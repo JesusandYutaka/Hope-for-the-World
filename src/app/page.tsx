@@ -63,34 +63,136 @@ export default function HomePage() {
             <p className="text-[#C9A84C] text-sm font-medium tracking-[0.3em] uppercase mb-3">Who We Are</p>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1a2e5a]">私たちの自己紹介</h2>
           </div>
-          <div className="flex flex-col md:flex-row items-center gap-12">
+
+          {/* Intro: photo + opening */}
+          <div className="flex flex-col md:flex-row items-start gap-12 mb-16">
             {/* Photo */}
             <div className="w-full md:w-2/5 flex-shrink-0">
               <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/5]">
                 <Image
                   src="/images/profile.jpg"
-                  alt="プロフィール写真"
+                  alt="中島豊"
                   fill
                   className="object-cover object-top"
                   sizes="(max-width: 768px) 100vw, 40vw"
                 />
               </div>
             </div>
-            {/* Text placeholder */}
-            <div className="w-full md:w-3/5 space-y-6">
+
+            {/* Opening text */}
+            <div className="w-full md:w-3/5 space-y-5 pt-2">
               <div className="w-10 h-0.5 bg-[#C9A84C]" />
               <h3 className="text-2xl font-serif font-bold text-[#1a2e5a]">
-                名前 / Name
+                中島 豊 <span className="text-base font-normal text-gray-400 ml-2">Nakajima Yutaka</span>
               </h3>
-              <div className="space-y-4 text-gray-500 leading-relaxed">
-                <p className="bg-[#f0f0f0] rounded-lg h-5 w-3/4 animate-pulse" />
-                <p className="bg-[#f0f0f0] rounded-lg h-5 w-full animate-pulse" />
-                <p className="bg-[#f0f0f0] rounded-lg h-5 w-5/6 animate-pulse" />
-                <p className="bg-[#f0f0f0] rounded-lg h-5 w-2/3 animate-pulse" />
-              </div>
-              <p className="text-sm text-gray-400 italic border-l-2 border-[#C9A84C]/40 pl-4">
-                ✏️ 文章を準備中です
+              <p className="text-lg font-serif text-[#1a2e5a] font-medium">
+                Hope for the Worldへようこそ
               </p>
+              <div className="space-y-3 text-gray-600 leading-[1.9]">
+                <p>
+                  はじめまして、中島豊です。<br />
+                  9人兄弟の長男として、11人の大家族に生まれました。<br />
+                  現在は、妻と息子と共に暮らしています。
+                </p>
+                <p>
+                  小学生の時、イエス様に出会いました。<br />
+                  その愛と素晴らしさに心が動かされ、<br />
+                  「この方のために生きたい」と思うようになりました。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Journey sections */}
+          <div className="space-y-10">
+            {/* 歩み */}
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#e8f0fe]">
+              <p className="text-[#C9A84C] text-xs font-medium tracking-[0.3em] uppercase mb-4">Journey</p>
+              <h4 className="text-xl font-serif font-bold text-[#1a2e5a] mb-5">歩み</h4>
+              <div className="text-gray-600 leading-[1.9] space-y-4">
+                <p>
+                  ホームスクールで育ち、聖書を土台に学びました。<br />
+                  大学では神様をさらに深く知りたいと願い、<br />
+                  東京基督教大学へ進学。<br />
+                  神様はそこで、私の世界観を大きく広げてくださいました。
+                </p>
+                <p>
+                  卒業後、幼稚園で働きながら教会の伝道師として歩みました。<br />
+                  しかし、休みのない日々とパワハラで燃え尽き、休職。<br />
+                  肩書きで生きていた自分は、<br />
+                  「自分とは何者なのか」と深く悩みました。
+                </p>
+                <p>
+                  祈りの中で、神様が教えてくださったのは、<br />
+                  <span className="italic text-[#1a2e5a] border-l-2 border-[#C9A84C] pl-3 block mt-1">
+                    「あなたは私に愛されている息子だ」ということでした。
+                  </span>
+                </p>
+              </div>
+            </div>
+
+            {/* 転機 */}
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#e8f0fe]">
+              <p className="text-[#C9A84C] text-xs font-medium tracking-[0.3em] uppercase mb-4">Turning Point</p>
+              <h4 className="text-xl font-serif font-bold text-[#1a2e5a] mb-5">転機</h4>
+              <div className="text-gray-600 leading-[1.9] space-y-4">
+                <p>
+                  転職して放課後児童デイで働き、<br />
+                  保育士として障害児保育に携わりました。
+                </p>
+                <p>
+                  ある日、こんな祈りを捧げました。
+                </p>
+                <p className="italic text-[#1a2e5a] border-l-2 border-[#C9A84C] pl-3 leading-[2]">
+                  「奨学金を返済してくださるなら、<br />
+                  　フルタイムで福音を伝えます」
+                </p>
+                <p>
+                  神様はその祈りに答え、必要が満たされました。<br />
+                  「福音のために生きなさい」という<br />
+                  神様の背中を押す声を感じ、神学校へ進むことを決めました。
+                </p>
+                <p>
+                  関西聖書学院（KBI）での学びを通して、<br />
+                  私は自然体になったと感じています。
+                </p>
+                <p>
+                  自分のプライドが砕かれ、傷が癒やされる体験をしました。<br />
+                  自分の弱さや頑固さを見せつけられ、<br />
+                  自分が何者でもないことを知りました。
+                </p>
+                <p>
+                  人から評価されないと価値がないと、<br />
+                  心のどこかで信じてきましたが、<br />
+                  そのままで神に受け入れられ、喜ばれていることを知りました。
+                </p>
+                <p>
+                  多くの恵みを受け、<br />
+                  自分の召しと賜物が明らかにされていく時間でした。
+                </p>
+              </div>
+            </div>
+
+            {/* 今 */}
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#e8f0fe]">
+              <p className="text-[#C9A84C] text-xs font-medium tracking-[0.3em] uppercase mb-4">Now</p>
+              <h4 className="text-xl font-serif font-bold text-[#1a2e5a] mb-5">今</h4>
+              <div className="text-gray-600 leading-[1.9] space-y-4">
+                <p>
+                  現在は、プログラマーとして働きつつ、教会の伝道師として仕えています。<br />
+                  私の願いは、日本と世界のすべての民族にイエス様が伝えられること。<br />
+                  あらゆる国の人々にイエス様を伝え、共にイエス様の弟子として歩みたいと願っています。
+                </p>
+                <div className="text-center pt-4 space-y-3">
+                  <div className="w-12 h-px bg-[#C9A84C]/40 mx-auto" />
+                  <p className="text-gray-500 leading-[2] italic">
+                    神の愛があなたに注がれますように。<br />
+                    希望なる神の恵みと喜びで満たされますように。
+                  </p>
+                  <p className="text-gray-400 text-sm">心から、あなたの祝福をお祈りしています。</p>
+                  <p className="text-[#1a2e5a] font-serif font-bold text-lg mt-2">中島 豊</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -4,26 +4,12 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Ministry Request"
-        title="ミニストリー依頼"
-        subtitle={"メッセージ、賛美奉仕、その他のご依頼、\nご質問はこちらからお気軽にどうぞ。"}
+        eyebrow="Contact"
+        title="コンタクトフォーム"
+        subtitle={"イエス様について知りたい方、\n聖書を一緒に学びたい方、\n祈ってほしいことがある方、\n\nどんなことでも、お気軽にご連絡ください。\n\n返信に少しお時間をいただく場合もありますが、\n一つひとつ丁寧にお返事させていただきます。"}
       />
       <section className="py-24 px-4 bg-white">
         <div className="max-w-2xl mx-auto">
-          {/* Request types */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-            {[
-              { icon: "🎤", label: "メッセージ依頼" },
-              { icon: "🎵", label: "賛美奉仕依頼" },
-              { icon: "✉️", label: "その他" },
-            ].map((t) => (
-              <div key={t.label} className="p-4 rounded-xl border border-[#e8f0fe] text-center hover:border-[#C9A84C]/40 transition-all cursor-pointer">
-                <span className="text-2xl">{t.icon}</span>
-                <p className="text-xs text-[#1a2e5a] font-medium mt-2">{t.label}</p>
-              </div>
-            ))}
-          </div>
-
           {/* Form */}
           <form className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
@@ -45,11 +31,12 @@ export default function ContactPage() {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-[#1a2e5a] mb-2">依頼の種類</label>
+              <label className="block text-sm font-medium text-[#1a2e5a] mb-2">お問合せ内容</label>
               <select className="w-full px-4 py-3 rounded-xl border border-[#e8f0fe] focus:outline-none focus:border-[#C9A84C] text-sm text-gray-600 transition-colors bg-white">
                 <option value="">選択してください</option>
-                <option>メッセージ依頼</option>
-                <option>賛美奉仕依頼</option>
+                <option>イエス様を信じてみたい</option>
+                <option>イエス様をもっと知るために聖書の学びをしてみたい</option>
+                <option>祈りのリクエスト</option>
                 <option>その他</option>
               </select>
             </div>

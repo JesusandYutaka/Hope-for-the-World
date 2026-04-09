@@ -45,6 +45,9 @@ export default function WorshipPage() {
                 オリジナル賛美 <span className="text-sm font-sans font-normal text-gray-400 ml-2">— YouTube</span>
               </h2>
             </div>
+            <p className="text-gray-600 text-sm leading-relaxed mb-8">
+              新しいオリジナル賛美を作って発信しています。
+            </p>
             <div className="rounded-2xl overflow-hidden border border-[#e8f0fe] shadow-md mb-6">
               <div className="aspect-video">
                 <iframe
@@ -79,6 +82,21 @@ export default function WorshipPage() {
             <div className="flex items-center gap-4 mb-10">
               <div className="w-8 h-0.5 bg-[#C9A84C]" />
               <h2 className="text-xl font-serif font-bold text-[#1a2e5a]">賛美集会情報</h2>
+            </div>
+            <div className="text-gray-600 text-sm leading-[1.9] mb-8 space-y-4">
+              <p>一緒に、神様を賛美しませんか？</p>
+              <p>
+                定期的に賛美集会を開催しています。<br />
+                初めての方も、どなたでも大歓迎です。
+              </p>
+              <p>
+                賛美を通して、神様の愛と素晴らしさを<br />
+                共に体験できることを楽しみにしています。
+              </p>
+              <p>
+                集会の日程や詳細は、Instagramでお知らせしています。<br />
+                ぜひフォローして、お気軽にご参加ください。
+              </p>
             </div>
 
             {/* Instagram link */}
@@ -215,6 +233,14 @@ export default function WorshipPage() {
               <h2 className="text-xl font-serif font-bold text-[#1a2e5a]">
                 賛美集会GLORY <span className="text-sm font-sans font-normal text-gray-400 ml-2">— 動画</span>
               </h2>
+            </div>
+            <div className="text-gray-600 text-sm leading-[1.9] mb-8 space-y-3">
+              <p>賛美集会のアーカイブも公開しています。</p>
+              <p className="text-gray-500 italic">
+                「どんな雰囲気なんだろう？」<br />
+                「参加してみたいけど、まず様子を見たい」
+              </p>
+              <p>そんな方は、ぜひアーカイブをご覧ください。</p>
             </div>
             <div className="rounded-2xl overflow-hidden border border-[#e8f0fe] shadow-md mb-6">
               <div className="aspect-video">

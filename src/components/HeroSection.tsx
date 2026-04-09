@@ -133,7 +133,7 @@ export default function HeroSection() {
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            href="/know-jesus"
+            href="/know-god"
             className="group relative px-9 py-3.5 overflow-hidden rounded-full text-sm tracking-[0.12em] font-medium transition-all duration-300 hover:scale-105"
             style={{ background: "rgba(201,168,76,0.95)", color: "#0e0900" }}
           >
@@ -141,7 +141,7 @@ export default function HeroSection() {
             <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           </Link>
           <Link
-            href="/prayer"
+            href="/contact"
             className="px-9 py-3.5 rounded-full text-sm tracking-[0.12em] font-light text-white/90 hover:text-white border border-white/30 hover:border-[#C9A84C]/60 transition-all duration-300 hover:scale-105 hover:bg-white/5 backdrop-blur-sm"
           >
             祈りのリクエスト

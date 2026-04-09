@@ -87,6 +87,16 @@ export default function FellowshipPage() {
               <div className="w-8 h-0.5 bg-[#C9A84C]" />
               <h2 className="text-xl font-serif font-bold text-[#1a2e5a]">コネクト</h2>
             </div>
+            <div className="text-gray-600 leading-[1.9] text-sm mb-6 space-y-3">
+              <p>SNSで繋がりませんか？</p>
+              <p>
+                日々の恵みや賛美、励ましのメッセージを<br />
+                SNSでもシェアしています。
+              </p>
+              <p className="text-gray-400 text-xs">
+                ※Facebook友達リクエストの際は、「サイトを見ました」と一言添えていただけると助かります。
+              </p>
+            </div>
             <div className="space-y-4">
               <a href="https://www.instagram.com/love_jesus_yutaka/" target="_blank" rel="noopener noreferrer"
                 className="group flex items-center gap-5 p-6 rounded-2xl border border-[#e8f0fe] hover:border-[#C9A84C]/40 hover:shadow-md transition-all">

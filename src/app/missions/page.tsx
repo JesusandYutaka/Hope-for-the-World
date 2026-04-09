@@ -18,6 +18,9 @@ export default function MissionsPage() {
       />
       <section className="py-24 px-4 bg-white">
         <div className="max-w-3xl mx-auto space-y-6">
+          {papers.length === 0 && (
+            <p className="text-center text-gray-400 py-16">準備中</p>
+          )}
           {papers.map((paper) => (
             <article key={paper.id} className="flex gap-6 p-8 rounded-2xl border border-[#e8f0fe] hover:border-[#C9A84C]/30 hover:shadow-md transition-all">
               <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#C9A84C]/10 flex items-center justify-center">

@@ -25,7 +25,6 @@ const navLinks: NavItem[] = [
     ],
   },
   { href: "/know-god", label: "神を知りたい人へ" },
-  { href: "/contact", label: "ミニストリー依頼" },
 ];
 
 function DropdownMenu({ item }: { item: NavItem & { children: { href: string; label: string }[] } }) {
@@ -153,7 +152,7 @@ export default function Header() {
 
             {/* CTA button */}
             <Link
-              href="/prayer"
+              href="/contact"
               className="ml-2 px-5 py-2 border border-[#C9A84C]/60 hover:border-[#C9A84C] text-[#C9A84C] hover:text-[#e8d080] text-[12px] tracking-[0.15em] font-medium rounded-full transition-all duration-300 hover:bg-[#C9A84C]/10"
             >
               祈りのリクエスト
