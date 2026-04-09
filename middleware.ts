@@ -5,7 +5,7 @@ const ALLOWED_IP = "219.104.168.5";
 export function middleware(request: NextRequest) {
   // Vercel は x-forwarded-for にクライアントIPを入れる
   const forwarded = request.headers.get("x-forwarded-for");
-  const ip = forwarded ? forwarded.split(",")[0].trim() : (request.ip ?? "");
+  const ip = forwarded ? forwarded.split(",")[0].trim() : "";
 
   if (ip !== ALLOWED_IP) {
     return new NextResponse("Access Denied", { status: 403 });
