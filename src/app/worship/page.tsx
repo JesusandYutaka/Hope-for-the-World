@@ -32,8 +32,59 @@ export default function WorshipPage() {
       <PageHero
         eyebrow="Worship Ministry"
         title="賛美ミニストリー"
-        subtitle="神への賛美を通して、主の御前に近づきましょう。"
+        subtitle="ともに、神への賛美を通して、神に近づきましょう。"
       />
+      {/* 賛美とは */}
+      <section className="py-20 px-4 bg-gradient-to-b from-[#0d1b3e]/5 to-white">
+        <div className="max-w-4xl mx-auto">
+          {/* みことば */}
+          <div className="mb-12 text-center">
+            <p className="text-[#1a2e5a] font-serif font-bold text-xl md:text-2xl leading-relaxed">
+              「主を賛美するために民は創造された。」
+            </p>
+            <p className="text-[#C9A84C] text-sm mt-2">詩篇 102:19 — 新共同訳</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-5">
+            {[
+              {
+                number: "01",
+                title: "賛美とは",
+                text: "神をほめたたえる歌が、賛美です。神の素晴らしさ、偉大さをほめたたえ、感謝と礼拝を捧げるために人間は造られました。",
+              },
+              {
+                number: "02",
+                title: "賛美の力",
+                text: "私たちが神を賛美する時、人生を縛る鎖が解かれ、喜びと解放を体験することができます。",
+              },
+              {
+                number: "03",
+                title: "神の臨在",
+                text: "賛美の中で神の臨在に触れ、さらに神を知り、神に近づくことができます。",
+              },
+              {
+                number: "04",
+                title: "ともに",
+                text: "ともに、神への賛美を通して、神に近づきましょう。",
+              },
+            ].map((item) => (
+              <div key={item.number}
+                className="relative overflow-hidden p-8 rounded-2xl bg-white border border-[#e8f0fe] shadow-sm hover:shadow-lg hover:border-[#C9A84C]/40 transition-all group">
+                {/* Background number */}
+                <span className="absolute top-4 right-5 text-6xl font-bold text-[#e8f0fe] group-hover:text-[#C9A84C]/10 transition-colors select-none leading-none">
+                  {item.number}
+                </span>
+                {/* Gold accent line */}
+                <div className="w-8 h-0.5 bg-[#C9A84C] mb-4" />
+                <h3 className="text-[#1a2e5a] font-serif font-bold text-base mb-3">{item.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed relative z-10">{item.text}</p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
       <section className="py-24 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
 
@@ -304,6 +355,19 @@ export default function WorshipPage() {
                 </svg>
               </a>
             </div>
+            <div className="mt-8 text-gray-600 text-sm leading-[1.9] space-y-3">
+              <p className="font-medium text-[#1a2e5a]">賛美楽譜、自由にお使いください</p>
+              <p>
+                新しいオリジナル賛美を収録した<br />
+                「希望賛美CD」の楽譜を公開しています。
+              </p>
+              <p>
+                個人の賛美でも、<br />
+                教会の礼拝でも、<br />
+                自由にダウンロード・印刷していただけます。
+              </p>
+              <p>神様への賛美の時間に、お役に立てれば嬉しいです。</p>
+            </div>
           </div>
 
           {/* Divider */}
@@ -318,6 +382,17 @@ export default function WorshipPage() {
             <p className="text-gray-400 text-sm mb-8 pl-12">
               Kansai Bible Institute「Hope」— Spotify・Apple Music・YouTube Music ほか全配信サービスにて配信中
             </p>
+            <div className="text-gray-600 text-sm leading-[1.9] space-y-3 mb-8">
+              <p className="font-medium text-[#1a2e5a]">「希望」賛美CDを配信中</p>
+              <p>
+                各種配信サービスで、<br />
+                「希望」賛美CDのライブ音源を聴くことができます。
+              </p>
+              <p>
+                Spotify、Apple Music、Amazon Musicなど、<br />
+                お好きなサービスでお楽しみください。
+              </p>
+            </div>
 
             {/* Main streaming badges */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">

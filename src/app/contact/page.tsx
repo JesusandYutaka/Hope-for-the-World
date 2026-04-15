@@ -6,7 +6,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="コンタクトフォーム"
-        subtitle={"イエス様について知りたい方、\n聖書を一緒に学びたい方、\n祈ってほしいことがある方、\n\nどんなことでも、お気軽にご連絡ください。\n\n返信に少しお時間をいただく場合もありますが、\n一つひとつ丁寧にお返事させていただきます。"}
+        subtitle={"イエス様について知りたい方、\n祈ってほしいことがある方、\nお気軽にご連絡ください。\n\n返信に少しお時間をいただく場合もありますが、\n一つひとつ丁寧にお返事させていただきます。"}
       />
       <section className="py-24 px-4 bg-white">
         <div className="max-w-2xl mx-auto">
@@ -35,7 +35,6 @@ export default function ContactPage() {
               <select className="w-full px-4 py-3 rounded-xl border border-[#e8f0fe] focus:outline-none focus:border-[#C9A84C] text-sm text-gray-600 transition-colors bg-white">
                 <option value="">選択してください</option>
                 <option>イエス様を信じてみたい</option>
-                <option>イエス様をもっと知るために聖書の学びをしてみたい</option>
                 <option>祈りのリクエスト</option>
                 <option>その他</option>
               </select>
