@@ -35,7 +35,7 @@ export default function WorshipPage() {
         subtitle="ともに、神への賛美を通して、神に近づきましょう。"
       />
       {/* 賛美とは */}
-      <section className="py-20 px-4 bg-gradient-to-b from-[#0d1b3e]/5 to-white">
+      <section className="py-10 md:py-20 px-4 bg-gradient-to-b from-[#0d1b3e]/5 to-white">
         <div className="max-w-4xl mx-auto">
           {/* みことば */}
           <div className="mb-12 text-center">
@@ -85,7 +85,7 @@ export default function WorshipPage() {
         </div>
       </section>
 
-      <section className="py-24 px-4 bg-white">
+      <section className="py-10 md:py-24 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
 
           {/* ① オリジナル賛美 */}

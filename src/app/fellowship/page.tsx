@@ -13,7 +13,7 @@ export default function FellowshipPage() {
         subtitle="キリストにある兄弟姉妹と共に歩みましょう。"
       />
       {/* 交わりとは */}
-      <section className="py-20 px-4 bg-gradient-to-b from-[#0d1b3e]/5 to-white">
+      <section className="py-10 md:py-20 px-4 bg-gradient-to-b from-[#0d1b3e]/5 to-white">
         <div className="max-w-4xl mx-auto">
           <div className="mb-12 text-center">
             <p className="text-[#1a2e5a] font-serif font-bold text-xl md:text-2xl leading-relaxed">
@@ -74,7 +74,7 @@ export default function FellowshipPage() {
         </div>
       </section>
 
-      <section className="py-24 px-4 bg-white">
+      <section className="py-10 md:py-24 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
 
           {/* 教会HP */}

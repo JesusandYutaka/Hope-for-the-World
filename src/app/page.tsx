@@ -56,7 +56,7 @@ export default async function HomePage() {
       <HeroSection />
 
       {/* Vision・Mission・Core Values */}
-      <section className="py-24 px-4 bg-white">
+      <section className="py-12 md:py-24 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-[#C9A84C] text-sm font-medium tracking-[0.3em] uppercase mb-3">About Us</p>
@@ -80,7 +80,7 @@ export default async function HomePage() {
       </section>
 
       {/* Self Introduction */}
-      <section className="py-24 px-4 bg-[#fafafa]">
+      <section className="py-12 md:py-24 px-4 bg-[#fafafa]">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-[#C9A84C] text-sm font-medium tracking-[0.3em] uppercase mb-3">Who We Are</p>
@@ -88,7 +88,7 @@ export default async function HomePage() {
           </div>
 
           {/* Intro: photo + opening */}
-          <div className="flex flex-col md:flex-row items-start gap-12 mb-16">
+          <div className="flex flex-col md:flex-row items-start gap-6 md:gap-12 mb-16">
             {/* Photo */}
             <div className="w-full md:w-2/5 flex-shrink-0">
               <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/5]">
@@ -386,7 +386,7 @@ export default async function HomePage() {
 
 
       {/* Featured Content */}
-      <section className="py-24 px-4 bg-[#e8f0fe]">
+      <section className="py-12 md:py-24 px-4 bg-[#e8f0fe]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-[#C9A84C] text-sm font-medium tracking-[0.3em] uppercase mb-3">Content</p>
@@ -455,7 +455,7 @@ export default async function HomePage() {
       </section>
 
       {/* Prayer CTA */}
-      <section className="py-24 px-4 bg-gradient-to-br from-[#1a2e5a] to-[#0d1b3e] text-white text-center">
+      <section className="py-12 md:py-24 px-4 bg-gradient-to-br from-[#1a2e5a] to-[#0d1b3e] text-white text-center">
         <div className="max-w-3xl mx-auto">
           <div className="inline-block w-12 h-0.5 bg-[#C9A84C] mb-8" />
           <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">共に祈りましょう</h2>

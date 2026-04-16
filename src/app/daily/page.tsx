@@ -90,7 +90,7 @@ export default function DailyPage() {
       <div className="bg-white">
 
         {/* みことばとは */}
-        <section className="py-20 px-4 bg-gradient-to-b from-[#0d1b3e]/5 to-white">
+        <section className="py-10 md:py-20 px-4 bg-gradient-to-b from-[#0d1b3e]/5 to-white">
           <div className="max-w-4xl mx-auto">
             <div className="mb-12 text-center">
               <p className="text-[#1a2e5a] font-serif font-bold text-xl md:text-2xl leading-relaxed">
@@ -144,7 +144,7 @@ export default function DailyPage() {
         </div>
 
         {/* ① YouTube 動画 */}
-        <section className="py-20 px-4">
+        <section className="py-10 md:py-20 px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-10">
               <div className="w-8 h-0.5 bg-[#C9A84C]" />
@@ -203,7 +203,7 @@ export default function DailyPage() {
         </div>
 
         {/* ② おすすめリンク */}
-        <section className="py-20 px-4">
+        <section className="py-10 md:py-20 px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-8 h-0.5 bg-[#C9A84C]" />
@@ -264,7 +264,7 @@ export default function DailyPage() {
         </div>
 
         {/* ③ Note 記事 */}
-        <section className="py-20 px-4">
+        <section className="py-10 md:py-20 px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-4 mb-10">
               <div className="w-8 h-0.5 bg-[#C9A84C]" />

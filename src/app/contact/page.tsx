@@ -37,7 +37,7 @@ export default function ContactPage() {
         title="コンタクトフォーム"
         subtitle={"イエス様について知りたい方、\n祈ってほしいことがある方、\nお気軽にご連絡ください。\n\n返信に少しお時間をいただく場合もありますが、\n一つひとつ丁寧にお返事させていただきます。"}
       />
-      <section className="py-24 px-4 bg-white">
+      <section className="py-12 md:py-24 px-4 bg-white">
         <div className="max-w-2xl mx-auto">
           {status === "done" ? (
             <div className="text-center py-16">

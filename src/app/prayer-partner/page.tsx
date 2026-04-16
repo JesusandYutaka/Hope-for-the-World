@@ -9,7 +9,7 @@ export default function PrayerPartnerPage() {
         title="祈りのパートナー"
         subtitle={"祈りの宣教パートナーになりませんか？"}
       />
-      <section className="py-24 px-4 bg-white">
+      <section className="py-12 md:py-24 px-4 bg-white">
         <div className="max-w-3xl mx-auto">
 
 
@@ -17,7 +17,7 @@ export default function PrayerPartnerPage() {
           <div className="mb-14">
 
             {/* Hero message */}
-            <div className="relative overflow-hidden rounded-3xl p-10 mb-8 text-center"
+            <div className="relative overflow-hidden rounded-3xl p-6 md:p-10 mb-8 text-center"
               style={{ background: "linear-gradient(135deg, #1a2e5a 0%, #2d4a8a 60%, #1a3a6a 100%)" }}>
               {/* Glow orbs */}
               <div className="absolute top-0 right-0 w-72 h-72 rounded-full pointer-events-none"
