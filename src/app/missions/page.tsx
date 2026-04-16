@@ -10,15 +10,15 @@ const papers: {
   {
     id: "kbi-thesis",
     title: "7000の未伝道部族に宣教師を派遣する3万人のメガチャーチを日本で開拓するには",
-    subtitle: "神の計画が前進するために生き、イエスの来られる道を備えるために — KBI卒業論文",
+    subtitle: "神の計画が前進するために生き、イエスの来られる道を備えるために",
     label: "KBI 卒業論文",
     file: "/kbi-thesis.pdf",
   },
   {
     id: "tcu-thesis",
     title: "なぜハドソン・テイラーは神様に用いられたのか",
-    subtitle: "TCU卒業研究",
-    label: "TCU 卒業研究",
+    subtitle: "チャイナイングランドミッション（現OMF)を創設した、中国奥地宣教の先駆者",
+    label: "TCU 卒業論文",
     file: "/tcu-thesis.pdf",
   },
 ];
