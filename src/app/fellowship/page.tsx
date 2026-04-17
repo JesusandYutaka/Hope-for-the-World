@@ -37,12 +37,12 @@ export default function FellowshipPage() {
               {
                 number: "03",
                 title: "教会とは",
-                text: "イエス様を中心とした集まりはイエス様の体である「教会」と呼ばれ、神の御心は教会を通して行われていきます。",
+                text: "イエス様を中心とした集まりはイエス様の体である「教会」と呼ばれ、希望であるイエス様が満ち溢れているところです。教会に繋がり、教会を通して私たちはダイナミックに希望であるイエス様をこの世界に伝えることができます。",
               },
               {
                 number: "04",
                 title: "つながる",
-                text: "教会に繋がっていない方は、ぜひ、能勢川キリスト教会へお越しください。",
+                text: "教会に繋がっていない方は、ぜひ、能勢川キリスト教会へお越しください。日本国内にお住まいの方は、近くの教会を一緒に探すこともできます。その場合は、「つながる」フォームよりご連絡ください。",
               },
             ].map((item) => (
               <div
@@ -59,8 +59,8 @@ export default function FellowshipPage() {
             ))}
           </div>
 
-          {/* コンタクトボタン */}
-          <div className="flex justify-center pt-20">
+          {/* コンタクトボタン + みことば */}
+          <div className="flex flex-col items-center pt-20 gap-10">
             <a
               href="/contact"
               className="inline-flex items-center gap-2.5 px-10 py-4 rounded-full bg-[#1a2e5a] hover:bg-[#0d1b3e] text-white font-medium text-sm tracking-wide transition-all hover:shadow-lg hover:scale-[1.02]"
@@ -68,8 +68,30 @@ export default function FellowshipPage() {
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              コンタクトフォーム
+              つながる
             </a>
+
+            {/* みことば */}
+            <div className="relative max-w-2xl w-full mt-8">
+              <div className="relative overflow-hidden rounded-3xl px-10 py-10 md:px-16 md:py-12 text-center"
+                style={{ background: "linear-gradient(135deg, #0d1b3e 0%, #1a2e5a 60%, #2d4a8a 100%)" }}>
+                <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none opacity-10"
+                  style={{ background: "radial-gradient(circle, #C9A84C 0%, transparent 70%)", transform: "translate(30%, -30%)" }} />
+                <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full pointer-events-none opacity-10"
+                  style={{ background: "radial-gradient(circle, #93c5fd 0%, transparent 70%)", transform: "translate(-30%, 30%)" }} />
+                <p className="text-[#C9A84C] text-[10px] tracking-[0.5em] uppercase font-medium mb-6">Scripture</p>
+                <p className="relative text-white font-serif text-lg md:text-xl leading-loose tracking-wide">
+                  教会はキリストのからだであり、<br />
+                  すべてのものをすべてのもので満たす方が<br />
+                  満ちておられるところです。
+                </p>
+                <div className="flex items-center justify-center gap-3 mt-6">
+                  <div className="h-px w-8 bg-[#C9A84C]/50" />
+                  <p className="text-[#C9A84C] text-xs tracking-[0.3em] font-medium">エペソ 1:23</p>
+                  <div className="h-px w-8 bg-[#C9A84C]/50" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

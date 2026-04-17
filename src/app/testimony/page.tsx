@@ -1,4 +1,5 @@
 import PageHero from "@/components/PageHero";
+import JourneyAccordion from "@/components/JourneyAccordion";
 
 // ── 証の記事をここに追加してください ────────────────────────────────
 // category: "seminary" | "marriage" | "love" | "salvation"
@@ -144,7 +145,7 @@ export default function TestimonyPage() {
                 {
                   number: "04",
                   title: "あなたの証を",
-                  text: "皆さんの人生でなされた神のみわざがあれば、コンタクトフォームから教えてください。私たちの励みになります。",
+                  text: "皆さんの人生でなされた神のみわざがあれば、「つながる」フォームから教えてください。私たちの励みになります。",
                 },
               ].map((item) => (
                 <div
@@ -160,257 +161,32 @@ export default function TestimonyPage() {
                 </div>
               ))}
             </div>
+
+            <div className="mt-16 text-center">
+              <a
+                href="/contact"
+                className="inline-flex items-center gap-2.5 px-10 py-4 rounded-full bg-[#1a2e5a] hover:bg-[#0d1b3e] text-white font-medium text-sm tracking-wide transition-all hover:shadow-lg hover:scale-[1.02]"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                つながる
+              </a>
+            </div>
           </div>
         </section>
 
         {/* 証の記録 */}
         <section className="py-10 md:py-16 px-4 bg-[#fafafa]">
           <div className="max-w-3xl mx-auto">
-            <div className="space-y-10">
-
-              {/* イエス様との出会い */}
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#e8f0fe]">
-                <p className="text-[#C9A84C] text-xs font-medium tracking-[0.3em] uppercase mb-4">Encounter</p>
-                <h4 className="text-xl font-serif font-bold text-[#1a2e5a] mb-5">イエス様との出会い</h4>
-                <div className="text-gray-600 leading-[1.9] space-y-4">
-                  <p>
-                    保育園の頃、いじめを受けて、毎日泣いていました。<br />
-                    小学生になると、万引きを始めました。<br />
-                    父は牧師だったので、毎週教会に通っていました。<br />
-                    そこで聞いた言葉が、ずっと心に引っかかっていました。
-                  </p>
-                  <p className="italic text-[#1a2e5a] border-l-2 border-[#C9A84C] pl-3">
-                    「盗んではならない」
-                  </p>
-                  <p>
-                    悪いことをすると、神様から地獄に入れられる。<br />
-                    そう思うと、怖くてたまりませんでした。<br />
-                    死の恐怖と罪悪感が、いつも心にありました。
-                  </p>
-                  <p>そんなある日、父がこう語りました。</p>
-                  <p className="italic text-[#1a2e5a] border-l-2 border-[#C9A84C] pl-3 leading-[2]">
-                    「今まで悪いことをしてしまったら、<br />
-                    　神様にごめんなさいとお祈りしてごらん。<br />
-                    　神様は、赦してくださるよ」
-                  </p>
-                  <p>
-                    赦されたい。<br />
-                    この心の苦しみから、解放されたい。
-                  </p>
-                  <p>そう思った私は、神様に祈りました。</p>
-                  <p className="italic text-[#1a2e5a] border-l-2 border-[#C9A84C] pl-3">
-                    「こんなことをしてきました。ごめんなさい」
-                  </p>
-                  <p>
-                    涙が溢れました。<br />
-                    心にあった黒い穴が、消えていくのを感じました。
-                  </p>
-                  <p>
-                    今まで人生で体験したことのないような平安と喜びが、心に溢れました。<br />
-                    神様が私を赦してくださった。そのことを、確かに知りました。
-                  </p>
-                  <p>
-                    イエス様が全ての人の罪の身代わりとして死なれ、蘇られた。<br />
-                    その時以来、「このイエス様のために、生きていきたい」と思うようになりました。
-                  </p>
-                </div>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-8 h-0.5 bg-[#C9A84C]" />
+              <div>
+                <p className="text-[#C9A84C] text-[10px] font-medium tracking-[0.5em] uppercase mb-0.5">Journey</p>
+                <h2 className="text-xl font-serif font-bold text-[#1a2e5a]">証の記録</h2>
               </div>
-
-              {/* 神様はあなたを個人的に愛しています */}
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#e8f0fe]">
-                <p className="text-[#C9A84C] text-xs font-medium tracking-[0.3em] uppercase mb-4">God&apos;s Love</p>
-                <h4 className="text-xl font-serif font-bold text-[#1a2e5a] mb-5">神様はあなたを個人的に愛しています</h4>
-                <div className="text-gray-600 leading-[1.9] space-y-4">
-                  <p>
-                    高校生の時、私の中に一つの問いがありました。<br />
-                    神様は、本当に僕のことを愛しているのだろうか？
-                  </p>
-                  <p>
-                    神様は全世界の全ての人を愛している。<br />
-                    自分は、その中の1人に過ぎないんじゃないか。
-                  </p>
-                  <p>
-                    神様の愛を、日々の生活で感じられていなかった。<br />
-                    もし本当に愛してくれているなら、その愛を体験させて欲しい。<br />
-                    そう思っていました。
-                  </p>
-                  <p>そんな時、アメリカに行きました。</p>
-                  <p>
-                    2ヶ月間、ホームステイをしました。<br />
-                    日本語は通じない。<br />
-                    家族が恋しくなって、ホームシックになりました。
-                  </p>
-                  <p>寂しくて、一人で部屋で泣いていました。</p>
-                  <p>
-                    ふと、トランクに聖書があるのを思い出しました。<br />
-                    開くと、こんな言葉が出てきました。
-                  </p>
-                  <p className="italic text-[#1a2e5a] border-l-2 border-[#C9A84C] pl-3 leading-[2]">
-                    「民よ。どんな時にも、神に信頼せよ。<br />
-                    　あなたがたの心を、神の御前に注ぎ出せ。<br />
-                    　神はわれらの避け所である。」<br />
-                    <span className="text-xs text-gray-400 not-italic">詩篇 62:8</span>
-                  </p>
-                  <p>
-                    それまで、食事の前には祈っていました。<br />
-                    でも、心の底から祈ったことは、一度もなかった。<br />
-                    そのことに、初めて気がつきました。
-                  </p>
-                  <p>森の中へ入っていきました。</p>
-                  <p>ベンチに座って、賛美の音楽を聞きながら、神様に祈りました。</p>
-                  <p className="italic text-[#1a2e5a] border-l-2 border-[#C9A84C] pl-3 leading-[2]">
-                    「神様、最悪です最悪です最悪です。<br />
-                    　帰りたいです、帰りたいです、帰りたいです！！！」
-                  </p>
-                  <p>
-                    1時間、心の中にあるものをノートに殴り書きしました。<br />
-                    文句と不満を書き続けていると、涙が溢れてきました。
-                  </p>
-                  <p>その時、心にこの言葉が鳴り響いてきました。</p>
-                  <p className="italic text-[#1a2e5a] border-l-2 border-[#C9A84C] pl-3 leading-[2]">
-                    「恐るな。わたしはあなたとともにいる」<span className="text-xs text-gray-400 not-italic">イザヤ 41:10</span><br />
-                    「私の目には、あなたは高価で尊い。わたしはあなたを愛している」<span className="text-xs text-gray-400 not-italic">イザヤ 43:4</span>
-                  </p>
-                  <p>
-                    神様が、僕のことを個人的に、本当に愛してくださっている。<br />
-                    悲しみの涙が、喜びの涙に変わりました。
-                  </p>
-                  <p>
-                    その日から、神様に祈ることにハマり始めました。<br />
-                    毎日、心を注いで祈るために、散歩をするようになりました。
-                  </p>
-                  <p>
-                    祈ると、神様は答えてくださいました。<br />
-                    経済的な奇跡、友人がイエス様を知る奇跡、<br />
-                    願いが叶えられる奇跡、進路の導きの奇跡。<br />
-                    数え切れないほどの神のみわざを、体験してきました。
-                  </p>
-                  <p>
-                    私が心から確信していること、それは、<br />
-                    神様は生きておられる、ということです。
-                  </p>
-                  <p>
-                    そしてこの神様は、愛なるお方です。<br />
-                    私を愛してくださったように、<br />
-                    今このサイトを見てくださっているあなたのことも、<br />
-                    心から愛しておられます。
-                  </p>
-                  <p>
-                    この素晴らしい神様を、知ってほしい。<br />
-                    体験してほしい。<br />
-                    そう願って、このサイトを作りました。
-                  </p>
-                  <p>
-                    神様をさらに深く知り、<br />
-                    神様ご自身を体験し、<br />
-                    希望に満ちた人生を歩めるように。<br />
-                    そのサポートをすることが、私の願いです。
-                  </p>
-                  <p>
-                    この素晴らしいイエス様を知り、感動したなら、<br />
-                    ぜひ友人や家族にも伝えてください。
-                  </p>
-                  <p>希望であるイエス様を、一緒に、世界中へ伝えていけたら嬉しいです。</p>
-                </div>
-              </div>
-
-              {/* 新しいアイデンティティー */}
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#e8f0fe]">
-                <p className="text-[#C9A84C] text-xs font-medium tracking-[0.3em] uppercase mb-4">Identity</p>
-                <h4 className="text-xl font-serif font-bold text-[#1a2e5a] mb-5">新しいアイデンティティー</h4>
-                <div className="text-gray-600 leading-[1.9] space-y-4">
-                  <p>
-                    大学卒業後、幼稚園で働きながら教会の伝道師として歩みました。<br />
-                    しかし、燃え尽き、休職。<br />
-                    肩書きで生きていた自分は、<br />
-                    「自分とは何者なのか」と悩みました。
-                  </p>
-                  <p>
-                    祈りの中で、神様が教えてくださったのは、<br />
-                    <span className="italic text-[#1a2e5a] border-l-2 border-[#C9A84C] pl-3 block mt-1">
-                      「あなたはわたしの愛する息子だ」ということでした。
-                    </span>
-                  </p>
-                </div>
-              </div>
-
-              {/* 転機 */}
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#e8f0fe]">
-                <p className="text-[#C9A84C] text-xs font-medium tracking-[0.3em] uppercase mb-4">Turning Point</p>
-                <h4 className="text-xl font-serif font-bold text-[#1a2e5a] mb-5">転機</h4>
-                <div className="text-gray-600 leading-[1.9] space-y-4">
-                  <p>
-                    社会人3年目、<br />
-                    奨学金返済にあと3年必要でした。
-                  </p>
-                  <p>ある晩、神様に祈りました。</p>
-                  <p className="italic text-[#1a2e5a] border-l-2 border-[#C9A84C] pl-3 leading-[2]">
-                    「これを返済してくださるなら、<br />
-                    　フルタイムで福音を伝えるために働きます」
-                  </p>
-                  <p>
-                    翌日、ある方が<br />
-                    「豊くんの奨学金、全額返済します」<br />
-                    と言ってくださいました。
-                  </p>
-                  <p>
-                    神様が「福音を伝えるために働くんだよ」と<br />
-                    背中を押してくださったように感じ、<br />
-                    神学校へ進むことを決めました。
-                  </p>
-                  <p>
-                    関西聖書学院（KBI）での学びを通して、<br />
-                    私は自然体になったと感じています。
-                  </p>
-                  <p>
-                    心の傷が癒やされ、プライドが砕かれる体験をしました。<br />
-                    弱さや頑固さを見せつけられ、<br />
-                    自分が何者でもないことを知りました。
-                  </p>
-                  <p>
-                    人から評価されないと価値がないと、<br />
-                    心のどこかで信じてきましたが、<br />
-                    そのままで神に受け入れられ、喜ばれていることを知りました。
-                  </p>
-                  <p>
-                    十字架、聖霊、宣教について学び、<br />
-                    自分の召しと賜物が明らかにされていく特別な時間でした。
-                  </p>
-                </div>
-              </div>
-
-              {/* 今 */}
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#e8f0fe]">
-                <p className="text-[#C9A84C] text-xs font-medium tracking-[0.3em] uppercase mb-4">Now</p>
-                <h4 className="text-xl font-serif font-bold text-[#1a2e5a] mb-5">今</h4>
-                <div className="text-gray-600 leading-[1.9] space-y-4">
-                  <p>
-                    現在は、プログラマーとして働きつつ、教会の伝道師として歩み出しています。<br />
-                    私の願いは、全世界のすべての人にイエス様を伝え、イエス様の弟子としてともに歩むことです。
-                  </p>
-                  <p>
-                    すべての民族にイエス様の福音が伝えられる時、<br />
-                    イエス様は天からこの地上に降りて来られます。<br />
-                    イエス様が地上に来られる日、喜び賛美しながら迎えたい。
-                  </p>
-                  <p>
-                    水が海を覆うように、全地は主の栄光を知ることで満たされる日が、必ず来ます。<br />
-                    その日を楽しみにしながら、<br />
-                    この地上での旅路を喜び感謝と祈りをもって、日々、イエス様の後について歩んでいきたいです。
-                  </p>
-                  <div className="pt-4 space-y-3">
-                    <div className="w-12 h-px bg-[#C9A84C]/40" />
-                    <p className="text-gray-600 leading-[1.9]">
-                      神様の愛があなたに注がれますように。<br />
-                      希望なる神様の恵みと喜びで満たされますように。
-                    </p>
-                    <p className="text-gray-600 leading-[1.9]">心から、あなたの祝福をお祈りしています。</p>
-                    <p className="text-[#1a2e5a] font-serif font-bold text-lg mt-2">中島 豊</p>
-                  </div>
-                </div>
-              </div>
-
             </div>
+            <JourneyAccordion />
           </div>
         </section>
 
@@ -532,6 +308,27 @@ export default function TestimonyPage() {
                 ))}
               </div>
             )}
+          </div>
+        </section>
+
+        {/* ③ STORIES */}
+        <section className="py-10 md:py-16 px-4 bg-[#fafafa]">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-4 mb-10">
+              <div className="w-8 h-0.5 bg-[#C9A84C]" />
+              <div>
+                <p className="text-[#C9A84C] text-[10px] font-medium tracking-[0.5em] uppercase mb-0.5">Testimonies</p>
+                <h2 className="text-xl font-serif font-bold text-[#1a2e5a]">Stories</h2>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border-2 border-dashed border-[#e8f0fe] p-12 text-center">
+              <svg className="w-10 h-10 text-gray-200 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+              <p className="text-gray-400 text-sm">ストーリーをここに追加できます</p>
+              <p className="text-gray-300 text-xs mt-1">page.tsx に stories 配列を追加してください</p>
+            </div>
           </div>
         </section>
 

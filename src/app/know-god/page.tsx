@@ -98,7 +98,7 @@ export default function KnowGodPage() {
             <p className="text-white/70 text-sm leading-loose mb-8 max-w-xl mx-auto">
               「イエス様、あなたが神の子であること、私の罪のために死なれ、復活されたことを信じます。
               どうか私の罪を赦し、私の心に来てください。あなたを私の主・救い主として受け入れます。
-              あなたに従って生きることを選びます。アーメン。」
+              あなたに従って生きることを選びます。イエス様のお名前で祈りします。アーメン。」
             </p>
           </div>
 
@@ -114,7 +114,7 @@ export default function KnowGodPage() {
               </p>
               <p>
                 そう思われた方は、<br />
-                ぜひ「コンタクトフォーム」からお問い合わせください。<br />
+                ぜひ、「つながる」フォームからお問い合わせください。<br />
                 直接お会いするか、オンライン（Zoom）で、<br />
                 一緒に祈り、聖書を学ぶ時を持つことができます。
               </p>
@@ -130,7 +130,7 @@ export default function KnowGodPage() {
               href="/contact"
               className="inline-block mt-2 px-8 py-3.5 bg-[#1a2e5a] hover:bg-[#0d1b3e] text-white font-medium rounded-full transition-all hover:scale-105 text-sm"
             >
-              コンタクトフォームへ
+              つながる
             </Link>
           </div>
         </div>

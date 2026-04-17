@@ -8,20 +8,16 @@ type NavItem =
   | { label: string; href?: undefined; children: { href: string; label: string }[] };
 
 const navLinks: NavItem[] = [
-  { href: "/worship", label: "賛美ミニストリー" },
+  { href: "/worship", label: "賛美・Worship" },
+  { href: "/daily", label: "日々の励まし" },
   {
-    label: "コンテンツ",
+    label: "Hopeを広げる",
     children: [
-      { href: "/daily", label: "日々の励まし" },
-      { href: "/missions", label: "宣教論文" },
-    ],
-  },
-  {
-    label: "コミュニティ",
-    children: [
-      { href: "/fellowship", label: "交わり" },
       { href: "/prayer-partner", label: "祈りのパートナー" },
       { href: "/testimony", label: "証の部屋" },
+      { href: "/fellowship", label: "交わり" },
+      { href: "/missions", label: "宣教論文" },
+      { href: "/recommended-sites", label: "お勧めサイト" },
     ],
   },
   { href: "/know-god", label: "神を知りたい人へ" },
@@ -155,7 +151,7 @@ export default function Header() {
               href="/contact"
               className="ml-2 px-5 py-2 border border-[#C9A84C]/60 hover:border-[#C9A84C] text-[#C9A84C] hover:text-[#e8d080] text-[12px] tracking-[0.15em] font-medium rounded-full transition-all duration-300 hover:bg-[#C9A84C]/10"
             >
-              祈りのリクエスト
+              つながる
             </Link>
           </nav>
 

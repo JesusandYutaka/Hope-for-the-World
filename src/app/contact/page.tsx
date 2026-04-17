@@ -33,8 +33,8 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Contact"
-        title="コンタクトフォーム"
+        eyebrow="Connect"
+        title="つながる"
         subtitle={"イエス様について知りたい方、\n祈ってほしいことがある方、\nお気軽にご連絡ください。\n\n返信に少しお時間をいただく場合もありますが、\n一つひとつ丁寧にお返事させていただきます。"}
       />
       <section className="py-12 md:py-24 px-4 bg-white">
@@ -90,6 +90,10 @@ export default function ContactPage() {
                 >
                   <option value="">選択してください</option>
                   <option>イエス様を信じてみたい</option>
+                  <option>聖書を学んでみたい</option>
+                  <option>メッセージ、賛美奉仕を依頼したい</option>
+                  <option>近くの教会を教えてほしい</option>
+                  <option>神のみわざを分かち合いたい</option>
                   <option>祈りのリクエスト</option>
                   <option>その他</option>
                 </select>
