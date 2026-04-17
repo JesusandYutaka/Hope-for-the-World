@@ -115,7 +115,6 @@ export default function Header() {
               background: "linear-gradient(to bottom, rgba(5,12,25,0.55) 0%, transparent 100%)",
               backdropFilter: "blur(0px)",
               WebkitBackdropFilter: "blur(0px)",
-              borderBottom: "1px solid transparent",
             }
       }
     >
@@ -157,8 +156,9 @@ export default function Header() {
 
           {/* Mobile menu button */}
           <button
+            type="button"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden flex flex-col gap-1.5 p-2 group"
+            className="lg:hidden flex flex-col justify-center gap-1.5 p-4 -mr-2 cursor-pointer"
             aria-label="メニュー"
           >
             <span className={`block w-6 h-px bg-white transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
@@ -170,7 +170,7 @@ export default function Header() {
 
       {/* Mobile Nav */}
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-400 ${menuOpen ? "max-h-[600px]" : "max-h-0"}`}
+        className={`lg:hidden overflow-hidden transition-all duration-300 ${menuOpen ? "max-h-[600px]" : "max-h-0"}`}
         style={{
           background: "rgba(8, 15, 30, 0.92)",
           backdropFilter: "blur(20px)",
