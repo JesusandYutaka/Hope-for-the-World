@@ -55,7 +55,7 @@ export default function HeroSection() {
       />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto flex flex-col items-center">
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto flex flex-col items-center pt-20 md:pt-0">
 
         {/* Eyebrow line */}
         <div className="flex items-center gap-4 mb-8">
