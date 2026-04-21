@@ -1,7 +1,7 @@
 "use client";
 
 import PageHero from "@/components/PageHero";
-import Link from "next/link";
+import Button from "@/components/ui/Button";
 import type { KnowGodStep } from "@/types";
 
 const steps: KnowGodStep[] = [
@@ -121,12 +121,9 @@ export default function KnowGodPage() {
                 あなたの新しい人生の始まりに、神様の祝福が豊かにありますように。
               </p>
             </div>
-            <Link
-              href="/contact"
-              className="inline-block mt-2 px-8 py-3.5 bg-navy hover:bg-navy-dark text-white font-medium rounded-full transition-all hover:scale-105 text-sm"
-            >
+            <Button variant="primary" href="/contact" className="mt-2">
               つながる
-            </Link>
+            </Button>
           </div>
         </div>
       </section>

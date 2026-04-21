@@ -4,6 +4,7 @@ import NumberedCard from "@/components/ui/NumberedCard";
 import YouTubeEmbed from "@/components/ui/YouTubeEmbed";
 import InstagramCard from "@/components/ui/InstagramCard";
 import LinkCard from "@/components/ui/LinkCard";
+import Button from "@/components/ui/Button";
 import type { Gathering } from "@/types";
 import { YOUTUBE, INSTAGRAM, EXTERNAL, ICONS, BRAND_COLORS } from "@/lib/constants";
 import Divider from "@/components/ui/Divider";
@@ -70,17 +71,12 @@ export default function WorshipPage() {
               className="mb-6"
             />
             <div className="flex justify-center">
-              <a
-                href={EXTERNAL.WORSHIP_PLAYLIST}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold/50 text-gold text-sm font-medium hover:bg-gold/10 transition-colors"
-              >
+              <Button variant="outline" href={EXTERNAL.WORSHIP_PLAYLIST} external>
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d={ICONS.YOUTUBE} />
                 </svg>
                 オリジナル賛美プレイリストを開く
-              </a>
+              </Button>
             </div>
           </div>
 

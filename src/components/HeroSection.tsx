@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import Button from "@/components/ui/Button";
 
 const ROTATION_INTERVAL_MS = 5000;
 const FADE_DURATION_MS = 700;
@@ -138,20 +138,13 @@ export default function HeroSection() {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/know-god"
-            className="group relative px-9 py-3.5 overflow-hidden rounded-full text-sm tracking-[0.12em] font-medium transition-all duration-300 hover:scale-105"
-            style={{ background: "rgba(201,168,76,0.95)", color: "#0e0900" }}
-          >
+          <Button variant="gold" href="/know-god">
             <span className="relative z-10">イエス様を知る</span>
             <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-          </Link>
-          <Link
-            href="/contact"
-            className="px-9 py-3.5 rounded-full text-sm tracking-[0.12em] font-light text-white/90 hover:text-white border border-white/30 hover:border-gold/60 transition-all duration-300 hover:scale-105 hover:bg-white/5 backdrop-blur-sm"
-          >
+          </Button>
+          <Button variant="ghost" href="/contact">
             祈りのリクエスト
-          </Link>
+          </Button>
         </div>
       </div>
 
