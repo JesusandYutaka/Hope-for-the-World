@@ -5,7 +5,8 @@ import YouTubeEmbed from "@/components/ui/YouTubeEmbed";
 import InstagramCard from "@/components/ui/InstagramCard";
 import LinkCard from "@/components/ui/LinkCard";
 import type { Gathering } from "@/types";
-import { YOUTUBE, INSTAGRAM, EXTERNAL, ICONS } from "@/lib/constants";
+import { YOUTUBE, INSTAGRAM, EXTERNAL, ICONS, BRAND_COLORS } from "@/lib/constants";
+import Divider from "@/components/ui/Divider";
 
 // ── 賛美集会情報をここに追加してください ─────────────────────────
 const gatherings: Gathering[] = [];
@@ -24,7 +25,7 @@ const streamingServices: StreamingService[] = [
   { name: "Spotify",      color: "#1DB954", icon: "M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" },
   { name: "Apple Music",  color: "#FA233B", icon: "M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a6.303 6.303 0 00-1.903-.77c-.054-.013-.108-.026-.163-.034-.728-.102-1.275-.194-3.316-.194H7.808c-2.04 0-2.59.092-3.316.194-.056.008-.11.021-.165.034a6.3 6.3 0 00-1.902.77C1.308 1.624.563 2.624.246 3.934A9.23 9.23 0 00.006 6.124C0 6.6 0 7.15 0 7.808v8.384c0 .658 0 1.208.006 1.684.033 1.29.24 2.19.727 2.93.487.742 1.244 1.23 2.18 1.43.738.164 1.39.23 3.316.23h8.308c1.926 0 2.578-.066 3.316-.23.937-.2 1.694-.688 2.18-1.43.487-.74.694-1.64.727-2.93.006-.476.006-1.026.006-1.684V7.808c0-.658 0-1.208-.006-1.684zm-8.99 7.776l-4.757-2.747V6.84l4.757 2.747v4.313z" },
   { name: "YouTube Music",color: "#FF0000", icon: "M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 19.104c-3.924 0-7.104-3.18-7.104-7.104S8.076 4.896 12 4.896s7.104 3.18 7.104 7.104-3.18 7.104-7.104 7.104zm0-13.332c-3.432 0-6.228 2.796-6.228 6.228S8.568 18.228 12 18.228s6.228-2.796 6.228-6.228S15.432 5.772 12 5.772zM9.684 15.54V8.46L15.816 12l-6.132 3.54z" },
-  { name: "LINE MUSIC",   color: "#00B900", icon: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.92 14.04l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.228.52z" },
+  { name: "LINE MUSIC",   color: BRAND_COLORS.LINE_GREEN, icon: "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.92 14.04l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.228.52z" },
 ];
 
 
@@ -83,7 +84,7 @@ export default function WorshipPage() {
             </div>
           </div>
 
-          <div className="h-px bg-gradient-to-r from-transparent via-sky to-transparent mb-20" />
+          <Divider className="mb-20" />
 
           {/* ② 賛美集会情報 */}
           <div className="mb-20">
@@ -186,7 +187,7 @@ export default function WorshipPage() {
             )}
           </div>
 
-          <div className="h-px bg-gradient-to-r from-transparent via-sky to-transparent mb-20" />
+          <Divider className="mb-20" />
 
           {/* 賛美集会GLORY 動画 */}
           <div className="mb-20">
@@ -216,7 +217,7 @@ export default function WorshipPage() {
             />
           </div>
 
-          <div className="h-px bg-gradient-to-r from-transparent via-sky to-transparent mb-20" />
+          <Divider className="mb-20" />
 
           {/* ③ 楽譜・コード */}
           <div>
@@ -239,7 +240,7 @@ export default function WorshipPage() {
             </div>
           </div>
 
-          <div className="h-px bg-gradient-to-r from-transparent via-sky to-transparent mb-20" />
+          <Divider className="mb-20" />
 
           {/* ④ 配信サービス */}
           <div>

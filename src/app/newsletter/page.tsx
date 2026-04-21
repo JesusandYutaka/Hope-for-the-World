@@ -1,7 +1,8 @@
 import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Link from "next/link";
-import { ICONS } from "@/lib/constants";
+import { ICONS, BRAND_COLORS } from "@/lib/constants";
+import Divider from "@/components/ui/Divider";
 
 export default function NewsletterPage() {
   return (
@@ -20,7 +21,7 @@ export default function NewsletterPage() {
               href="/official-line"
               className="group flex items-center gap-5 p-6 rounded-2xl border border-sky hover:border-[#00B900]/40 hover:shadow-md transition-all"
             >
-              <div className="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center" style={{ background: "#00B900" }}>
+              <div className="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center" style={{ background: BRAND_COLORS.LINE_GREEN }}>
                 <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="currentColor">
                   <path d={ICONS.LINE} />
                 </svg>
@@ -36,7 +37,7 @@ export default function NewsletterPage() {
             </Link>
           </div>
 
-          <div className="h-px bg-gradient-to-r from-transparent via-sky to-transparent mb-16" />
+          <Divider className="mb-16" />
           <div className="grid md:grid-cols-2 gap-8">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="rounded-2xl border border-sky overflow-hidden hover:shadow-lg transition-shadow">

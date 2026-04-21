@@ -3,7 +3,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import NumberedCard from "@/components/ui/NumberedCard";
 import InstagramCard from "@/components/ui/InstagramCard";
 import LinkCard from "@/components/ui/LinkCard";
-import { INSTAGRAM, EXTERNAL, ICONS } from "@/lib/constants";
+import { INSTAGRAM, EXTERNAL, ICONS, BRAND_COLORS } from "@/lib/constants";
 
 const fellowshipCards = [
   { number: "01", title: "薪の譬え",  text: "薪が1本ではすぐに火は消えてしまいますが、多くの薪があれば強く燃え続けることができます。" },
@@ -155,7 +155,7 @@ export default function FellowshipPage() {
               >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                   style={{ background: "linear-gradient(135deg, #eff6ff 0%, #ffffff 100%)" }} />
-                <div className="relative flex-shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm" style={{ background: "#1877F2" }}>
+                <div className="relative flex-shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm" style={{ background: BRAND_COLORS.FACEBOOK }}>
                   <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d={ICONS.FACEBOOK} />
                   </svg>

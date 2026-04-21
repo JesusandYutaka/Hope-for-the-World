@@ -6,6 +6,10 @@ import type { NavItem, NavChild } from "@/types";
 
 const SCROLL_THRESHOLD = 40;
 
+function isGroupNavItem(item: NavItem): item is { label: string; children: NavChild[] } {
+  return Array.isArray((item as { children?: unknown }).children);
+}
+
 const navLinks: NavItem[] = [
   { href: "/worship", label: "賛美・Worship" },
   { href: "/daily", label: "日々の励まし" },
@@ -44,6 +48,9 @@ function DropdownMenu({ item }: { item: NavItem & { children: NavChild[] } }) {
       <button
         className="relative flex items-center gap-1 text-white/75 hover:text-white text-[13px] font-light tracking-wider transition-colors duration-300 group"
         onClick={() => setOpen((v) => !v)}
+        aria-haspopup="true"
+        aria-expanded={open}
+        aria-label={`${item.label} メニュー`}
       >
         {item.label}
         <svg
@@ -62,6 +69,8 @@ function DropdownMenu({ item }: { item: NavItem & { children: NavChild[] } }) {
         }`}
       >
         <div
+          role="menu"
+          aria-hidden={!open}
           className="py-2"
           style={{
             background: "rgba(8, 15, 30, 0.92)",
@@ -89,7 +98,7 @@ function DropdownMenu({ item }: { item: NavItem & { children: NavChild[] } }) {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [openMobileGroup, setOpenMobileGroup] = useState<string | null>(null);
+  const [expandedMobileCategory, setOpenMobileGroup] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -130,8 +139,8 @@ export default function Header() {
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) =>
-              link.children ? (
-                <DropdownMenu key={link.label} item={link as NavItem & { children: { href: string; label: string }[] }} />
+              isGroupNavItem(link) ? (
+                <DropdownMenu key={link.label} item={link} />
               ) : (
                 <Link
                   key={link.href}
@@ -159,6 +168,7 @@ export default function Header() {
             onClick={() => setMenuOpen(!menuOpen)}
             className="lg:hidden flex flex-col justify-center gap-1.5 p-4 -mr-2 cursor-pointer"
             aria-label="メニュー"
+            aria-expanded={menuOpen}
           >
             <span className={`block w-6 h-px bg-white transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
             <span className={`block w-4 h-px bg-white/60 transition-all duration-300 ${menuOpen ? "opacity-0 w-0" : ""}`} />
@@ -181,18 +191,18 @@ export default function Header() {
             link.children ? (
               <div key={link.label}>
                 <button
-                  onClick={() => setOpenMobileGroup(openMobileGroup === link.label ? null : link.label)}
+                  onClick={() => setOpenMobileGroup(expandedMobileCategory === link.label ? null : link.label)}
                   className="w-full flex items-center justify-between py-3 text-white/70 hover:text-gold text-sm tracking-wider border-b border-white/8 transition-colors duration-200"
                 >
                   {link.label}
                   <svg
-                    className={`w-3 h-3 transition-transform duration-200 ${openMobileGroup === link.label ? "rotate-180" : ""}`}
+                    className={`w-3 h-3 transition-transform duration-200 ${expandedMobileCategory === link.label ? "rotate-180" : ""}`}
                     fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                {openMobileGroup === link.label && (
+                {expandedMobileCategory === link.label && (
                   <div className="pl-4 flex flex-col">
                     {link.children.map((child) => (
                       <Link

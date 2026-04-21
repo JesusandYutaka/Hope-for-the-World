@@ -21,6 +21,18 @@ export const CACHE = {
   YOUTUBE_REVALIDATE_SECONDS: 86400,
 } as const;
 
+// ── ブランドカラー ────────────────────────────────────────────────
+export const BRAND_COLORS = {
+  FACEBOOK: "#1877F2",
+  LINE_GREEN: "#00B900",
+  LINE_GREEN_DARK: "#009900",
+} as const;
+
+// ── ブランドグラデーション ────────────────────────────────────────
+export const BRAND_GRADIENTS = {
+  INSTAGRAM: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
+} as const;
+
 // ── Instagram ─────────────────────────────────────────────────────
 export const INSTAGRAM = {
   GLORY: {

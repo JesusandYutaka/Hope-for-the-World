@@ -13,9 +13,7 @@ export async function fetchLatestYouTubeVideo(): Promise<YouTubeVideo | null> {
     const titleMatch = xml.match(/<title>([^<]+)<\/title>/g);
     const id = idMatch ? idMatch[1] : null;
     // titleMatch[0] is the channel title, [1] is the first video title
-    const title = titleMatch && titleMatch[1]
-      ? titleMatch[1].replace(/<\/?title>/g, "")
-      : "最新動画";
+    const title = titleMatch?.[1]?.replace(/<\/?title>/g, "") ?? "最新動画";
     if (!id) return null;
     return { id, title };
   } catch {

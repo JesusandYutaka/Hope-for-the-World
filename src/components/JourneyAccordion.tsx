@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { items } from "@/data/journeyItems";
+import { journeySteps } from "@/data/journeyItems";
 
 export default function JourneyAccordion() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [expandedItemIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <div className="space-y-3">
-      {items.map((item, i) => {
-        const isOpen = openIndex === i;
+      {journeySteps.map((item, i) => {
+        const isOpen = expandedItemIndex === i;
         return (
           <div
             key={i}

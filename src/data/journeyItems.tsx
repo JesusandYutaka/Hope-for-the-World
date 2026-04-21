@@ -4,7 +4,7 @@ export type JourneyItem = {
   content: React.ReactNode;
 };
 
-export const items: JourneyItem[] = [
+export const journeySteps: JourneyItem[] = [
   {
     eyebrow: "Encounter",
     title: "イエス様との出会い",

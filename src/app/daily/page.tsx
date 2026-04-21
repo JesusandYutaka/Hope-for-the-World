@@ -4,6 +4,7 @@ import NumberedCard from "@/components/ui/NumberedCard";
 import YouTubeEmbed from "@/components/ui/YouTubeEmbed";
 import type { NoteArticle, DailyVideo, RecommendedLink } from "@/types";
 import { ICONS } from "@/lib/constants";
+import Divider from "@/components/ui/Divider";
 
 // ── コンテンツをここに追加してください ──────────────────────────
 
@@ -102,7 +103,7 @@ export default function DailyPage() {
         </section>
 
         <div className="max-w-4xl mx-auto px-4">
-          <div className="h-px bg-gradient-to-r from-transparent via-sky to-transparent" />
+          <Divider />
         </div>
 
         {/* ① YouTube 動画 */}
@@ -149,7 +150,7 @@ export default function DailyPage() {
         </section>
 
         <div className="max-w-4xl mx-auto px-4">
-          <div className="h-px bg-gradient-to-r from-transparent via-sky to-transparent" />
+          <Divider />
         </div>
 
         {/* ② おすすめリンク */}
@@ -202,7 +203,7 @@ export default function DailyPage() {
         </section>
 
         <div className="max-w-4xl mx-auto px-4">
-          <div className="h-px bg-gradient-to-r from-transparent via-sky to-transparent" />
+          <Divider />
         </div>
 
         {/* ③ Note 記事 */}
