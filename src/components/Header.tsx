@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { NavItem, NavChild } from "@/types";
 
+const SCROLL_THRESHOLD = 40;
+
 const navLinks: NavItem[] = [
   { href: "/worship", label: "賛美・Worship" },
   { href: "/daily", label: "日々の励まし" },
@@ -91,7 +93,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);

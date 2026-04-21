@@ -1,10 +1,11 @@
 import type { YouTubeVideo } from "@/types";
+import { YOUTUBE, CACHE } from "@/lib/constants";
 
 export async function fetchLatestYouTubeVideo(): Promise<YouTubeVideo | null> {
   try {
     const res = await fetch(
-      "https://www.youtube.com/feeds/videos.xml?channel_id=UCtj5cJhnm4DNyTO7uXUqmsQ",
-      { next: { revalidate: 86400 } }
+      `https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE.CHANNEL_ID}`,
+      { next: { revalidate: CACHE.YOUTUBE_REVALIDATE_SECONDS } }
     );
     if (!res.ok) return null;
     const xml = await res.text();

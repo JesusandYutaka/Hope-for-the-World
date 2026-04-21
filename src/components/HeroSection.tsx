@@ -4,7 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const scriptures = [
+const ROTATION_INTERVAL_MS = 5000;
+const FADE_DURATION_MS = 700;
+const DOT_FADE_MS = 300;
+
+type Scripture = { verse: string; ref: string };
+
+const scriptures: Scripture[] = [
   { verse: "あなたがたの光を人々の前で輝かせなさい。", ref: "マタイ 5:16" },
   { verse: "地の果てにまでわたしの救いをもたらす者とする。", ref: "イザヤ 49:6" },
   { verse: "水が海を覆うように、地は主の栄光を知ることで満たされる。", ref: "ハバクク 2:14" },
@@ -20,12 +26,12 @@ export default function HeroSection() {
       setTimeout(() => {
         setCurrent((prev) => (prev + 1) % scriptures.length);
         setVisible(true);
-      }, 700);
-    }, 5000);
+      }, FADE_DURATION_MS);
+    }, ROTATION_INTERVAL_MS);
     return () => clearInterval(interval);
   }, []);
 
-  const s = scriptures[current];
+  const scripture = scriptures[current];
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
@@ -102,14 +108,14 @@ export default function HeroSection() {
                 textShadow: "0 1px 20px rgba(0,0,0,0.5)",
               }}
             >
-              &ldquo;{s.verse}&rdquo;
+              &ldquo;{scripture.verse}&rdquo;
             </p>
           </blockquote>
           <cite
             className="text-gold-light/90 text-xs mt-4 not-italic tracking-[0.3em] uppercase drop-shadow transition-opacity duration-700"
             style={{ opacity: visible ? 1 : 0 }}
           >
-            {s.ref}
+            {scripture.ref}
           </cite>
         </div>
 
@@ -120,7 +126,7 @@ export default function HeroSection() {
               key={i}
               onClick={() => {
                 setVisible(false);
-                setTimeout(() => { setCurrent(i); setVisible(true); }, 300);
+                setTimeout(() => { setCurrent(i); setVisible(true); }, DOT_FADE_MS);
               }}
               className={`h-px rounded-full transition-all duration-300 ${
                 i === current ? "bg-gold w-8" : "bg-white/30 w-4"

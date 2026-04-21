@@ -3,7 +3,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import NumberedCard from "@/components/ui/NumberedCard";
 import InstagramCard from "@/components/ui/InstagramCard";
 import LinkCard from "@/components/ui/LinkCard";
-import { INSTAGRAM, EXTERNAL } from "@/lib/constants";
+import { INSTAGRAM, EXTERNAL, ICONS } from "@/lib/constants";
 
 const fellowshipCards = [
   { number: "01", title: "薪の譬え",  text: "薪が1本ではすぐに火は消えてしまいますが、多くの薪があれば強く燃え続けることができます。" },
@@ -157,7 +157,7 @@ export default function FellowshipPage() {
                   style={{ background: "linear-gradient(135deg, #eff6ff 0%, #ffffff 100%)" }} />
                 <div className="relative flex-shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm" style={{ background: "#1877F2" }}>
                   <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                    <path d={ICONS.FACEBOOK} />
                   </svg>
                 </div>
                 <div className="relative flex-1">

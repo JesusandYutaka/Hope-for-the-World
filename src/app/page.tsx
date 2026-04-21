@@ -2,9 +2,17 @@ import HeroSection from "@/components/HeroSection";
 import Image from "next/image";
 import Link from "next/link";
 import { fetchLatestYouTubeVideo } from "@/lib/youtube";
-import { ICONS } from "@/lib/constants";
+import { ICONS, YOUTUBE } from "@/lib/constants";
 
-const vision = [
+type VisionItem = {
+  icon: string;
+  title: string;
+  subtitle: string;
+  text: string;
+  verse: string;
+};
+
+const visionItems: VisionItem[] = [
   {
     icon: "✦",
     title: "Vision",
@@ -43,7 +51,7 @@ export default async function HomePage() {
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-navy">私たちについて</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            {vision.map((item) => (
+            {visionItems.map((item) => (
               <div
                 key={item.title}
                 className="group p-8 rounded-2xl border border-sky hover:border-gold/30 hover:shadow-xl hover:shadow-gold/5 transition-all"
@@ -142,7 +150,7 @@ export default async function HomePage() {
                   {latestVideo ? latestVideo.title : "最新メッセージ"}
                 </h3>
                 <a
-                  href="https://www.youtube.com/@yutakanakajima960"
+                  href={YOUTUBE.CHANNEL_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-navy hover:text-gold font-medium transition-colors"
@@ -156,7 +164,7 @@ export default async function HomePage() {
             <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
               <div className="aspect-video bg-navy">
                 <iframe
-                  src="https://www.youtube.com/embed/OCAhN8eCKp0"
+                  src={`https://www.youtube.com/embed/${YOUTUBE.VIDEOS.HOPE}`}
                   title="最新賛美"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
