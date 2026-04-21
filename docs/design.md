@@ -1,0 +1,721 @@
+# Hope for the World — プロジェクト設計資料
+
+## 目次
+
+1. [プロジェクト概要](#1-プロジェクト概要)
+2. [技術スタック](#2-技術スタック)
+3. [ディレクトリ構造](#3-ディレクトリ構造)
+4. [アーキテクチャ](#4-アーキテクチャ)
+5. [ページ一覧](#5-ページ一覧)
+6. [コンポーネント設計](#6-コンポーネント設計)
+7. [型定義](#7-型定義)
+8. [定数・設定値](#8-定数設定値)
+9. [データ](#9-データ)
+10. [ライブラリ関数](#10-ライブラリ関数)
+11. [API ルート](#11-api-ルート)
+12. [デザインシステム](#12-デザインシステム)
+13. [テスト設計](#13-テスト設計)
+14. [環境変数](#14-環境変数)
+15. [デプロイ](#15-デプロイ)
+
+---
+
+## 1. プロジェクト概要
+
+**サイト名:** Hope for the World  
+**URL:** https://hope-for-the-world.vercel.app  
+**運営者:** 中島 豊（Nakajima Yutaka）  
+**目的:** イエス・キリストの福音を世界に伝えるウェブサイト。賛美、証、宣教論文、祈りのリクエストなどのコンテンツを提供する。
+
+---
+
+## 2. 技術スタック
+
+| 分類 | 技術 | バージョン |
+|------|------|---------|
+| フレームワーク | Next.js (App Router) | 16.2.4 |
+| UI ライブラリ | React | 19.2.4 |
+| 言語 | TypeScript | 5.x |
+| スタイリング | Tailwind CSS v4 | 4.x |
+| フォーム管理 | React Hook Form | 7.x |
+| メール送信 | Resend | 6.x |
+| レート制限 | Upstash Ratelimit + Redis | 2.x / 1.x |
+| アニメーション | Framer Motion | 12.x |
+| テスト | Vitest + Testing Library | 4.x |
+| テスト環境 | happy-dom | 20.x |
+| デプロイ | Vercel | — |
+
+---
+
+## 3. ディレクトリ構造
+
+```
+/
+├── src/
+│   ├── app/                        # Next.js App Router ページ
+│   │   ├── _sections/              # ホームページ用セクションコンポーネント
+│   │   │   ├── VisionSection.tsx
+│   │   │   ├── IntroSection.tsx
+│   │   │   ├── FeaturedContent.tsx
+│   │   │   └── PrayerCta.tsx
+│   │   ├── api/
+│   │   │   └── contact/
+│   │   │       └── route.ts        # お問い合わせ API
+│   │   ├── contact/page.tsx
+│   │   ├── daily/page.tsx
+│   │   ├── fellowship/page.tsx
+│   │   ├── know-god/page.tsx
+│   │   ├── michiya/page.tsx
+│   │   ├── missions/page.tsx
+│   │   ├── newsletter/page.tsx
+│   │   ├── prayer-partner/page.tsx
+│   │   ├── recommended-sites/page.tsx
+│   │   ├── testimony/page.tsx
+│   │   ├── worship/page.tsx
+│   │   ├── layout.tsx              # ルートレイアウト（Header + Footer）
+│   │   ├── page.tsx                # ホームページ
+│   │   └── globals.css             # グローバルスタイル・CSS変数
+│   ├── components/
+│   │   ├── Header.tsx              # ナビゲーションヘッダー
+│   │   ├── Footer.tsx              # フッター
+│   │   ├── HeroSection.tsx         # ホームヒーロー
+│   │   ├── PageHero.tsx            # 各ページヘッダー
+│   │   ├── JourneyAccordion.tsx    # 証アコーディオン
+│   │   └── ui/                     # 汎用UIコンポーネント
+│   │       ├── Button.tsx
+│   │       ├── SectionHeader.tsx
+│   │       ├── LinkCard.tsx
+│   │       ├── YouTubeEmbed.tsx
+│   │       ├── InstagramCard.tsx
+│   │       ├── NumberedCard.tsx
+│   │       └── Divider.tsx
+│   ├── data/
+│   │   └── journeyItems.tsx        # 証の記録データ
+│   ├── lib/
+│   │   ├── constants.ts            # 全定数
+│   │   ├── validation.ts           # 入力バリデーション
+│   │   └── youtube.ts              # YouTube RSS 取得
+│   └── types/
+│       └── index.ts                # 全型定義
+├── public/
+│   └── images/                     # 画像（hero-sunset.jpg, profile.jpg 等）
+├── docs/
+│   └── design.md                   # 本設計資料
+├── next.config.ts                  # セキュリティヘッダー等
+├── middleware.ts                   # エッジミドルウェア
+├── vitest.config.ts
+└── vercel.json
+```
+
+---
+
+## 4. アーキテクチャ
+
+### レンダリング戦略
+
+```
+ユーザーのブラウザ
+      ↓
+  Vercel Edge (middleware)
+      ↓
+  Next.js App Router
+      ├── Server Components（大半のページ・セクション）
+      │     └── ISR キャッシュ（ホームページ: 24時間）
+      └── Client Components（最小限）
+            ├── Header（スクロール検知、ドロップダウン）
+            ├── HeroSection（スクリプチャースライダー）
+            ├── JourneyAccordion（展開状態管理）
+            └── contact/page.tsx（フォーム送信）
+```
+
+### データフロー
+
+```
+YouTube RSS Feed
+      ↓ (fetchLatestYouTubeVideo)
+  Next.js Server Component
+      ↓ (props)
+  FeaturedContent（クライアントへ配信）
+
+お問い合わせフォーム:
+  クライアント (React Hook Form)
+      ↓ (POST /api/contact)
+  Server (validation + レート制限)
+      ↓ (Resend API)
+  メール送信（管理者 + 自動返信）
+```
+
+### コンポーネント階層
+
+```
+layout.tsx
+  ├── Header
+  ├── {children}（各ページ）
+  └── Footer
+
+page.tsx (ホーム)
+  ├── HeroSection
+  ├── VisionSection
+  ├── IntroSection
+  ├── FeaturedContent
+  └── PrayerCta
+
+各ページ (例: worship)
+  ├── PageHero
+  ├── SectionHeader
+  ├── NumberedCard × n
+  ├── YouTubeEmbed
+  ├── InstagramCard × n
+  ├── LinkCard
+  ├── Button
+  └── Divider
+```
+
+---
+
+## 5. ページ一覧
+
+| ページ名 | パス | 種類 | 役割 |
+|---------|------|------|------|
+| ホーム | `/` | ISR (24h) | ビジョン・自己紹介・最新動画 |
+| 賛美・Worship | `/worship` | Static | プレイリスト・集会情報・楽譜配信 |
+| 日々の励まし | `/daily` | Static | みことば動画・デボーション記事 |
+| 祈りのパートナー | `/prayer-partner` | Static | LINE登録・祈りレター |
+| 証の部屋 | `/testimony` | Static | 証アコーディオン・YouTube・ブログ |
+| 交わり | `/fellowship` | Static | 教会紹介・SNS |
+| 宣教論文 | `/missions` | Static | KBI・TCU 卒業論文PDF |
+| お勧めサイト | `/recommended-sites` | Static | カテゴリ別リンク集 |
+| 神を知りたい人へ | `/know-god` | Static | 4ステップの救いの説明 |
+| つながる | `/contact` | Static | お問い合わせフォーム |
+| みちや牧師LINE | `/michiya` | Static | みちや牧師の LINE 紹介 |
+| ニュースレター | `/newsletter` | Static | メールニュース（準備中） |
+
+---
+
+## 6. コンポーネント設計
+
+### レイアウト系
+
+#### `Header`
+- **種類:** Client Component (`"use client"`)
+- **機能:** スクロール検知（40px閾値）、ドロップダウンメニュー、モバイルハンバーガーメニュー
+- **Props:** なし
+- **状態:**
+  - `menuOpen: boolean` — モバイルメニュー開閉
+  - `expandedMobileCategory: string | null` — モバイルドロップダウン展開中カテゴリ
+  - `scrolled: boolean` — スクロール済みか
+- **ナビゲーション構造:**
+  ```
+  賛美・Worship (/worship)
+  日々の励まし (/daily)
+  Hopeを広げる [ドロップダウン]
+    ├── 祈りのパートナー (/prayer-partner)
+    ├── 証の部屋 (/testimony)
+    ├── 交わり (/fellowship)
+    ├── 宣教論文 (/missions)
+    └── お勧めサイト (/recommended-sites)
+  神を知りたい人へ (/know-god)
+  [CTA] つながる (/contact)
+  ```
+
+#### `Footer`
+- **種類:** Server Component
+- **機能:** SNS リンク（LINE, Instagram, Facebook）、著作権表記
+
+---
+
+### ページ系
+
+#### `HeroSection`
+- **種類:** Client Component
+- **機能:** フルスクリーンヒーロー、みことば自動スライダー（5秒ごと）
+- **Props:** なし
+- **定数:**
+  ```typescript
+  ROTATION_INTERVAL_MS = 5000
+  FADE_DURATION_MS = 700
+  DOT_FADE_MS = 300
+  ```
+
+#### `PageHero`
+- **種類:** Server Component
+- **Props:**
+  ```typescript
+  type PageHeroProps = {
+    eyebrow: string;       // 例: "MUSIC × WORSHIP"
+    title: string;         // 例: "賛美・Worship"
+    subtitle?: string;
+    verse?: string;        // 聖書の言葉
+    verseRef?: string;     // 参照箇所
+  }
+  ```
+
+#### `JourneyAccordion`
+- **種類:** Client Component
+- **機能:** `journeySteps` データをアコーディオン表示
+- **状態:** `expandedItemIndex: number | null`
+
+---
+
+### UI コンポーネント（`src/components/ui/`）
+
+#### `Button`
+- **種類:** Server Component（Link / button を自動判別）
+- **Props:**
+  ```typescript
+  type Props = {
+    variant?: "primary" | "gold" | "outline" | "ghost";
+    children: React.ReactNode;
+    className?: string;
+    href?: string;       // 指定時: Link コンポーネントとしてレンダリング
+    external?: boolean;  // true: target="_blank" rel="noopener noreferrer"
+    type?: "button" | "submit" | "reset";
+    disabled?: boolean;
+    onClick?: React.MouseEventHandler;
+  }
+  ```
+- **バリアント:**
+
+  | variant | 見た目 | 主な使用箇所 |
+  |---------|--------|------------|
+  | `primary` | 紺色背景・白テキスト | testimony, fellowship, know-god |
+  | `gold` | ゴールドグラデーション・暗テキスト | ヒーロー, PrayerCta |
+  | `outline` | ゴールド枠線・ゴールドテキスト | worship |
+  | `ghost` | 白半透明枠線・白テキスト（暗背景用） | ヒーロー, PrayerCta |
+
+#### `SectionHeader`
+```typescript
+type Props = { title: string; subtitle?: string }
+```
+金色下線付きのセクション見出し。
+
+#### `YouTubeEmbed`
+```typescript
+type Props = { embedSrc: string; title: string; className?: string }
+```
+レスポンシブ YouTube iframe（`aspect-video`）。
+
+#### `InstagramCard`
+```typescript
+type Props = {
+  href: string;
+  handle: string;
+  label: string;
+  className?: string;
+}
+```
+Instagram グラデーションボーダー付きカード。
+
+#### `NumberedCard`
+```typescript
+type Props = { number: string; title: string; text: string }
+```
+「01」形式の番号付き説明カード。
+
+#### `LinkCard`
+```typescript
+type Props = {
+  href: string;
+  label: string;    // バッジ（例: "YouTube", "PDF"）
+  title: string;
+  icon: React.ReactNode;
+}
+```
+
+#### `Divider`
+```typescript
+type Props = { className?: string }
+```
+from-transparent via-sky to-transparent のグラデーション水平線。
+
+---
+
+## 7. 型定義
+
+`src/types/index.ts` に全型を集約。
+
+```typescript
+// ナビゲーション
+type NavChild = { href: string; label: string };
+type NavItem =
+  | { href: string; label: string; children?: undefined }
+  | { label: string; href?: undefined; children: NavChild[] };
+
+// ページ
+type PageHeroProps = {
+  eyebrow: string; title: string; subtitle?: string;
+  verse?: string; verseRef?: string;
+};
+
+// 神を知りたい人へ
+type KnowGodStep = {
+  num: string; title: string; verse: string; ref: string; text: string;
+};
+
+// フォーム
+type ContactFormStatus = "idle" | "sending" | "done" | "error";
+
+// YouTube
+type YouTubeVideo = { id: string; title: string };
+
+// 賛美集会
+type Gathering = {
+  title: string; date: string; time: string;
+  location: string; address?: string; note?: string; mapUrl?: string;
+};
+
+// 証の部屋
+type TestimonyCategory = "seminary" | "marriage" | "love" | "salvation";
+type TestimonyArticle = {
+  title: string; excerpt: string; url: string;
+  label: string; date: string; category: TestimonyCategory;
+};
+type TestimonyVideo = {
+  title: string; description: string; videoId: string;
+  date: string; category: TestimonyCategory;
+};
+
+// 日々の励まし
+type NoteArticle = {
+  title: string; verse: string; ref: string;
+  url: string; date: string; label?: string;
+};
+type DailyVideo = {
+  title: string; description: string; embedSrc: string;
+  date: string; playlistUrl?: string;
+};
+type RecommendedLink = { title: string; description: string; url: string; label: string };
+
+// お勧めサイト
+type RecommendedSiteCategory = "bible" | "church" | "ministry" | "other";
+type RecommendedSite = { name: string; description: string; url: string };
+type RecommendedSiteGroup = {
+  id: RecommendedSiteCategory; label: string; en: string;
+  sites: RecommendedSite[];
+};
+
+// 宣教論文
+type MissionPaper = {
+  id: string; title: string; subtitle?: string; label: string; file: string;
+};
+```
+
+---
+
+## 8. 定数・設定値
+
+`src/lib/constants.ts` に全定数を集約。
+
+### YouTube
+```typescript
+YOUTUBE = {
+  CHANNEL_ID: "UCtj5cJhnm4DNyTO7uXUqmsQ",
+  CHANNEL_URL: "https://www.youtube.com/@yutakanakajima960",
+  PLAYLISTS: {
+    WORSHIP: "...",     // オリジナル賛美プレイリスト ID
+    DAILY_WORD: "...",  // 日々のみことばプレイリスト ID
+  },
+  VIDEOS: {
+    GLORY: "...",       // 賛美集会GLORY 動画 ID
+    HOPE: "OCAhN8eCKp0", // 最新賛美 動画 ID
+  },
+  CHANNELS: {
+    GLORY: "...",       // GLORY YouTube チャンネル URL
+    KBI: "...",         // KBI YouTube チャンネル URL
+  }
+}
+```
+
+### Instagram
+```typescript
+INSTAGRAM = {
+  GLORY:   { handle, url, label },   // 賛美集会GLORY
+  LOVEOBI: { handle, url, label },   // Love&Obedience
+  YUTAKA:  { handle, url },          // 中島豊 個人
+  CHURCH:  { handle, url, label, description }, // 能勢川キリスト教会
+}
+```
+
+### 外部リンク
+```typescript
+EXTERNAL = {
+  STREAMING: "...",         // 配信サービス URL
+  WORSHIP_PLAYLIST: "...",  // YouTube プレイリスト URL
+  NOSEGAWA_CHURCH: "...",   // 能勢川キリスト教会 HP
+  SCORE_PDF: "...",         // 楽譜 PDF URL
+  FACEBOOK: "...",          // Facebook ページ
+  AMEBLO: "...",            // アメブロ URL
+}
+```
+
+### SNS
+```typescript
+SOCIAL = {
+  LINE_OFFICIAL: "...",        // LINE 公式アカウント
+  LINE_PRAYER_PARTNER: "...",  // 祈りのパートナー LINE
+}
+```
+
+### ブランドカラー
+```typescript
+BRAND_COLORS = {
+  FACEBOOK: "#1877F2",
+  LINE_GREEN: "#00B900",
+  LINE_GREEN_DARK: "#009900",
+}
+BRAND_GRADIENTS = {
+  INSTAGRAM: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
+}
+```
+
+### SVG アイコンパス
+```typescript
+ICONS = {
+  YOUTUBE:   "...",  // YouTube ロゴ SVG path
+  LINE:      "...",  // LINE ロゴ SVG path
+  INSTAGRAM: "...",  // Instagram ロゴ SVG path
+  FACEBOOK:  "...",  // Facebook ロゴ SVG path
+}
+```
+
+### キャッシュ
+```typescript
+CACHE = {
+  YOUTUBE_REVALIDATE_SECONDS: 86400,  // 24時間
+}
+```
+
+---
+
+## 9. データ
+
+### `src/data/journeyItems.tsx`
+
+証の記録アコーディオン用データ。`JourneyAccordion` コンポーネントが使用。
+
+```typescript
+type JourneyItem = {
+  eyebrow: string;        // 例: "Encounter"
+  title: string;          // 例: "イエス様との出会い"
+  content: React.ReactNode; // JSX 形式の本文
+};
+
+export const journeySteps: JourneyItem[] = [
+  { eyebrow: "Encounter",      title: "イエス様との出会い", ... },
+  { eyebrow: "God's Love",     title: "神様はあなたを個人的に愛しています", ... },
+  { eyebrow: "Identity",       title: "新しいアイデンティティー", ... },
+  { eyebrow: "Turning Point",  title: "転機", ... },
+  { eyebrow: "Now",            title: "今", ... },
+];
+```
+
+### コンテンツの追加方法
+
+各ページのデータ配列はファイル先頭または専用 `data/` ファイルに定義されています。
+
+| ページ | データ場所 | 追加方法 |
+|--------|---------|---------|
+| 賛美集会 | `worship/page.tsx` の `gatherings[]` | 配列に `Gathering` オブジェクトを追加 |
+| 証の記録 | `testimony/page.tsx` の `articles[]` / `videos[]` | 配列にオブジェクトを追加 |
+| 日々の励まし | `daily/page.tsx` の `videos[]` / `articles[]` | 配列にオブジェクトを追加 |
+| 宣教論文 | `missions/page.tsx` の `papers[]` | 配列に `MissionPaper` オブジェクトを追加 |
+| お勧めサイト | `recommended-sites/page.tsx` の `siteGroups[]` | 各グループの `sites[]` に追加 |
+
+---
+
+## 10. ライブラリ関数
+
+### `src/lib/youtube.ts`
+
+```typescript
+async function fetchLatestYouTubeVideo(): Promise<YouTubeVideo | null>
+```
+- YouTube RSS フィードから最新動画を取得（API キー不要）
+- 取得先: `https://www.youtube.com/feeds/videos.xml?channel_id={CHANNEL_ID}`
+- キャッシュ: `next: { revalidate: 86400 }`（24時間 ISR）
+- 失敗時は `null` を返す
+
+### `src/lib/validation.ts`
+
+| 関数 | 引数 | 戻り値 | 役割 |
+|------|------|--------|------|
+| `validateName` | `string` | `string \| null` | 1〜100文字。違反時エラー文 |
+| `validateEmail` | `string` | `string \| null` | 正規表現でメール形式を確認 |
+| `validateMessage` | `string` | `string \| null` | 1〜2000文字 |
+| `sanitizeHeader` | `string` | `string` | 改行・タブを除去（ヘッダーインジェクション対策） |
+| `sanitizeMessage` | `string` | `string` | `\r\n` を `\n` に正規化 |
+
+---
+
+## 11. API ルート
+
+### `POST /api/contact`
+
+**場所:** `src/app/api/contact/route.ts`
+
+**フロー:**
+```
+1. リクエスト受信
+2. Upstash Redis でレート制限チェック（IP ベース、10回/時間）
+3. リクエストボディ取得・JSON パース
+4. validateName / validateEmail / validateMessage でサーバー側検証
+5. sanitizeHeader / sanitizeMessage でサニタイズ
+6. Resend で管理者へ通知メール送信
+7. Resend で送信者へ自動返信メール送信
+8. 200 / 400 / 429 / 500 レスポンス
+```
+
+**レスポンス:**
+
+| ステータス | 意味 |
+|----------|------|
+| 200 | 送信成功 |
+| 400 | バリデーションエラー |
+| 429 | レート制限超過 |
+| 500 | サーバーエラー |
+
+**セキュリティ:**
+- IP ベースのレート制限（Upstash Redis）
+- サーバー側バリデーション（クライアント側と二重）
+- ヘッダーインジェクション対策（sanitizeHeader）
+- 環境変数でのシークレット管理
+
+---
+
+## 12. デザインシステム
+
+### カラーパレット（CSS変数 / Tailwind トークン）
+
+| トークン | 値 | 用途 |
+|---------|-----|------|
+| `gold` | `#C9A84C` | アクセント、CTA、ボーダー |
+| `gold-light` | `#e8c97a` | ホバー状態 |
+| `gold-dark` | `#b8922a` | 強調 |
+| `navy` | `#1a2e5a` | メイン背景、テキスト |
+| `navy-light` | `#2a4480` | ライト variant |
+| `navy-mid` | `#2d4a8a` | 中間色 |
+| `navy-dark` | `#0d1b3e` | ホバー背景 |
+| `sky` | `#e8f0fe` | カードボーダー、薄背景 |
+| `sky-mid` | `#c5d5f7` | 区切り線 |
+
+### フォント
+
+| 用途 | フォント |
+|------|---------|
+| 見出し (h1〜h3) | Playfair Display (serif) |
+| 本文・UI | Noto Sans JP (sans-serif) |
+
+### スペーシング規則
+
+| 要素 | スペーシング |
+|------|-----------|
+| セクション縦余白 | `py-12 md:py-24` |
+| セクション横余白 | `px-4` |
+| カード内余白 | `p-8` |
+| カードギャップ | `gap-8` |
+| コンテンツ最大幅 | `max-w-7xl`（通常）/ `max-w-5xl`（テキスト重視）|
+
+### Button デザイン
+
+```
+primary:  bg-navy   → hover:bg-navy-dark   白テキスト  影あり
+gold:     グラデーション(#C9A84C→#e8c97a) 暗テキスト  大きな影
+outline:  border-gold/50 ゴールドテキスト  hover:bg-gold/10
+ghost:    border-white/25 白テキスト       backdrop-blur  暗背景専用
+```
+
+全 Button: `rounded-full` / `text-sm` / `font-medium` / `tracking-wide` / `hover:scale-[1.02]`
+
+### セキュリティヘッダー（`next.config.ts`）
+
+```
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Content-Security-Policy: ...
+Permissions-Policy: ...
+```
+
+---
+
+## 13. テスト設計
+
+### テスト環境
+
+```
+Vitest + happy-dom + @testing-library/react + @testing-library/jest-dom
+```
+
+### カバレッジ目標
+
+```
+Lines: 85%以上 / Functions: 85%以上 / Branches: 85%以上
+```
+
+### テストファイル一覧
+
+| テスト対象 | ファイル | テスト件数 |
+|---------|---------|----------|
+| `SectionHeader` | `ui/__tests__/SectionHeader.test.tsx` | — |
+| `YouTubeEmbed` | `ui/__tests__/YouTubeEmbed.test.tsx` | — |
+| `LinkCard` | `ui/__tests__/LinkCard.test.tsx` | — |
+| `InstagramCard` | `ui/__tests__/InstagramCard.test.tsx` | — |
+| `NumberedCard` | `ui/__tests__/NumberedCard.test.tsx` | — |
+| `Header` | `components/__tests__/Header.test.tsx` | — |
+| `Footer` | `components/__tests__/Footer.test.tsx` | — |
+| `PageHero` | `components/__tests__/PageHero.test.tsx` | — |
+| `JourneyAccordion` | `components/__tests__/JourneyAccordion.test.tsx` | — |
+| `validation.ts` | `lib/__tests__/validation.test.ts` | — |
+| `youtube.ts` | `lib/__tests__/youtube.test.ts` | — |
+| `POST /api/contact` | `api/contact/__tests__/route.test.ts` | — |
+
+**合計: 78件**
+
+### テスト実行
+
+```bash
+npm test -- --run          # 全テスト実行
+npm run coverage           # カバレッジ付き実行
+npm run build              # TypeScript + ビルドチェック
+```
+
+---
+
+## 14. 環境変数
+
+`.env.local` に設定。本番環境は Vercel ダッシュボードで管理。
+
+| 変数名 | 用途 |
+|--------|------|
+| `RESEND_API_KEY` | Resend メール API キー |
+| `CONTACT_EMAIL` | お問い合わせ受信先メールアドレス |
+| `UPSTASH_REDIS_REST_URL` | Upstash Redis REST エンドポイント |
+| `UPSTASH_REDIS_REST_TOKEN` | Upstash Redis 認証トークン |
+
+---
+
+## 15. デプロイ
+
+### Vercel 設定（`vercel.json`）
+
+- フレームワーク: Next.js（自動検出）
+- ビルドコマンド: `next build`
+- 出力ディレクトリ: `.next`
+
+### ブランチ戦略
+
+| ブランチ | 環境 |
+|---------|------|
+| `main` | 本番（Vercel 本番デプロイ） |
+
+### デプロイフロー
+
+```
+git push origin main
+    ↓
+Vercel CI/CD 自動起動
+    ↓
+npm run build（TypeScript チェック含む）
+    ↓
+Vercel エッジネットワークにデプロイ
+```
