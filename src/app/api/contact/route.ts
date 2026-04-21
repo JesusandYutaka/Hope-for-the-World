@@ -2,9 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
+import {
+  validateName,
+  validateEmail,
+  validateMessage,
+  sanitizeHeader,
+  sanitizeMessage,
+} from "@/lib/validation";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Upstash Redisが設定されている場合のみレートリミットを有効化
 const ratelimit =
@@ -46,27 +52,26 @@ export async function POST(req: NextRequest) {
     const { name, email, subject, message } = body;
 
     // サーバーサイドバリデーション
-    if (!name || typeof name !== "string" || name.trim().length === 0) {
-      return NextResponse.json({ ok: false, error: "名前は必須です" }, { status: 400 });
+    const nameResult = validateName(name);
+    if (!nameResult.ok) {
+      return NextResponse.json({ ok: false, error: nameResult.error }, { status: 400 });
     }
-    if (!email || !EMAIL_REGEX.test(email)) {
-      return NextResponse.json({ ok: false, error: "メールアドレスが無効です" }, { status: 400 });
+    const emailResult = validateEmail(email);
+    if (!emailResult.ok) {
+      return NextResponse.json({ ok: false, error: emailResult.error }, { status: 400 });
     }
-    if (name.length > 100) {
-      return NextResponse.json({ ok: false, error: "名前が長すぎます" }, { status: 400 });
-    }
-    if (message && message.length > 2000) {
-      return NextResponse.json({ ok: false, error: "メッセージは2000文字以内にしてください" }, { status: 400 });
+    const messageResult = validateMessage(message);
+    if (!messageResult.ok) {
+      return NextResponse.json({ ok: false, error: messageResult.error }, { status: 400 });
     }
 
     // メールヘッダーインジェクション対策
-    const safeName    = name.replace(/[\r\n]/g, "");
-    const safeEmail   = email.replace(/[\r\n]/g, "");
-    const safeSubject = (subject || "").replace(/[\r\n]/g, "");
-    const safeMessage = (message || "").replace(/[\r\n]{5,}/g, "\n\n");
+    const safeName    = sanitizeHeader(name);
+    const safeEmail   = sanitizeHeader(email);
+    const safeSubject = sanitizeHeader(subject || "");
+    const safeMsg     = sanitizeMessage(message || "");
 
     const to = process.env.CONTACT_EMAIL ?? "u16106@st.tci.ac.jp";
-
     const from = "Hope for the World <onboarding@resend.dev>";
 
     await Promise.all([
@@ -76,7 +81,7 @@ export async function POST(req: NextRequest) {
         to,
         replyTo: safeEmail,
         subject: `[お問合せ] ${safeSubject || "つながるフォーム"} — ${safeName}`,
-        text: `お名前: ${safeName}\nメール: ${safeEmail}\nお問合せ内容: ${safeSubject}\n\n${safeMessage}`,
+        text: `お名前: ${safeName}\nメール: ${safeEmail}\nお問合せ内容: ${safeSubject}\n\n${safeMsg}`,
       }),
       // 送信者への自動返信
       resend.emails.send({
@@ -96,7 +101,7 @@ export async function POST(req: NextRequest) {
     <div style="background:#f8f9ff;border-left:3px solid #C9A84C;padding:16px 20px;margin:24px 0;border-radius:4px;">
       <p style="margin:0 0 6px;font-size:12px;color:#888;">お問合せ内容</p>
       <p style="margin:0 0 4px;font-weight:bold;color:#1a2e5a;">${safeSubject || "（未選択）"}</p>
-      ${safeMessage ? `<p style="margin:12px 0 0;font-size:14px;white-space:pre-wrap;">${safeMessage}</p>` : ""}
+      ${safeMsg ? `<p style="margin:12px 0 0;font-size:14px;white-space:pre-wrap;">${safeMsg}</p>` : ""}
     </div>
   </div>
   <div style="background:#f0f4ff;padding:20px 24px;text-align:center;font-size:11px;color:#999;">

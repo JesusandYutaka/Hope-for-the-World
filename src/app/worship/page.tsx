@@ -30,8 +30,8 @@ export default function WorshipPage() {
   return (
     <>
       <PageHero
-        eyebrow="Worship Ministry"
-        title="賛美ミニストリー"
+        eyebrow="MUSIC × WORSHIP"
+        title="賛美・Worship"
         subtitle="ともに、神への賛美を通して、神に近づきましょう。"
       />
       {/* 賛美とは */}

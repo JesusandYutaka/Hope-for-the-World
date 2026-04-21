@@ -31,6 +31,40 @@ export default function MissionsPage() {
         title="宣教論文"
         subtitle="聖書に基づく宣教神学・論文を公開しています。"
       />
+      <section className="relative py-16 md:py-24 px-4 overflow-hidden bg-gradient-to-b from-white to-[#f5f8ff]">
+        {/* Decorative background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full opacity-10"
+            style={{ background: "radial-gradient(ellipse, #1a2e5a 0%, transparent 70%)", filter: "blur(40px)" }} />
+        </div>
+
+        <div className="relative max-w-2xl mx-auto text-center">
+          {/* Eyebrow */}
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <span className="w-8 h-px bg-[#C9A84C]/50" />
+            <span className="text-[#C9A84C] text-[10px] font-medium tracking-[0.5em] uppercase">For the World</span>
+            <span className="w-8 h-px bg-[#C9A84C]/50" />
+          </div>
+
+          {/* Main question */}
+          <p className="text-[#1a2e5a] font-serif font-bold text-2xl md:text-3xl leading-relaxed mb-6">
+            希望を届けるには、どうしたらいいのか。
+          </p>
+
+          {/* Divider */}
+          <div className="w-12 h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent mx-auto mb-6" />
+
+          {/* Body */}
+          <p className="text-gray-500 leading-[2] text-sm md:text-base">
+            全世界のすべての人に希望を届けるために、<br />
+            どのように歩んだら良いのかを考えて研究した論文です。
+          </p>
+          <p className="text-gray-400 leading-[2] text-sm md:text-base mt-4">
+            希望をより多くの人に届けていきたいと願う方にとっての<br />
+            励ましとなれば嬉しいです。
+          </p>
+        </div>
+      </section>
       <section className="py-12 md:py-24 px-4 bg-white">
         <div className="max-w-3xl mx-auto space-y-6">
           {papers.length === 0 && (
