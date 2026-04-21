@@ -2,10 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-
-type NavItem =
-  | { href: string; label: string; children?: undefined }
-  | { label: string; href?: undefined; children: { href: string; label: string }[] };
+import type { NavItem, NavChild } from "@/types";
 
 const navLinks: NavItem[] = [
   { href: "/worship", label: "賛美・Worship" },
@@ -23,7 +20,7 @@ const navLinks: NavItem[] = [
   { href: "/know-god", label: "神を知りたい人へ" },
 ];
 
-function DropdownMenu({ item }: { item: NavItem & { children: { href: string; label: string }[] } }) {
+function DropdownMenu({ item }: { item: NavItem & { children: NavChild[] } }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -53,7 +50,7 @@ function DropdownMenu({ item }: { item: NavItem & { children: { href: string; la
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
-        <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[#C9A84C] group-hover:w-full transition-all duration-300" />
+        <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-gold group-hover:w-full transition-all duration-300" />
       </button>
 
       {/* Dropdown panel — pt-3 bridges the gap so mouse doesn't leave the container */}
@@ -77,7 +74,7 @@ function DropdownMenu({ item }: { item: NavItem & { children: { href: string; la
             <Link
               key={child.href}
               href={child.href}
-              className="block px-5 py-2.5 text-[12px] text-white/70 hover:text-[#C9A84C] hover:bg-white/5 tracking-wider transition-colors duration-200 whitespace-nowrap"
+              className="block px-5 py-2.5 text-[12px] text-white/70 hover:text-gold hover:bg-white/5 tracking-wider transition-colors duration-200 whitespace-nowrap"
             >
               {child.label}
             </Link>
@@ -123,7 +120,7 @@ export default function Header() {
 
           {/* Logo */}
           <Link href="/" className="group flex flex-col leading-none">
-            <span className="text-[#C9A84C] font-serif font-bold text-lg tracking-widest group-hover:text-[#e8d080] transition-colors duration-300">
+            <span className="text-gold font-serif font-bold text-lg tracking-widest group-hover:text-gold-light transition-colors duration-300">
               Hope for the World
             </span>
           </Link>
@@ -140,7 +137,7 @@ export default function Header() {
                   className="relative text-white/75 hover:text-white text-[13px] font-light tracking-wider transition-colors duration-300 group"
                 >
                   {link.label}
-                  <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[#C9A84C] group-hover:w-full transition-all duration-300" />
+                  <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-gold group-hover:w-full transition-all duration-300" />
                 </Link>
               )
             )}
@@ -148,7 +145,7 @@ export default function Header() {
             {/* CTA button */}
             <Link
               href="/contact"
-              className="ml-2 px-5 py-2 border border-[#C9A84C]/60 hover:border-[#C9A84C] text-[#C9A84C] hover:text-[#e8d080] text-[12px] tracking-[0.15em] font-medium rounded-full transition-all duration-300 hover:bg-[#C9A84C]/10"
+              className="ml-2 px-5 py-2 border border-gold/60 hover:border-gold text-gold hover:text-gold-light text-[12px] tracking-[0.15em] font-medium rounded-full transition-all duration-300 hover:bg-gold/10"
             >
               つながる
             </Link>
@@ -183,7 +180,7 @@ export default function Header() {
               <div key={link.label}>
                 <button
                   onClick={() => setOpenMobileGroup(openMobileGroup === link.label ? null : link.label)}
-                  className="w-full flex items-center justify-between py-3 text-white/70 hover:text-[#C9A84C] text-sm tracking-wider border-b border-white/8 transition-colors duration-200"
+                  className="w-full flex items-center justify-between py-3 text-white/70 hover:text-gold text-sm tracking-wider border-b border-white/8 transition-colors duration-200"
                 >
                   {link.label}
                   <svg
@@ -200,7 +197,7 @@ export default function Header() {
                         key={child.href}
                         href={child.href}
                         onClick={() => setMenuOpen(false)}
-                        className="py-2.5 text-white/55 hover:text-[#C9A84C] text-sm tracking-wider transition-colors duration-200"
+                        className="py-2.5 text-white/55 hover:text-gold text-sm tracking-wider transition-colors duration-200"
                       >
                         {child.label}
                       </Link>
@@ -213,7 +210,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href!}
                 onClick={() => setMenuOpen(false)}
-                className="py-3 text-white/70 hover:text-[#C9A84C] text-sm tracking-wider border-b border-white/8 transition-colors duration-200 last:border-0"
+                className="py-3 text-white/70 hover:text-gold text-sm tracking-wider border-b border-white/8 transition-colors duration-200 last:border-0"
               >
                 {link.label}
               </Link>

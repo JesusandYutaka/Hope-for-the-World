@@ -86,7 +86,7 @@ export default function HeroSection() {
         </h1>
 
         {/* Thin divider */}
-        <div className="w-16 h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent mb-10" />
+        <div className="w-16 h-px bg-gradient-to-r from-transparent via-gold to-transparent mb-10" />
 
         {/* Scripture slider */}
         <div className="min-h-[100px] flex flex-col items-center justify-center mb-8">
@@ -106,7 +106,7 @@ export default function HeroSection() {
             </p>
           </blockquote>
           <cite
-            className="text-[#ffd080]/90 text-xs mt-4 not-italic tracking-[0.3em] uppercase drop-shadow transition-opacity duration-700"
+            className="text-gold-light/90 text-xs mt-4 not-italic tracking-[0.3em] uppercase drop-shadow transition-opacity duration-700"
             style={{ opacity: visible ? 1 : 0 }}
           >
             {s.ref}
@@ -123,7 +123,7 @@ export default function HeroSection() {
                 setTimeout(() => { setCurrent(i); setVisible(true); }, 300);
               }}
               className={`h-px rounded-full transition-all duration-300 ${
-                i === current ? "bg-[#C9A84C] w-8" : "bg-white/30 w-4"
+                i === current ? "bg-gold w-8" : "bg-white/30 w-4"
               }`}
               aria-label={`みことば ${i + 1}`}
             />
@@ -142,7 +142,7 @@ export default function HeroSection() {
           </Link>
           <Link
             href="/contact"
-            className="px-9 py-3.5 rounded-full text-sm tracking-[0.12em] font-light text-white/90 hover:text-white border border-white/30 hover:border-[#C9A84C]/60 transition-all duration-300 hover:scale-105 hover:bg-white/5 backdrop-blur-sm"
+            className="px-9 py-3.5 rounded-full text-sm tracking-[0.12em] font-light text-white/90 hover:text-white border border-white/30 hover:border-gold/60 transition-all duration-300 hover:scale-105 hover:bg-white/5 backdrop-blur-sm"
           >
             祈りのリクエスト
           </Link>

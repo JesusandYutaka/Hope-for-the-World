@@ -2,8 +2,9 @@
 
 import PageHero from "@/components/PageHero";
 import Link from "next/link";
+import type { KnowGodStep } from "@/types";
 
-const steps = [
+const steps: KnowGodStep[] = [
   {
     num: "01",
     title: "神はあなたを愛しておられます",
@@ -49,14 +50,14 @@ export default function KnowGodPage() {
           <div className="space-y-10">
             {steps.map((s) => (
               <div key={s.num} className="flex gap-8">
-                <div className="flex-shrink-0 w-14 h-14 rounded-full bg-[#1a2e5a] flex items-center justify-center">
-                  <span className="text-[#C9A84C] font-serif font-bold text-sm">{s.num}</span>
+                <div className="flex-shrink-0 w-14 h-14 rounded-full bg-navy flex items-center justify-center">
+                  <span className="text-gold font-serif font-bold text-sm">{s.num}</span>
                 </div>
                 <div className="flex-1 pt-2">
-                  <h3 className="text-lg font-serif font-bold text-[#1a2e5a] mb-3">{s.title}</h3>
-                  <blockquote className="border-l-2 border-[#C9A84C] pl-4 mb-3">
+                  <h3 className="text-lg font-serif font-bold text-navy mb-3">{s.title}</h3>
+                  <blockquote className="border-l-2 border-gold pl-4 mb-3">
                     <p className="text-gray-700 italic text-sm leading-relaxed">&ldquo;{s.verse}&rdquo;</p>
-                    <cite className="text-xs text-[#C9A84C] not-italic">{s.ref}</cite>
+                    <cite className="text-xs text-gold not-italic">{s.ref}</cite>
                   </blockquote>
                   <p className="text-gray-500 text-sm leading-relaxed">{s.text}</p>
                 </div>
@@ -66,7 +67,7 @@ export default function KnowGodPage() {
 
           {/* Invitation */}
           <div className="mt-20 mb-10 max-w-2xl mx-auto text-center space-y-6">
-            <h3 className="text-xl font-serif font-bold text-[#1a2e5a]">
+            <h3 className="text-xl font-serif font-bold text-navy">
               イエス様を信じてみたいと思われた方へ
             </h3>
             <p className="text-gray-600 leading-[1.9] text-sm">
@@ -74,12 +75,12 @@ export default function KnowGodPage() {
               「イエス様を信じてみたい」という思いが芽生えたなら、<br />
               ぜひ以下の「信仰の祈り」を、声に出して祈ってみてください。
             </p>
-            <blockquote className="border-l-2 border-[#C9A84C] pl-4 text-left max-w-sm mx-auto">
+            <blockquote className="border-l-2 border-gold pl-4 text-left max-w-sm mx-auto">
               <p className="text-gray-700 italic text-sm leading-loose">
                 「人は心に信じて義と認められ、<br />
                 　口で告白して救われるのです。」
               </p>
-              <cite className="text-xs text-[#C9A84C] not-italic block mt-1">ローマ人への手紙 10章10節</cite>
+              <cite className="text-xs text-gold not-italic block mt-1">ローマ人への手紙 10章10節</cite>
             </blockquote>
             <p className="text-gray-600 leading-[1.9] text-sm">
               心からこの祈りをされた方は、<br />
@@ -92,8 +93,8 @@ export default function KnowGodPage() {
           </div>
 
           {/* Prayer */}
-          <div id="prayer-section" className="mt-4 p-10 rounded-2xl bg-gradient-to-br from-[#1a2e5a] to-[#0d1b3e] text-white text-center">
-            <span className="text-[#C9A84C] text-xs tracking-widest uppercase">Sinner&apos;s Prayer</span>
+          <div id="prayer-section" className="mt-4 p-10 rounded-2xl bg-gradient-to-br from-navy to-navy-dark text-white text-center">
+            <span className="text-gold text-xs tracking-widest uppercase">Sinner&apos;s Prayer</span>
             <h3 className="text-2xl font-serif font-bold mt-3 mb-6">信仰の祈り</h3>
             <p className="text-white/70 text-sm leading-loose mb-8 max-w-xl mx-auto">
               「イエス様、あなたが神の子であること、私の罪のために死なれ、復活されたことを信じます。
@@ -104,31 +105,25 @@ export default function KnowGodPage() {
 
           {/* Next steps */}
           <div className="mt-16 max-w-2xl mx-auto text-center space-y-5">
-            <h3 className="text-xl font-serif font-bold text-[#1a2e5a]">
+            <h3 className="text-xl font-serif font-bold text-navy">
               さらにイエス様を知りたいと思われた方へ
             </h3>
             <div className="text-gray-600 leading-[1.9] text-sm space-y-4">
-              <p>
-                「信じたけれど、これからどうすればいいの？」<br />
-                「もっとイエス様のことを知りたい」
-              </p>
+              <p>「信じたけれど、これからどうすればいいの？」<br />「もっとイエス様のことを知りたい」</p>
               <p>
                 そう思われた方は、<br />
                 ぜひ、「つながる」フォームからお問い合わせください。<br />
                 直接お会いするか、オンライン（Zoom）で、<br />
                 一緒に祈り、聖書を学ぶ時を持つことができます。
               </p>
-              <p>
-                イエス様をより深く知る歩みを、<br />
-                共にできることを楽しみにしています。
-              </p>
-              <p className="text-[#1a2e5a] font-medium">
+              <p>イエス様をより深く知る歩みを、<br />共にできることを楽しみにしています。</p>
+              <p className="text-navy font-medium">
                 あなたの新しい人生の始まりに、神様の祝福が豊かにありますように。
               </p>
             </div>
             <Link
               href="/contact"
-              className="inline-block mt-2 px-8 py-3.5 bg-[#1a2e5a] hover:bg-[#0d1b3e] text-white font-medium rounded-full transition-all hover:scale-105 text-sm"
+              className="inline-block mt-2 px-8 py-3.5 bg-navy hover:bg-navy-dark text-white font-medium rounded-full transition-all hover:scale-105 text-sm"
             >
               つながる
             </Link>

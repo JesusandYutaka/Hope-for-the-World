@@ -1,28 +1,8 @@
 import HeroSection from "@/components/HeroSection";
 import Image from "next/image";
 import Link from "next/link";
-
-async function fetchLatestYouTubeVideo(): Promise<{ id: string; title: string } | null> {
-  try {
-    const res = await fetch(
-      "https://www.youtube.com/feeds/videos.xml?channel_id=UCtj5cJhnm4DNyTO7uXUqmsQ",
-      { next: { revalidate: 86400 } }
-    );
-    if (!res.ok) return null;
-    const xml = await res.text();
-    const idMatch = xml.match(/<yt:videoId>([^<]+)<\/yt:videoId>/);
-    const titleMatch = xml.match(/<title>([^<]+)<\/title>/g);
-    const id = idMatch ? idMatch[1] : null;
-    // titleMatch[0] is the channel title, [1] is the first video title
-    const title = titleMatch && titleMatch[1]
-      ? titleMatch[1].replace(/<\/?title>/g, "")
-      : "最新動画";
-    if (!id) return null;
-    return { id, title };
-  } catch {
-    return null;
-  }
-}
+import { fetchLatestYouTubeVideo } from "@/lib/youtube";
+import { ICONS } from "@/lib/constants";
 
 const vision = [
   {
@@ -48,29 +28,29 @@ const vision = [
   },
 ];
 
+
 export default async function HomePage() {
   const latestVideo = await fetchLatestYouTubeVideo();
   return (
     <>
-      {/* Hero */}
       <HeroSection />
 
       {/* Vision・Mission・Core Values */}
       <section className="py-12 md:py-24 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-[#C9A84C] text-sm font-medium tracking-[0.3em] uppercase mb-3">About Us</p>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1a2e5a]">私たちについて</h2>
+            <p className="text-gold text-sm font-medium tracking-[0.3em] uppercase mb-3">About Us</p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-navy">私たちについて</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {vision.map((item) => (
               <div
                 key={item.title}
-                className="group p-8 rounded-2xl border border-[#e8f0fe] hover:border-[#C9A84C]/30 hover:shadow-xl hover:shadow-[#C9A84C]/5 transition-all"
+                className="group p-8 rounded-2xl border border-sky hover:border-gold/30 hover:shadow-xl hover:shadow-gold/5 transition-all"
               >
-                <span className="text-[#C9A84C] text-2xl">{item.icon}</span>
-                <h3 className="text-xl font-serif font-bold text-[#1a2e5a] mt-4">{item.title}</h3>
-                <p className="text-sm text-[#C9A84C] mb-3">{item.subtitle}</p>
+                <span className="text-gold text-2xl">{item.icon}</span>
+                <h3 className="text-xl font-serif font-bold text-navy mt-4">{item.title}</h3>
+                <p className="text-sm text-gold mb-3">{item.subtitle}</p>
                 <p className="text-gray-600 leading-relaxed">{item.text}</p>
                 <p className="text-xs text-gray-400 mt-4 italic whitespace-pre-line">{item.verse}</p>
               </div>
@@ -83,13 +63,10 @@ export default async function HomePage() {
       <section className="py-12 md:py-24 px-4 bg-[#fafafa]">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-[#C9A84C] text-sm font-medium tracking-[0.3em] uppercase mb-3">Who We Are</p>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1a2e5a]">私たちの自己紹介</h2>
+            <p className="text-gold text-sm font-medium tracking-[0.3em] uppercase mb-3">Who We Are</p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-navy">私たちの自己紹介</h2>
           </div>
-
-          {/* Intro: photo + opening */}
           <div className="flex flex-col md:flex-row items-start gap-6 md:gap-12 mb-16">
-            {/* Photo */}
             <div className="w-full md:w-2/5 flex-shrink-0">
               <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/5]">
                 <Image
@@ -101,19 +78,15 @@ export default async function HomePage() {
                 />
               </div>
             </div>
-
-            {/* Opening text */}
             <div className="w-full md:w-3/5 space-y-5 pt-2">
-              <div className="w-10 h-0.5 bg-[#C9A84C]" />
-              <h3 className="text-2xl font-serif font-bold text-[#1a2e5a]">
+              <div className="w-10 h-0.5 bg-gold" />
+              <h3 className="text-2xl font-serif font-bold text-navy">
                 中島 豊 <span className="text-base font-normal text-gray-400 ml-2">Nakajima Yutaka</span>
               </h3>
-              <p className="text-lg font-serif text-[#1a2e5a] font-medium">
-                Hope for the Worldへようこそ
-              </p>
+              <p className="text-lg font-serif text-navy font-medium">Hope for the Worldへようこそ</p>
               <div className="space-y-3 text-gray-600 leading-[1.9]">
-                <p className="text-[#C9A84C] text-xs font-medium tracking-[0.3em] uppercase">Profile</p>
-                <h4 className="text-lg font-serif font-bold text-[#1a2e5a]">自己紹介</h4>
+                <p className="text-gold text-xs font-medium tracking-[0.3em] uppercase">Profile</p>
+                <h4 className="text-lg font-serif font-bold text-navy">自己紹介</h4>
                 <ul className="space-y-2 text-sm">
                   <li>11人家族9人兄弟の長男。</li>
                   <li>牧師家庭に生まれ、小学２年生から学校に行かず、ホームスクールで育つ。</li>
@@ -130,22 +103,20 @@ export default async function HomePage() {
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
-
       {/* Featured Content */}
-      <section className="py-12 md:py-24 px-4 bg-[#e8f0fe]">
+      <section className="py-12 md:py-24 px-4 bg-sky">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-[#C9A84C] text-sm font-medium tracking-[0.3em] uppercase mb-3">Content</p>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1a2e5a]">メッセージ & 賛美</h2>
+            <p className="text-gold text-sm font-medium tracking-[0.3em] uppercase mb-3">Content</p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-navy">メッセージ & 賛美</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             {/* 最新動画 */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-              <div className="aspect-video bg-[#1a2e5a]">
+              <div className="aspect-video bg-navy">
                 {latestVideo ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${latestVideo.id}`}
@@ -158,7 +129,7 @@ export default async function HomePage() {
                   <div className="w-full h-full flex items-center justify-center text-white/40">
                     <div className="text-center">
                       <svg className="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                        <path d={ICONS.YOUTUBE} />
                       </svg>
                       <p className="text-sm">YouTube動画が入ります</p>
                     </div>
@@ -166,15 +137,15 @@ export default async function HomePage() {
                 )}
               </div>
               <div className="p-6">
-                <p className="text-xs text-[#C9A84C] font-medium tracking-widest uppercase mb-2">最新動画</p>
-                <h3 className="text-lg font-bold text-[#1a2e5a] mb-4">
+                <p className="text-xs text-gold font-medium tracking-widest uppercase mb-2">最新動画</p>
+                <h3 className="text-lg font-bold text-navy mb-4">
                   {latestVideo ? latestVideo.title : "最新メッセージ"}
                 </h3>
                 <a
                   href="https://www.youtube.com/@yutakanakajima960"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-[#1a2e5a] hover:text-[#C9A84C] font-medium transition-colors"
+                  className="text-sm text-navy hover:text-gold font-medium transition-colors"
                 >
                   チャンネルを見る →
                 </a>
@@ -183,7 +154,7 @@ export default async function HomePage() {
 
             {/* 賛美Ministry */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-              <div className="aspect-video bg-[#1a2e5a]">
+              <div className="aspect-video bg-navy">
                 <iframe
                   src="https://www.youtube.com/embed/OCAhN8eCKp0"
                   title="最新賛美"
@@ -193,9 +164,9 @@ export default async function HomePage() {
                 />
               </div>
               <div className="p-6">
-                <p className="text-xs text-[#C9A84C] font-medium tracking-widest uppercase mb-2">賛美Ministry</p>
-                <h3 className="text-lg font-bold text-[#1a2e5a] mb-4">最新賛美</h3>
-                <Link href="/worship" className="text-sm text-[#1a2e5a] hover:text-[#C9A84C] font-medium transition-colors">
+                <p className="text-xs text-gold font-medium tracking-widest uppercase mb-2">賛美Ministry</p>
+                <h3 className="text-lg font-bold text-navy mb-4">最新賛美</h3>
+                <Link href="/worship" className="text-sm text-navy hover:text-gold font-medium transition-colors">
                   もっと見る →
                 </Link>
               </div>
@@ -206,34 +177,25 @@ export default async function HomePage() {
 
       {/* Prayer CTA */}
       <section className="relative py-20 md:py-32 px-4 overflow-hidden">
-        {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f2044] via-[#1a3560] to-[#0a1628]" />
-        {/* Decorative blobs */}
         <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-20 pointer-events-none"
           style={{ background: "radial-gradient(circle, #3b82f6 0%, transparent 70%)", filter: "blur(60px)" }} />
         <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full opacity-15 pointer-events-none"
           style={{ background: "radial-gradient(circle, #C9A84C 0%, transparent 70%)", filter: "blur(50px)" }} />
 
         <div className="relative z-10 max-w-2xl mx-auto text-center">
-          {/* Eyebrow */}
           <div className="flex items-center justify-center gap-3 mb-6">
-            <span className="w-8 h-px bg-[#C9A84C]/60" />
-            <span className="text-[#C9A84C] text-xs font-medium tracking-[0.4em] uppercase">Prayer Request</span>
-            <span className="w-8 h-px bg-[#C9A84C]/60" />
+            <span className="w-8 h-px bg-gold/60" />
+            <span className="text-gold text-xs font-medium tracking-[0.4em] uppercase">Prayer Request</span>
+            <span className="w-8 h-px bg-gold/60" />
           </div>
-
-          {/* Title */}
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-5 leading-tight">
             共に祈りましょう
           </h2>
-
-          {/* Subtitle */}
           <p className="text-white/60 text-base md:text-lg leading-relaxed mb-10">
             あなたの祈りのリクエストをお聞かせください。<br />
             私たちはあなたのために心を合わせて祈ります。
           </p>
-
-          {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
@@ -257,7 +219,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
     </>
   );
 }

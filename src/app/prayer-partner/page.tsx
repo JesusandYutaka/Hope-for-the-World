@@ -1,5 +1,6 @@
 import PageHero from "@/components/PageHero";
 import Image from "next/image";
+import { SOCIAL } from "@/lib/constants";
 
 export default function PrayerPartnerPage() {
   return (
@@ -12,21 +13,15 @@ export default function PrayerPartnerPage() {
       <section className="py-12 md:py-24 px-4 bg-white">
         <div className="max-w-3xl mx-auto">
 
-
-          {/* 説明文 */}
           <div className="mb-14">
-
-            {/* Hero message */}
             <div className="relative overflow-hidden rounded-3xl p-6 md:p-10 mb-8 text-center"
               style={{ background: "linear-gradient(135deg, #1a2e5a 0%, #2d4a8a 60%, #1a3a6a 100%)" }}>
-              {/* Glow orbs */}
               <div className="absolute top-0 right-0 w-72 h-72 rounded-full pointer-events-none"
                 style={{ background: "radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 65%)", transform: "translate(20%,-30%)" }} />
               <div className="absolute bottom-0 left-0 w-56 h-56 rounded-full pointer-events-none"
                 style={{ background: "radial-gradient(circle, rgba(147,197,253,0.12) 0%, transparent 65%)", transform: "translate(-20%,30%)" }} />
-              {/* Gold divider */}
               <div className="relative flex justify-center mb-6">
-                <div className="w-10 h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
+                <div className="w-10 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
               </div>
               <div className="relative space-y-4">
                 <p className="text-white/70 text-sm leading-relaxed">
@@ -37,11 +32,10 @@ export default function PrayerPartnerPage() {
                 </p>
               </div>
               <div className="relative flex justify-center mt-6">
-                <div className="w-10 h-px bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
+                <div className="w-10 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
               </div>
             </div>
 
-            {/* Feature cards */}
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 {
@@ -73,27 +67,22 @@ export default function PrayerPartnerPage() {
                 },
               ].map((item, i) => (
                 <div key={i}
-                  className="relative flex flex-col items-center text-center p-7 rounded-2xl border border-[#e8f0fe] bg-white hover:shadow-xl hover:border-[#C9A84C]/30 transition-all duration-300 group overflow-hidden">
-                  {/* Warm glow on hover */}
+                  className="relative flex flex-col items-center text-center p-7 rounded-2xl border border-sky bg-white hover:shadow-xl hover:border-gold/30 transition-all duration-300 group overflow-hidden">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                     style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 70%)" }} />
-                  {/* Icon */}
                   <div className="relative w-12 h-12 rounded-2xl mb-4 flex items-center justify-center shadow-md"
                     style={{ background: "linear-gradient(135deg, #1a2e5a 0%, #2d4a8a 100%)" }}>
-                    <span className="text-[#C9A84C]">{item.icon}</span>
+                    <span className="text-gold">{item.icon}</span>
                   </div>
-                  {/* Gold accent */}
-                  <div className="w-6 h-0.5 bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent mb-3" />
-                  <p className="font-serif font-bold text-[#1a2e5a] text-sm mb-2">{item.title}</p>
+                  <div className="w-6 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent mb-3" />
+                  <p className="font-serif font-bold text-navy text-sm mb-2">{item.title}</p>
                   <p className="text-gray-500 text-xs leading-relaxed">{item.text}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* 公式ライン */}
           <div className="rounded-3xl overflow-hidden shadow-xl">
-            {/* Top bar */}
             <div className="px-8 py-4 flex items-center gap-3" style={{ background: "linear-gradient(135deg, #8B5E3C 0%, #A0714F 100%)" }}>
               <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
@@ -101,7 +90,6 @@ export default function PrayerPartnerPage() {
               <span className="text-white font-bold tracking-wide">God's Grace (中島豊&愛来)　公式ライン</span>
             </div>
 
-            {/* Body */}
             <div className="bg-gradient-to-br from-white to-[#f8fffe] p-8 flex flex-col md:flex-row items-center justify-center gap-8">
               <div className="flex flex-col items-center gap-3">
                 <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-md p-3 bg-white">
@@ -118,7 +106,7 @@ export default function PrayerPartnerPage() {
               </div>
               <div className="flex flex-col items-center gap-3">
                 <a
-                  href="https://lin.ee/ZCvMRMc"
+                  href={SOCIAL.LINE_PRAYER_PARTNER}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full text-white font-bold text-sm tracking-wide transition-all hover:shadow-lg hover:scale-[1.02]"

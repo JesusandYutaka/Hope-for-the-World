@@ -11,8 +11,11 @@
   --color-foreground: var(--foreground);
   --color-gold: #C9A84C;
   --color-gold-light: #e8c97a;
+  --color-gold-dark: #b8922a;
   --color-navy: #1a2e5a;
   --color-navy-light: #2a4480;
+  --color-navy-mid: #2d4a8a;
+  --color-navy-dark: #0d1b3e;
   --color-sky: #e8f0fe;
   --color-sky-mid: #c5d5f7;
 }

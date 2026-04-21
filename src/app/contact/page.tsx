@@ -2,13 +2,14 @@
 
 import PageHero from "@/components/PageHero";
 import { useState } from "react";
+import type { ContactFormStatus } from "@/types";
 
 export default function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
+  const [status, setStatus] = useState<ContactFormStatus>("idle");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -41,16 +42,16 @@ export default function ContactPage() {
         <div className="max-w-2xl mx-auto">
           {status === "done" ? (
             <div className="text-center py-16">
-              <div className="w-14 h-14 rounded-full bg-[#C9A84C]/10 flex items-center justify-center mx-auto mb-6">
-                <svg className="w-7 h-7 text-[#C9A84C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-6">
+                <svg className="w-7 h-7 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="font-serif font-bold text-[#1a2e5a] text-xl mb-2">送信しました</h3>
+              <h3 className="font-serif font-bold text-navy text-xl mb-2">送信しました</h3>
               <p className="text-gray-500 text-sm">お問合せありがとうございます。確認次第ご連絡いたします。</p>
               <button
                 onClick={() => setStatus("idle")}
-                className="mt-8 text-sm text-[#1a2e5a] underline underline-offset-4"
+                className="mt-8 text-sm text-navy underline underline-offset-4"
               >
                 もう一度送る
               </button>
@@ -59,34 +60,34 @@ export default function ContactPage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-[#1a2e5a] mb-2">お名前 *</label>
+                  <label className="block text-sm font-medium text-navy mb-2">お名前 *</label>
                   <input
                     type="text"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-[#e8f0fe] focus:outline-none focus:border-[#C9A84C] text-sm transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-sky focus:outline-none focus:border-gold text-sm transition-colors"
                     placeholder="山田 太郎"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[#1a2e5a] mb-2">メールアドレス *</label>
+                  <label className="block text-sm font-medium text-navy mb-2">メールアドレス *</label>
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-[#e8f0fe] focus:outline-none focus:border-[#C9A84C] text-sm transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-sky focus:outline-none focus:border-gold text-sm transition-colors"
                     placeholder="example@email.com"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#1a2e5a] mb-2">お問合せ内容</label>
+                <label className="block text-sm font-medium text-navy mb-2">お問合せ内容</label>
                 <select
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-[#e8f0fe] focus:outline-none focus:border-[#C9A84C] text-sm text-gray-600 transition-colors bg-white"
+                  className="w-full px-4 py-3 rounded-xl border border-sky focus:outline-none focus:border-gold text-sm text-gray-600 transition-colors bg-white"
                 >
                   <option value="">選択してください</option>
                   <option>イエス様を信じてみたい</option>
@@ -99,12 +100,12 @@ export default function ContactPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#1a2e5a] mb-2">日程・詳細</label>
+                <label className="block text-sm font-medium text-navy mb-2">日程・詳細</label>
                 <textarea
                   rows={6}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-[#e8f0fe] focus:outline-none focus:border-[#C9A84C] text-sm transition-colors resize-none"
+                  className="w-full px-4 py-3 rounded-xl border border-sky focus:outline-none focus:border-gold text-sm transition-colors resize-none"
                   placeholder="ご依頼の詳細、ご希望の日程などをお書きください。"
                 />
               </div>
@@ -114,7 +115,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="w-full py-4 bg-[#1a2e5a] hover:bg-[#0d1b3e] text-white font-medium rounded-full transition-all hover:scale-[1.02] text-sm tracking-wide disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full py-4 bg-navy hover:bg-navy-dark text-white font-medium rounded-full transition-all hover:scale-[1.02] text-sm tracking-wide disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {status === "sending" ? "送信中..." : "送信する"}
               </button>

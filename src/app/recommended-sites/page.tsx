@@ -1,19 +1,7 @@
 import PageHero from "@/components/PageHero";
+import type { RecommendedSite, RecommendedSiteGroup } from "@/types";
 
-type Site = {
-  name: string;
-  description: string;
-  url: string;
-};
-
-type Category = {
-  id: string;
-  label: string;
-  en: string;
-  sites: Site[];
-};
-
-const categories: Category[] = [
+const categories: RecommendedSiteGroup[] = [
   {
     id: "mission",
     label: "宣教・伝道",
@@ -200,14 +188,14 @@ const categories: Category[] = [
   },
 ];
 
-const categoryAccents: Record<string, { from: string; to: string; badge: string }> = {
-  mission: { from: "#0d1b3e", to: "#1a2e5a", badge: "bg-blue-50 text-blue-700 border-blue-200" },
-  bible:   { from: "#3b2a08", to: "#7a5c1a", badge: "bg-amber-50 text-amber-700 border-amber-200" },
-  message: { from: "#2a1a3e", to: "#6b3fa0", badge: "bg-violet-50 text-violet-700 border-violet-200" },
-  student: { from: "#0a3320", to: "#155c3a", badge: "bg-emerald-50 text-emerald-700 border-emerald-200" },
-  devotion: { from: "#1a3a2a", to: "#2e7d52", badge: "bg-teal-50 text-teal-700 border-teal-200" },
-  youtube: { from: "#7a0c0c", to: "#c0392b", badge: "bg-red-50 text-red-700 border-red-200" },
-  business:{ from: "#2d1540", to: "#5b2d82", badge: "bg-purple-50 text-purple-700 border-purple-200" },
+const categoryAccents: Record<string, { from: string; to: string }> = {
+  mission: { from: "#0d1b3e", to: "#1a2e5a" },
+  bible:   { from: "#3b2a08", to: "#7a5c1a" },
+  message: { from: "#2a1a3e", to: "#6b3fa0" },
+  student: { from: "#0a3320", to: "#155c3a" },
+  devotion: { from: "#1a3a2a", to: "#2e7d52" },
+  youtube: { from: "#7a0c0c", to: "#c0392b" },
+  business:{ from: "#2d1540", to: "#5b2d82" },
 };
 
 export default function RecommendedSitesPage() {
@@ -221,11 +209,10 @@ export default function RecommendedSitesPage() {
 
       <div className="bg-[#f8faff]">
         <div className="max-w-5xl mx-auto px-4 py-12 md:py-20 space-y-16">
-          {categories.map((cat) => {
+          {categories.map((cat, index) => {
             const accent = categoryAccents[cat.id] ?? categoryAccents.mission;
             return (
               <section key={cat.id}>
-                {/* カテゴリーヘッダー */}
                 <div
                   className="relative overflow-hidden rounded-2xl px-8 py-6 mb-8 flex items-center gap-5"
                   style={{ background: `linear-gradient(135deg, ${accent.from} 0%, ${accent.to} 100%)` }}
@@ -233,36 +220,35 @@ export default function RecommendedSitesPage() {
                   <div className="absolute right-0 top-0 w-40 h-40 rounded-full pointer-events-none opacity-10"
                     style={{ background: "radial-gradient(circle, #C9A84C 0%, transparent 70%)", transform: "translate(30%, -30%)" }} />
                   <div>
-                    <p className="text-[#C9A84C] text-[10px] tracking-[0.5em] uppercase font-medium mb-1">{cat.en}</p>
+                    <p className="text-gold text-[10px] tracking-[0.5em] uppercase font-medium mb-1">{cat.en}</p>
                     <h2 className="text-white font-serif font-bold text-xl">{cat.label}</h2>
                   </div>
                   <span className="ml-auto text-white/20 font-bold text-4xl font-serif select-none">
-                    {String(categories.indexOf(cat) + 1).padStart(2, "0")}
+                    {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
 
-                {/* サイトカード */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {cat.sites.map((site) => (
+                  {cat.sites.map((site: RecommendedSite) => (
                     <a
                       key={site.url}
                       href={site.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex flex-col bg-white rounded-2xl border border-[#e8f0fe] p-6 hover:border-[#C9A84C]/40 hover:shadow-lg transition-all"
+                      className="group flex flex-col bg-white rounded-2xl border border-sky p-6 hover:border-gold/40 hover:shadow-lg transition-all"
                     >
                       <div className="flex items-start justify-between gap-2 mb-3">
-                        <h3 className="font-serif font-bold text-[#1a2e5a] text-base leading-snug group-hover:text-[#C9A84C] transition-colors">
+                        <h3 className="font-serif font-bold text-navy text-base leading-snug group-hover:text-gold transition-colors">
                           {site.name}
                         </h3>
-                        <svg className="flex-shrink-0 w-4 h-4 text-gray-300 group-hover:text-[#C9A84C] transition-colors mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="flex-shrink-0 w-4 h-4 text-gray-300 group-hover:text-gold transition-colors mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                       </div>
                       <p className="text-gray-500 text-[13px] leading-relaxed flex-1">{site.description}</p>
                       <div className="mt-4 flex items-center gap-1.5">
-                        <div className="w-4 h-px bg-[#C9A84C]/50 group-hover:w-8 transition-all duration-300" />
-                        <span className="text-[11px] text-gray-400 group-hover:text-[#C9A84C] transition-colors truncate">{new URL(site.url).hostname}</span>
+                        <div className="w-4 h-px bg-gold/50 group-hover:w-8 transition-all duration-300" />
+                        <span className="text-[11px] text-gray-400 group-hover:text-gold transition-colors truncate">{new URL(site.url).hostname}</span>
                       </div>
                     </a>
                   ))}
