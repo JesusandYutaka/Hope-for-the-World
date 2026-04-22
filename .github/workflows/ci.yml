@@ -39,8 +39,11 @@ jobs:
       - name: Lint チェック
         run: npm run lint
 
-      - name: テスト実行
-        run: npm test -- --run
+      - name: セキュリティスキャン
+        run: npm audit --audit-level=high
+
+      - name: テスト実行（カバレッジ付き）
+        run: npm run test:coverage
 
   deploy-staging:
     name: Deploy to Staging
