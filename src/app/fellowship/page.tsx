@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
 import NumberedCard from "@/components/ui/NumberedCard";
@@ -5,6 +6,11 @@ import InstagramCard from "@/components/ui/InstagramCard";
 import LinkCard from "@/components/ui/LinkCard";
 import Button from "@/components/ui/Button";
 import { INSTAGRAM, EXTERNAL, ICONS, BRAND_COLORS } from "@/lib/constants";
+
+export const metadata: Metadata = {
+  title: "交わり・Fellowship | Hope for the World",
+  description: "キリストにある兄弟姉妹と共に歩みましょう。能勢川キリスト教会の集いやSNSでつながる方法をご紹介します。",
+};
 
 const fellowshipCards = [
   { number: "01", title: "薪の譬え",  text: "薪が1本ではすぐに火は消えてしまいますが、多くの薪があれば強く燃え続けることができます。" },

@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Image from "next/image";
 import { ICONS } from "@/lib/constants";
+
+export const metadata: Metadata = {
+  title: "みちや牧師の心にバスドラム | Hope for the World",
+  description: "LINEで毎日みことばの励ましをお受け取りください。みちや牧師から日々の励ましと祈りをお届けします。",
+};
 
 export default function MichiyaPage() {
   return (

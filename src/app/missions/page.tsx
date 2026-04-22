@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import type { MissionPaper } from "@/types";
+
+export const metadata: Metadata = {
+  title: "宣教・Missions | Hope for the World",
+  description: "世界に福音を届けるミッション活動。海外・国内宣教の現場から、神の働きをお伝えします。",
+};
 
 const papers: MissionPaper[] = [
   {

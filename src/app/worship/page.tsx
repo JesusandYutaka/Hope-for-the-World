@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+
+export const metadata: Metadata = {
+  title: "賛美・Worship | Hope for the World",
+  description: "オリジナル賛美プレイリスト、賛美集会情報、楽譜配信。ともに神への賛美を通して神に近づきましょう。",
+};
 import SectionHeader from "@/components/ui/SectionHeader";
 import NumberedCard from "@/components/ui/NumberedCard";
 import YouTubeEmbed from "@/components/ui/YouTubeEmbed";

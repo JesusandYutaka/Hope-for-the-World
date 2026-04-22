@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Link from "next/link";
 import { ICONS, BRAND_COLORS } from "@/lib/constants";
 import Divider from "@/components/ui/Divider";
+
+export const metadata: Metadata = {
+  title: "ニュースレター | Hope for the World",
+  description: "ミニストリーの最新情報をお届けします。活動報告・祈りのリクエスト・神の働きをシェアします。",
+};
 
 export default function NewsletterPage() {
   return (

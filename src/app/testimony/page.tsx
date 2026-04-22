@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import JourneyAccordion from "@/components/JourneyAccordion";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -6,6 +7,11 @@ import YouTubeEmbed from "@/components/ui/YouTubeEmbed";
 import Button from "@/components/ui/Button";
 import type { TestimonyArticle, TestimonyVideo, TestimonyCategory } from "@/types";
 import { EXTERNAL } from "@/lib/constants";
+
+export const metadata: Metadata = {
+  title: "証・Testimony | Hope for the World",
+  description: "神様の恵みと奇跡の証をシェアします。救いの証、癒しの証、日々の信仰の歩みをお読みください。",
+};
 
 // ── 証の記事をここに追加してください ────────────────────────────────
 // category: "seminary" | "marriage" | "love" | "salvation"

@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import type { RecommendedSite, RecommendedSiteGroup } from "@/types";
+
+export const metadata: Metadata = {
+  title: "おすすめサイト | Hope for the World",
+  description: "宣教・聖書学習・礼拝など、信仰生活に役立つおすすめウェブサイトをご紹介します。",
+};
 
 const categories: RecommendedSiteGroup[] = [
   {

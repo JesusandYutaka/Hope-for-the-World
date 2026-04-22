@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Image from "next/image";
 import { SOCIAL } from "@/lib/constants";
+
+export const metadata: Metadata = {
+  title: "祈りのパートナー | Hope for the World",
+  description: "祈りの宣教パートナーになりませんか？共に祈りによってこの世界に希望を届けましょう。",
+};
 
 export default function PrayerPartnerPage() {
   return (

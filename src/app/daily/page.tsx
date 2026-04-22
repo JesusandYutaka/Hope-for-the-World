@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/ui/SectionHeader";
 import NumberedCard from "@/components/ui/NumberedCard";
@@ -5,6 +6,11 @@ import YouTubeEmbed from "@/components/ui/YouTubeEmbed";
 import type { NoteArticle, DailyVideo, RecommendedLink } from "@/types";
 import { ICONS } from "@/lib/constants";
 import Divider from "@/components/ui/Divider";
+
+export const metadata: Metadata = {
+  title: "日々の励まし | Hope for the World",
+  description: "神様のみことばを通して、今日も希望と力をお受け取りください。みことば動画・記事・おすすめリンクをお届けします。",
+};
 
 // ── コンテンツをここに追加してください ──────────────────────────
 

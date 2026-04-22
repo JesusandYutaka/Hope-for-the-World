@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Hope for the World — 世界に希望を届ける",
@@ -11,6 +12,20 @@ export const metadata: Metadata = {
     description: "世界に希望を届けるクリスチャンミニストリー",
     locale: "ja_JP",
     type: "website",
+    images: [
+      {
+        url: "/images/hero-sunset.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Hope for the World",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hope for the World",
+    description: "世界に希望を届けるクリスチャンミニストリー",
+    images: ["/images/hero-sunset.jpg"],
   },
 };
 
@@ -25,6 +40,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

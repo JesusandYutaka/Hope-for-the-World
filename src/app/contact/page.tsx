@@ -57,34 +57,41 @@ export default function ContactPage() {
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-navy mb-2">お名前 *</label>
+                  <label htmlFor="name" className="block text-sm font-medium text-navy mb-2">お名前 *</label>
                   <input
+                    id="name"
                     type="text"
                     required
+                    aria-required="true"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-sky focus:outline-none focus:border-gold text-sm transition-colors"
                     placeholder="山田 太郎"
+                    autoComplete="name"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-navy mb-2">メールアドレス *</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-navy mb-2">メールアドレス *</label>
                   <input
+                    id="email"
                     type="email"
                     required
+                    aria-required="true"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-sky focus:outline-none focus:border-gold text-sm transition-colors"
                     placeholder="example@email.com"
+                    autoComplete="email"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-navy mb-2">お問合せ内容</label>
+                <label htmlFor="subject" className="block text-sm font-medium text-navy mb-2">お問合せ内容</label>
                 <select
+                  id="subject"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl border border-sky focus:outline-none focus:border-gold text-sm text-gray-600 transition-colors bg-white"
@@ -100,8 +107,9 @@ export default function ContactPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-navy mb-2">日程・詳細</label>
+                <label htmlFor="message" className="block text-sm font-medium text-navy mb-2">日程・詳細</label>
                 <textarea
+                  id="message"
                   rows={6}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
@@ -110,7 +118,7 @@ export default function ContactPage() {
                 />
               </div>
               {status === "error" && (
-                <p className="text-red-500 text-sm text-center">送信に失敗しました。時間をおいて再度お試しください。</p>
+                <p role="alert" className="text-red-500 text-sm text-center">送信に失敗しました。時間をおいて再度お試しください。</p>
               )}
               <button
                 type="submit"
