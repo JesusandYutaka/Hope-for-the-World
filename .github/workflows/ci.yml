@@ -25,11 +25,8 @@ jobs:
           node-version: 22
           cache: "npm"
 
-      - name: npm を最新版にアップグレード
-        run: npm install -g npm@latest
-
       - name: 依存パッケージをインストール
-        run: npm ci
+        run: npm install
 
       - name: ビルドチェック
         run: npm run build
