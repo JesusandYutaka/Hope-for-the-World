@@ -22,8 +22,11 @@ jobs:
       - name: Node.js をセットアップ
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: "npm"
+
+      - name: npm を最新版にアップグレード
+        run: npm install -g npm@latest
 
       - name: 依存パッケージをインストール
         run: npm ci
