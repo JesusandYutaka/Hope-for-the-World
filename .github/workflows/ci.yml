@@ -1,4 +1,4 @@
-name: CI
+name: CI / CD
 
 on:
   push:
@@ -39,3 +39,19 @@ jobs:
 
       - name: テスト実行
         run: npm test -- --run
+
+  deploy:
+    name: Deploy to Vercel
+    needs: ci
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: コードをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Vercel にデプロイ
+        run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
