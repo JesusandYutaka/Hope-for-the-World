@@ -36,6 +36,9 @@ jobs:
           UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
           UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
 
+      - name: 型チェック
+        run: npm run type-check
+
       - name: Lint チェック
         run: npm run lint
 
