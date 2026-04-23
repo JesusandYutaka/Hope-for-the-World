@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export function proxy(req: NextRequest) {
+export const runtime = "nodejs";
+
+export function middleware(req: NextRequest) {
   const allowedIps = (process.env.STAGING_ALLOWED_IPS ?? "")
     .split(",")
     .map((ip) => ip.trim())
