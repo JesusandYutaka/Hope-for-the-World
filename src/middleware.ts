@@ -11,7 +11,6 @@ export function middleware(req: NextRequest) {
   }
 
   const ip =
-    req.ip ??
     req.headers.get("x-real-ip") ??
     req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
     "";
