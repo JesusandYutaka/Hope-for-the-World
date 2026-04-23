@@ -6,20 +6,27 @@ export function middleware(req: NextRequest) {
     .map((ip) => ip.trim())
     .filter(Boolean);
 
-  if (allowedIps.length === 0) {
-    return NextResponse.next();
-  }
-
   const ip =
     req.headers.get("x-real-ip") ??
     req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
     "";
 
+  // デバッグ用：検出された情報をヘッダーに返す
+  if (allowedIps.length === 0) {
+    const res = NextResponse.next();
+    res.headers.set("x-debug-ip", ip);
+    res.headers.set("x-debug-allowed", "none-set");
+    return res;
+  }
+
   if (allowedIps.includes(ip)) {
     return NextResponse.next();
   }
 
-  return new NextResponse("403 Forbidden", { status: 403 });
+  return new NextResponse(
+    `403 Forbidden\nYour IP: ${ip}\nAllowed: ${allowedIps.join(",")}`,
+    { status: 403 }
+  );
 }
 
 export const config = {
