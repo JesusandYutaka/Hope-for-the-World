@@ -1,19 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const ALLOWED_IPS = (process.env.STAGING_ALLOWED_IPS ?? "")
-  .split(",")
-  .map((ip) => ip.trim())
-  .filter(Boolean);
-
 export function middleware(req: NextRequest) {
-  if (ALLOWED_IPS.length === 0) {
+  const allowedIps = (process.env.STAGING_ALLOWED_IPS ?? "")
+    .split(",")
+    .map((ip) => ip.trim())
+    .filter(Boolean);
+
+  if (allowedIps.length === 0) {
     return NextResponse.next();
   }
 
   const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "";
+    req.ip ??
+    req.headers.get("x-real-ip") ??
+    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+    "";
 
-  if (ALLOWED_IPS.includes(ip)) {
+  if (allowedIps.includes(ip)) {
     return NextResponse.next();
   }
 
