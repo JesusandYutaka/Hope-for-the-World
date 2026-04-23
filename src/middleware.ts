@@ -11,16 +11,19 @@ export function middleware(req: NextRequest) {
     req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
     "";
 
-  // デバッグ用：検出された情報をヘッダーに返す
   if (allowedIps.length === 0) {
     const res = NextResponse.next();
     res.headers.set("x-debug-ip", ip);
-    res.headers.set("x-debug-allowed", "none-set");
+    res.headers.set("x-debug-allowed", "env-not-set");
     return res;
   }
 
   if (allowedIps.includes(ip)) {
-    return NextResponse.next();
+    const res = NextResponse.next();
+    res.headers.set("x-debug-ip", ip);
+    res.headers.set("x-debug-allowed", allowedIps.join(","));
+    res.headers.set("x-debug-result", "allowed");
+    return res;
   }
 
   return new NextResponse(
