@@ -10,8 +10,6 @@ import {
   sanitizeMessage,
 } from "@/lib/validation";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // Upstash Redisが設定されている場合のみレートリミットを有効化
 const ratelimit =
   process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
@@ -71,6 +69,7 @@ export async function POST(req: NextRequest) {
     const safeSubject = sanitizeHeader(subject || "");
     const safeMsg     = sanitizeMessage(message || "");
 
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const to = process.env.CONTACT_EMAIL ?? "u16106@st.tci.ac.jp";
     const from = "Hope for the World <onboarding@resend.dev>";
 
