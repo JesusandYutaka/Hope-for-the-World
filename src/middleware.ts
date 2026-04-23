@@ -6,7 +6,7 @@ const ALLOWED_IPS = (process.env.STAGING_ALLOWED_IPS ?? "")
   .filter(Boolean);
 
 export function middleware(req: NextRequest) {
-  if (process.env.VERCEL_ENV !== "preview") {
+  if (ALLOWED_IPS.length === 0) {
     return NextResponse.next();
   }
 
