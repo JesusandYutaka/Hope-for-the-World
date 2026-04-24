@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getClientIp } from "@/lib/ip";
 
 export function middleware(req: NextRequest) {
   if (process.env.VERCEL_ENV !== "preview") return NextResponse.next();
@@ -10,10 +11,7 @@ export function middleware(req: NextRequest) {
 
   if (allowedIps.length === 0) return NextResponse.next();
 
-  const clientIp =
-    req.headers.get("x-real-ip") ??
-    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
-    "";
+  const clientIp = getClientIp(req);
 
   if (allowedIps.includes(clientIp)) return NextResponse.next();
 

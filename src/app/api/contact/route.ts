@@ -9,6 +9,7 @@ import {
   sanitizeHeader,
   sanitizeMessage,
 } from "@/lib/validation";
+import { getClientIp } from "@/lib/ip";
 
 // Upstash Redisが設定されている場合のみレートリミットを有効化
 const ratelimit =
@@ -24,9 +25,7 @@ export async function POST(req: NextRequest) {
   try {
     // レートリミットチェック
     if (ratelimit) {
-      const ip =
-        req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
-        "anonymous";
+      const ip = getClientIp(req);
       const { success, limit, remaining, reset } = await ratelimit.limit(ip);
 
       if (!success) {
