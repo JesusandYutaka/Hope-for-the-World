@@ -19,7 +19,7 @@ const navLinks: NavItem[] = [
       { href: "/prayer-partner", label: "祈りのパートナー" },
       { href: "/testimony", label: "証の部屋" },
       { href: "/fellowship", label: "交わり" },
-      { href: "/missions", label: "宣教論文" },
+      { href: "/missions", label: "宣教エッセイ" },
       { href: "/recommended-sites", label: "お勧めサイト" },
     ],
   },

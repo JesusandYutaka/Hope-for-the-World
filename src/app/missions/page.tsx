@@ -29,7 +29,7 @@ export default function MissionsPage() {
     <>
       <PageHero
         eyebrow="Mission Papers"
-        title="宣教論文"
+        title="宣教エッセイ"
         subtitle="聖書に基づく宣教神学・論文を公開しています。"
       />
       <section className="relative py-16 md:py-24 px-4 overflow-hidden bg-gradient-to-b from-white to-[#f5f8ff]">
