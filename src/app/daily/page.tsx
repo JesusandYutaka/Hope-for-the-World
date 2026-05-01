@@ -86,7 +86,7 @@ export default function DailyPage() {
       <PageHero
         eyebrow="Daily Word"
         title="日々のみことば"
-        subtitle="神様のみことばを通して、今日も希望と力をお受け取りください。"
+        subtitle="聖書の言葉は、日々の生きる力になります。"
       />
 
       <div className="bg-white">
