@@ -9,9 +9,9 @@ vi.mock("next/link", () => ({
 }));
 
 describe("Header", () => {
-  it("ロゴ「中島豊ミニストリー」を表示する", () => {
+  it("ロゴ「中島豊公式サイト」を表示する", () => {
     render(<Header />);
-    expect(screen.getByText("中島豊ミニストリー")).toBeInTheDocument();
+    expect(screen.getByText("中島豊公式サイト")).toBeInTheDocument();
   });
 
   it("「つながる」CTAボタンが /contact へのリンクを持つ", () => {
