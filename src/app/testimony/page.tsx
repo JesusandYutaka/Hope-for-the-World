@@ -115,44 +115,6 @@ export default function TestimonyPage() {
           </div>
         </section>
 
-        {/* ① ブログ記事 */}
-        <section className="py-10 md:py-16 px-4">
-          <div className="max-w-4xl mx-auto">
-            <SectionHeader title="証のブログ記事" />
-
-            {!hasArticles ? (
-              <div className="rounded-2xl border-2 border-dashed border-sky p-12 text-center">
-                <svg className="w-10 h-10 text-gray-200 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-                <p className="text-gray-400 text-sm">記事リンクをここに追加できます</p>
-                <p className="text-gray-300 text-xs mt-1">page.tsx の articles 配列に追加してください</p>
-              </div>
-            ) : (
-              <div className="grid md:grid-cols-2 gap-6">
-                {articles.map((a) => (
-                  <a key={a.url} href={a.url} target="_blank" rel="noopener noreferrer"
-                    className="group block p-7 rounded-2xl border border-sky hover:border-gold/40 hover:shadow-lg transition-all">
-                    <div className="flex items-center justify-between mb-4">
-                      <CategoryBadge cat={a.category} />
-                      <span className="text-xs text-gray-400">{a.date}</span>
-                    </div>
-                    <h3 className="font-serif font-bold text-navy text-lg mb-2 group-hover:text-gold transition-colors leading-snug">
-                      {a.title}
-                    </h3>
-                    <p className="text-gray-500 text-sm leading-relaxed mb-4">{a.excerpt}</p>
-                    <div className="flex items-center gap-1.5 text-xs text-gray-400 group-hover:text-gold transition-colors">
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                      {a.label}で読む
-                    </div>
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
 
         {/* ブログバナー */}
         <section className="pt-4 pb-0 px-4">
