@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 import HeroSection from "@/components/HeroSection";
 import VisionSection from "@/app/_sections/VisionSection";
 import IntroSection from "@/app/_sections/IntroSection";
