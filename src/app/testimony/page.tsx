@@ -16,16 +16,7 @@ export const metadata: Metadata = {
 // ── 証の記事をここに追加してください ────────────────────────────────
 // category: "seminary" | "marriage" | "love" | "salvation"
 
-const articles: TestimonyArticle[] = [
-  {
-    title: "高知での賛美集会で受け取ったこと。日本への想いと今後の歩み。",
-    excerpt: "高知で開催された賛美集会に参加し、神様から新しい使命を受け取りました。「この日本の救いのために全力で走り仕えてほしい」という呼びかけに応答した証です。",
-    url: "https://ameblo.jp/jesusismyall/entry-12961542096.html",
-    label: "Ameblo",
-    date: "2026.04.08",
-    category: "love",
-  },
-];
+const articles: TestimonyArticle[] = [];
 
 // ── 証の動画をここに追加してください ────────────────────────────────
 
