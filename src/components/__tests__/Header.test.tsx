@@ -113,7 +113,7 @@ describe("Header", () => {
     expect(worshipLink).toBeInTheDocument();
   });
 
-  it("ナビリンク「神を知りたい人へ」が /know-god へのリンクを持つ", () => {
+  it("ナビリンク「人生に答えを探している方へ」が /know-god へのリンクを持つ", () => {
     render(<Header />);
     const links = screen.getAllByRole("link");
     const knowGodLink = links.find((a) => a.getAttribute("href") === "/know-god");

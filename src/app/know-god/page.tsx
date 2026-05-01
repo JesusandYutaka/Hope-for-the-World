@@ -40,7 +40,7 @@ export default function KnowGodPage() {
     <>
       <PageHero
         eyebrow="Know God"
-        title="神を知りたい人へ"
+        title="人生に答えを探している方へ"
         subtitle="神様があなたを待っておられます。一歩踏み出しませんか。"
       />
 

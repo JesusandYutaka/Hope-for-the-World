@@ -23,7 +23,7 @@ const navLinks: NavItem[] = [
       { href: "/recommended-sites", label: "お勧めサイト" },
     ],
   },
-  { href: "/know-god", label: "神を知りたい人へ" },
+  { href: "/know-god", label: "人生に答えを探している方へ" },
 ];
 
 function DropdownMenu({ item }: { item: NavItem & { children: NavChild[] } }) {
