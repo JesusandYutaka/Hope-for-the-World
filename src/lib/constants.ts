@@ -18,7 +18,7 @@ export const YOUTUBE = {
 
 // ── キャッシュ設定 ────────────────────────────────────────────────
 export const CACHE = {
-  YOUTUBE_REVALIDATE_SECONDS: 86400,
+  YOUTUBE_REVALIDATE_SECONDS: 3600,
 } as const;
 
 // ── ブランドカラー ────────────────────────────────────────────────

@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { journeySteps } from "@/data/journeyItems";
 
-export default function JourneyAccordion() {
-  const [expandedItemIndex, setOpenIndex] = useState<number | null>(null);
+export default function JourneyAccordion({ defaultOpen = null }: { defaultOpen?: number | null }) {
+  const [expandedItemIndex, setOpenIndex] = useState<number | null>(defaultOpen);
 
   return (
     <div className="space-y-3">

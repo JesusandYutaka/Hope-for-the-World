@@ -16,16 +16,7 @@ export const metadata: Metadata = {
 // ── 証の記事をここに追加してください ────────────────────────────────
 // category: "seminary" | "marriage" | "love" | "salvation"
 
-const articles: TestimonyArticle[] = [
-  {
-    title: "高知での賛美集会で受け取ったこと。日本への想いと今後の歩み。",
-    excerpt: "高知で開催された賛美集会に参加し、神様から新しい使命を受け取りました。「この日本の救いのために全力で走り仕えてほしい」という呼びかけに応答した証です。",
-    url: "https://ameblo.jp/jesusismyall/entry-12961542096.html",
-    label: "Ameblo",
-    date: "2026.04.08",
-    category: "love",
-  },
-];
+const articles: TestimonyArticle[] = [];
 
 // ── 証の動画をここに追加してください ────────────────────────────────
 
@@ -65,14 +56,13 @@ function CategoryBadge({ cat }: { cat: TestimonyCategory }) {
 }
 
 const testimonyCards = [
-  { number: "01", title: "証とは",      text: "証は、神様がなされた素晴らしいみわざを伝えることです。" },
-  { number: "02", title: "信仰の励まし", text: "証を読む時、聞く時、信仰が励まされ、神様がどのように働かれるのかを知ることができます。" },
-  { number: "03", title: "信仰の成長",  text: "同じような、神様のみわざを体験することができるという信仰が生まれていきます。神のみわざを見ることを願って祈り続けるなら、それを体験することができます。" },
-  { number: "04", title: "あなたの証を", text: "皆さんの人生でなされた神のみわざがあれば、「つながる」フォームから教えてください。私たちの励みになります。" },
+  { number: "01", title: "これは本当の話です",  text: "作り話ではありません。私が実際に体験した、神様との出会いのストーリーです。" },
+  { number: "02", title: "あなたにも起こりうる", text: "「自分には関係ない」と思わないでください。同じ神様が、あなたの人生にも働いてくださいます。" },
+  { number: "03", title: "人生が変わった",       text: "神様と出会った時、人生は変わりました。苦しみの中にいた私が、希望を見つけた話です。" },
+  { number: "04", title: "あなたのストーリーも", text: "神様との出会いを体験したら、ぜひ「つながる」フォームで教えてください。" },
 ];
 
-const hasArticles = articles.length > 0;
-const hasVideos   = videos.length > 0;
+const hasVideos = videos.length > 0;
 
 export default function TestimonyPage() {
   return (
@@ -124,44 +114,6 @@ export default function TestimonyPage() {
           </div>
         </section>
 
-        {/* ① ブログ記事 */}
-        <section className="py-10 md:py-16 px-4">
-          <div className="max-w-4xl mx-auto">
-            <SectionHeader title="証のブログ記事" />
-
-            {!hasArticles ? (
-              <div className="rounded-2xl border-2 border-dashed border-sky p-12 text-center">
-                <svg className="w-10 h-10 text-gray-200 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-                <p className="text-gray-400 text-sm">記事リンクをここに追加できます</p>
-                <p className="text-gray-300 text-xs mt-1">page.tsx の articles 配列に追加してください</p>
-              </div>
-            ) : (
-              <div className="grid md:grid-cols-2 gap-6">
-                {articles.map((a) => (
-                  <a key={a.url} href={a.url} target="_blank" rel="noopener noreferrer"
-                    className="group block p-7 rounded-2xl border border-sky hover:border-gold/40 hover:shadow-lg transition-all">
-                    <div className="flex items-center justify-between mb-4">
-                      <CategoryBadge cat={a.category} />
-                      <span className="text-xs text-gray-400">{a.date}</span>
-                    </div>
-                    <h3 className="font-serif font-bold text-navy text-lg mb-2 group-hover:text-gold transition-colors leading-snug">
-                      {a.title}
-                    </h3>
-                    <p className="text-gray-500 text-sm leading-relaxed mb-4">{a.excerpt}</p>
-                    <div className="flex items-center gap-1.5 text-xs text-gray-400 group-hover:text-gold transition-colors">
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                      {a.label}で読む
-                    </div>
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
 
         {/* ブログバナー */}
         <section className="pt-4 pb-0 px-4">
@@ -225,25 +177,6 @@ export default function TestimonyPage() {
           </div>
         </section>
 
-        {/* ③ STORIES */}
-        <section className="py-10 md:py-16 px-4 bg-[#fafafa]">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-4 mb-10">
-              <div className="w-8 h-0.5 bg-gold" />
-              <div>
-                <p className="text-gold text-[10px] font-medium tracking-[0.5em] uppercase mb-0.5">Testimonies</p>
-                <h2 className="text-xl font-serif font-bold text-navy">Stories</h2>
-              </div>
-            </div>
-            <div className="rounded-2xl border-2 border-dashed border-sky p-12 text-center">
-              <svg className="w-10 h-10 text-gray-200 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-              <p className="text-gray-400 text-sm">ストーリーをここに追加できます</p>
-              <p className="text-gray-300 text-xs mt-1">page.tsx に stories 配列を追加してください</p>
-            </div>
-          </div>
-        </section>
 
       </div>
     </>

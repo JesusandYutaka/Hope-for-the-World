@@ -12,18 +12,19 @@ function isGroupNavItem(item: NavItem): item is { label: string; children: NavCh
 
 const navLinks: NavItem[] = [
   { href: "/worship", label: "賛美・Worship" },
-  { href: "/daily", label: "日々の励まし" },
+  { href: "/daily", label: "日々のみことば" },
   {
     label: "Hopeを広げる",
     children: [
-      { href: "/prayer-partner", label: "祈りのパートナー" },
       { href: "/testimony", label: "証の部屋" },
       { href: "/fellowship", label: "交わり" },
-      { href: "/missions", label: "宣教論文" },
+      { href: "/missions", label: "宣教エッセイ" },
       { href: "/recommended-sites", label: "お勧めサイト" },
+      { href: "/missions-partner", label: "宣教パートナー" },
     ],
   },
-  { href: "/know-god", label: "神を知りたい人へ" },
+  { href: "/know-god", label: "人生に答えを探している方へ" },
+  { href: "/contact", label: "つながる" },
 ];
 
 function DropdownMenu({ item }: { item: NavItem & { children: NavChild[] } }) {
@@ -132,7 +133,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="group flex flex-col leading-none">
             <span className="text-gold font-serif font-bold text-lg tracking-widest group-hover:text-gold-light transition-colors duration-300">
-              Hope for the World
+              中島豊公式サイト
             </span>
           </Link>
 

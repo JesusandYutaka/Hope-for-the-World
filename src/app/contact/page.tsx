@@ -99,9 +99,9 @@ export default function ContactPage() {
                   <option value="">選択してください</option>
                   <option>イエス様を信じてみたい</option>
                   <option>聖書を学んでみたい</option>
-                  <option>メッセージ、賛美奉仕を依頼したい</option>
+                  <option>講演・賛美の依頼</option>
                   <option>近くの教会を教えてほしい</option>
-                  <option>神のみわざを分かち合いたい</option>
+                  <option>神様を感じた出来事を分かち合いたい</option>
                   <option>祈りのリクエスト</option>
                   <option>その他</option>
                 </select>

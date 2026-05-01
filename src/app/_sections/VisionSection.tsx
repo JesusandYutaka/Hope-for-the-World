@@ -3,6 +3,7 @@ type VisionItem = {
   title: string;
   subtitle: string;
   text: string;
+  description: string;
   verse: string;
 };
 
@@ -12,6 +13,7 @@ const visionItems: VisionItem[] = [
     title: "Vision",
     subtitle: "ビジョン",
     text: "すべての民族とともに、王なるイエス様を賛美する。",
+    description: "世界中のすべての人と共に、希望の神であるイエス様に歌う日を夢見ています。",
     verse: "ハバクク 2:14 / 黙示録 5:13 / 黙示録 7:9-12",
   },
   {
@@ -19,6 +21,7 @@ const visionItems: VisionItem[] = [
     title: "Mission",
     subtitle: "ミッション",
     text: "すべての民族に福音を届け、イエス様の弟子とする。",
+    description: "イエス様の愛を世界中に届け、共にその愛の中を歩む仲間を増やしていきます。",
     verse: "イザヤ 49:6 / マタイ 28:18-20 / マタイ 24:14 / マルコ 16:15",
   },
   {
@@ -26,6 +29,7 @@ const visionItems: VisionItem[] = [
     title: "Core Values",
     subtitle: "コアバリュー",
     text: "神を愛し、人を愛する。イエス様の弟子として歩む。",
+    description: "神様を愛し、目の前の人を愛する。これが土台です。",
     verse: "マタイ 22:37 / マタイ 22:39 / 詩篇 96:1-4 / 第二テモテ 4:2 / 使徒 2:42 / ヨハネ 13:34 / マルコ 1:17-18 / 黙示録 14:4 / ヨハネ 12:24-26",
   },
 ];
@@ -48,6 +52,7 @@ export default function VisionSection() {
               <h3 className="text-xl font-serif font-bold text-navy mt-4">{item.title}</h3>
               <p className="text-sm text-gold mb-3">{item.subtitle}</p>
               <p className="text-gray-600 leading-relaxed">{item.text}</p>
+              <p className="text-sm text-gray-500 mt-3 leading-relaxed">{item.description}</p>
               <p className="text-xs text-gray-400 mt-4 italic whitespace-pre-line">{item.verse}</p>
             </div>
           ))}

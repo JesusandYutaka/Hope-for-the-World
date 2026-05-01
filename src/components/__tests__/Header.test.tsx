@@ -9,9 +9,9 @@ vi.mock("next/link", () => ({
 }));
 
 describe("Header", () => {
-  it("ロゴ「Hope for the World」を表示する", () => {
+  it("ロゴ「中島豊公式サイト」を表示する", () => {
     render(<Header />);
-    expect(screen.getByText("Hope for the World")).toBeInTheDocument();
+    expect(screen.getByText("中島豊公式サイト")).toBeInTheDocument();
   });
 
   it("「つながる」CTAボタンが /contact へのリンクを持つ", () => {
@@ -52,7 +52,7 @@ describe("Header", () => {
     );
     expect(groupButtons.length).toBeGreaterThan(0);
     fireEvent.click(groupButtons[0]);
-    expect(screen.getAllByRole("link").find((a) => a.getAttribute("href") === "/prayer-partner")).toBeInTheDocument();
+    expect(screen.getAllByRole("link").find((a) => a.getAttribute("href") === "/missions-partner")).toBeInTheDocument();
   });
 
   it("モバイルでグループを2回クリックすると折りたたむ", () => {
@@ -63,12 +63,12 @@ describe("Header", () => {
     );
     fireEvent.click(groupButtons[0]);
     fireEvent.click(groupButtons[0]);
-    // サブメニューが非表示になる（祈りのパートナーリンクは存在するが、上部のモバイルナビ内にはない）
+    // サブメニューが非表示になる（宣教パートナーリンクは存在するが、上部のモバイルナビ内にはない）
     const mobileLinks = screen.getAllByRole("link").filter(
       (a) => a.closest(".lg\\:hidden")
     );
-    const prayerLink = mobileLinks.find((a) => a.getAttribute("href") === "/prayer-partner");
-    expect(prayerLink).toBeUndefined();
+    const missionsPartnerLink = mobileLinks.find((a) => a.getAttribute("href") === "/missions-partner");
+    expect(missionsPartnerLink).toBeUndefined();
   });
 
   it("デスクトップドロップダウンをマウスオーバーすると開く", () => {
@@ -113,7 +113,7 @@ describe("Header", () => {
     expect(worshipLink).toBeInTheDocument();
   });
 
-  it("ナビリンク「神を知りたい人へ」が /know-god へのリンクを持つ", () => {
+  it("ナビリンク「人生に答えを探している方へ」が /know-god へのリンクを持つ", () => {
     render(<Header />);
     const links = screen.getAllByRole("link");
     const knowGodLink = links.find((a) => a.getAttribute("href") === "/know-god");
