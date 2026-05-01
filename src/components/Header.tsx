@@ -24,7 +24,6 @@ const navLinks: NavItem[] = [
     ],
   },
   { href: "/know-god", label: "人生に答えを探している方へ" },
-  { href: "/contact", label: "つながる" },
 ];
 
 function DropdownMenu({ item }: { item: NavItem & { children: NavChild[] } }) {
@@ -229,6 +228,13 @@ export default function Header() {
               </Link>
             )
           )}
+          <Link
+            href="/contact"
+            onClick={() => setMenuOpen(false)}
+            className="py-3 text-white/70 hover:text-gold text-sm tracking-wider transition-colors duration-200"
+          >
+            つながる
+          </Link>
         </nav>
       </div>
     </header>

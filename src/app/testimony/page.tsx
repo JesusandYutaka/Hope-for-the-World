@@ -107,7 +107,7 @@ export default function TestimonyPage() {
               <div className="w-8 h-0.5 bg-gold" />
               <div>
                 <p className="text-gold text-[10px] font-medium tracking-[0.5em] uppercase mb-0.5">Journey</p>
-                <h2 className="text-xl font-serif font-bold text-navy">証の記録</h2>
+                <h2 className="text-xl font-serif font-bold text-navy">私のストーリー</h2>
               </div>
             </div>
             <JourneyAccordion />
