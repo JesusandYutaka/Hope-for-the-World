@@ -16,7 +16,7 @@ const navLinks: NavItem[] = [
   {
     label: "Hopeを広げる",
     children: [
-      { href: "/testimony", label: "証の部屋" },
+      { href: "/testimony", label: "ストーリー" },
       { href: "/fellowship", label: "交わり" },
       { href: "/missions", label: "宣教エッセイ" },
       { href: "/recommended-sites", label: "お勧めサイト" },

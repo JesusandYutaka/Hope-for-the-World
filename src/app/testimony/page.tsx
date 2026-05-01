@@ -69,7 +69,7 @@ export default function TestimonyPage() {
     <>
       <PageHero
         eyebrow="Testimonies"
-        title="証の部屋"
+        title="ストーリー"
         subtitle={"神様が働かれた証を分かち合っています。\nこの証が、あなたの希望となりますように。"}
       />
 
