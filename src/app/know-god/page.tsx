@@ -94,7 +94,7 @@ export default function KnowGodPage() {
 
           {/* Prayer */}
           <div id="prayer-section" className="mt-4 p-10 rounded-2xl bg-gradient-to-br from-navy to-navy-dark text-white text-center">
-            <span className="text-gold text-xs tracking-widest uppercase">Sinner&apos;s Prayer</span>
+            <span className="text-gold text-xs tracking-widest uppercase">Prayer of Faith</span>
             <h3 className="text-2xl font-serif font-bold mt-3 mb-6">信仰の祈り</h3>
             <p className="text-white/70 text-sm leading-loose mb-8 max-w-xl mx-auto">
               「イエス様、あなたが神の子であること、私の罪のために死なれ、復活されたことを信じます。
