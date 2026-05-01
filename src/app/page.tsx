@@ -22,7 +22,7 @@ export default async function HomePage() {
               <h2 className="text-xl font-serif font-bold text-navy">証の記録</h2>
             </div>
           </div>
-          <JourneyAccordion />
+          <JourneyAccordion defaultOpen={0} />
         </div>
       </section>
 
