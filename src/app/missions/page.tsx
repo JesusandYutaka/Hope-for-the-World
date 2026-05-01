@@ -28,9 +28,9 @@ export default function MissionsPage() {
   return (
     <>
       <PageHero
-        eyebrow="Mission Papers"
+        eyebrow="Mission Essays"
         title="宣教エッセイ"
-        subtitle="聖書に基づく宣教神学・論文を公開しています。"
+        subtitle="聖書に基づく宣教・信仰のエッセイを公開しています。"
       />
       <section className="relative py-16 md:py-24 px-4 overflow-hidden bg-gradient-to-b from-white to-[#f5f8ff]">
         <div className="absolute inset-0 pointer-events-none">
