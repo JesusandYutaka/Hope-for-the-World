@@ -36,15 +36,17 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
 
-      {/* Background photo */}
-      <Image
-        src="/images/hero-sunset.jpg"
-        alt="海の夕日"
-        fill
-        priority
-        className="object-cover object-center"
-        sizes="100vw"
-      />
+      {/* Background video (silent, looping) */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="/images/hero-sunset.jpg"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+      >
+        <source src="/videos/hero-bg.mp4" type="video/mp4" />
+      </video>
 
       {/* Overlay: top dark for text readability, bottom subtle dark */}
       <div
