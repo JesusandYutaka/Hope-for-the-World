@@ -26,9 +26,9 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <VisionSection />
       <IntroSection />
       <FeaturedContent latestVideo={latestVideo} />
+      <VisionSection />
       <PrayerCta />
     </>
   );
