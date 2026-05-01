@@ -8,7 +8,7 @@ import { ICONS } from "@/lib/constants";
 import Divider from "@/components/ui/Divider";
 
 export const metadata: Metadata = {
-  title: "日々の励まし | Hope for the World",
+  title: "日々のみことば | Hope for the World",
   description: "神様のみことばを通して、今日も希望と力をお受け取りください。みことば動画・記事・おすすめリンクをお届けします。",
 };
 
@@ -85,7 +85,7 @@ export default function DailyPage() {
     <>
       <PageHero
         eyebrow="Daily Encouragement"
-        title="日々の励まし"
+        title="日々のみことば"
         subtitle="神様のみことばを通して、今日も希望と力をお受け取りください。"
       />
 

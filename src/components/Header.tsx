@@ -12,7 +12,7 @@ function isGroupNavItem(item: NavItem): item is { label: string; children: NavCh
 
 const navLinks: NavItem[] = [
   { href: "/worship", label: "賛美・Worship" },
-  { href: "/daily", label: "日々の励まし" },
+  { href: "/daily", label: "日々のみことば" },
   {
     label: "Hopeを広げる",
     children: [
