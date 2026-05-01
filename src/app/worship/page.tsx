@@ -111,15 +111,7 @@ export default function WorshipPage() {
               className="mb-8"
             />
 
-            {gatherings.length === 0 ? (
-              <div className="rounded-2xl border-2 border-dashed border-sky p-12 text-center">
-                <svg className="w-10 h-10 text-gray-200 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <p className="text-gray-400 text-sm">集会情報をここに追加できます</p>
-                <p className="text-gray-300 text-xs mt-1">page.tsx の gatherings 配列に追加してください</p>
-              </div>
-            ) : (
+            {gatherings.length > 0 && (
               <div className="space-y-6">
                 {gatherings.map((g, i) => (
                   <div key={i} className="rounded-2xl border border-sky hover:border-gold/30 hover:shadow-md transition-all overflow-hidden">
