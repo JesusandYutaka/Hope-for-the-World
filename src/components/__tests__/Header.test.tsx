@@ -9,9 +9,9 @@ vi.mock("next/link", () => ({
 }));
 
 describe("Header", () => {
-  it("ロゴ「Hope for the World」を表示する", () => {
+  it("ロゴ「中島豊ミニストリー」を表示する", () => {
     render(<Header />);
-    expect(screen.getByText("Hope for the World")).toBeInTheDocument();
+    expect(screen.getByText("中島豊ミニストリー")).toBeInTheDocument();
   });
 
   it("「つながる」CTAボタンが /contact へのリンクを持つ", () => {
