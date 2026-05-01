@@ -17,7 +17,7 @@ const steps: KnowGodStep[] = [
     title: "すべての人は罪を犯しました",
     verse: "すべての人は罪を犯して、神の栄光を受けられなくなっています。",
     ref: "ローマ 3:23",
-    text: "聖書は、私たちが神様から離れた状態（罪）にあることを教えています。この罪が神様との関係を断ち切っています。",
+    text: "聖書は、私たちが神様から離れた状態（罪）にあることを教えています。この罪が神様との関係を断ち切っています。\n\nここでいう罪とは、犯罪のことではなく、神様から離れた状態のことです。",
   },
   {
     num: "03",
@@ -59,7 +59,7 @@ export default function KnowGodPage() {
                     <p className="text-gray-700 italic text-sm leading-relaxed">&ldquo;{s.verse}&rdquo;</p>
                     <cite className="text-xs text-gold not-italic">{s.ref}</cite>
                   </blockquote>
-                  <p className="text-gray-500 text-sm leading-relaxed">{s.text}</p>
+                  <p className="text-gray-500 text-sm leading-relaxed whitespace-pre-line">{s.text}</p>
                 </div>
               </div>
             ))}
