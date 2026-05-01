@@ -42,7 +42,7 @@ export default function HeroSection() {
         loop
         muted
         playsInline
-        poster="/images/hero-sunset.jpg"
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover object-center"
       >
         <source src="/videos/hero-bg.mp4" type="video/mp4" />
