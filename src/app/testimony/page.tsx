@@ -62,8 +62,7 @@ const testimonyCards = [
   { number: "04", title: "あなたのストーリーも", text: "神様との出会いを体験したら、ぜひ「つながる」フォームで教えてください。" },
 ];
 
-const hasArticles = articles.length > 0;
-const hasVideos   = videos.length > 0;
+const hasVideos = videos.length > 0;
 
 export default function TestimonyPage() {
   return (

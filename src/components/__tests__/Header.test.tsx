@@ -52,7 +52,7 @@ describe("Header", () => {
     );
     expect(groupButtons.length).toBeGreaterThan(0);
     fireEvent.click(groupButtons[0]);
-    expect(screen.getAllByRole("link").find((a) => a.getAttribute("href") === "/prayer-partner")).toBeInTheDocument();
+    expect(screen.getAllByRole("link").find((a) => a.getAttribute("href") === "/missions-partner")).toBeInTheDocument();
   });
 
   it("モバイルでグループを2回クリックすると折りたたむ", () => {
@@ -63,12 +63,12 @@ describe("Header", () => {
     );
     fireEvent.click(groupButtons[0]);
     fireEvent.click(groupButtons[0]);
-    // サブメニューが非表示になる（祈りのパートナーリンクは存在するが、上部のモバイルナビ内にはない）
+    // サブメニューが非表示になる（宣教パートナーリンクは存在するが、上部のモバイルナビ内にはない）
     const mobileLinks = screen.getAllByRole("link").filter(
       (a) => a.closest(".lg\\:hidden")
     );
-    const prayerLink = mobileLinks.find((a) => a.getAttribute("href") === "/prayer-partner");
-    expect(prayerLink).toBeUndefined();
+    const missionsPartnerLink = mobileLinks.find((a) => a.getAttribute("href") === "/missions-partner");
+    expect(missionsPartnerLink).toBeUndefined();
   });
 
   it("デスクトップドロップダウンをマウスオーバーすると開く", () => {
