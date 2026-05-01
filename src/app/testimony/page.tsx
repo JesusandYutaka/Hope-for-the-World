@@ -68,9 +68,9 @@ export default function TestimonyPage() {
   return (
     <>
       <PageHero
-        eyebrow="Testimonies"
+        eyebrow="Stories"
         title="ストーリー"
-        subtitle={"神様が働かれた証を分かち合っています。\nこの証が、あなたの希望となりますように。"}
+        subtitle={"神様が働かれたストーリーを分かち合っています。\nこのストーリーが、あなたの希望となりますように。"}
       />
 
       <div className="bg-white">
