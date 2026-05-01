@@ -24,6 +24,7 @@ const navLinks: NavItem[] = [
     ],
   },
   { href: "/know-god", label: "人生に答えを探している方へ" },
+  { href: "/contact", label: "つながる" },
 ];
 
 function DropdownMenu({ item }: { item: NavItem & { children: NavChild[] } }) {
