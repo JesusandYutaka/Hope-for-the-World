@@ -5,8 +5,8 @@ export default function IntroSection() {
     <section className="py-12 md:py-24 px-4 bg-[#fafafa]">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
-          <p className="text-gold text-sm font-medium tracking-[0.3em] uppercase mb-3">Who We Are</p>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-navy">私たちの自己紹介</h2>
+          <p className="text-gold text-sm font-medium tracking-[0.3em] uppercase mb-3">About Me</p>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-navy">私の自己紹介</h2>
         </div>
         <div className="flex flex-col md:flex-row items-start gap-6 md:gap-12 mb-16">
           <div className="w-full md:w-2/5 flex-shrink-0">
