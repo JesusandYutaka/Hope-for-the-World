@@ -132,7 +132,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="group flex flex-col leading-none">
             <span className="text-gold font-serif font-bold text-lg tracking-widest group-hover:text-gold-light transition-colors duration-300">
-              Hope for the World
+              中島豊ミニストリー
             </span>
           </Link>
 
