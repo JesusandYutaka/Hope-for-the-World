@@ -11,10 +11,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/testimony", priority: 0.8, changeFrequency: "weekly" as const },
     { path: "/fellowship", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/missions", priority: 0.7, changeFrequency: "monthly" as const },
-    { path: "/prayer-partner", priority: 0.7, changeFrequency: "monthly" as const },
-    { path: "/newsletter", priority: 0.6, changeFrequency: "monthly" as const },
+    { path: "/missions-partner", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/recommended-sites", priority: 0.6, changeFrequency: "monthly" as const },
-    { path: "/michiya", priority: 0.5, changeFrequency: "monthly" as const },
     { path: "/contact", priority: 0.6, changeFrequency: "yearly" as const },
   ];
 
