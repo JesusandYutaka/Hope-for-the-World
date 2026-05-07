@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "お問い合わせ・つながる | Hope for the World",
-  description: "ご質問・ご相談・祈りのリクエストはこちらからどうぞ。お気軽にお問い合わせください。",
+  title: "つながる｜お問い合わせ・祈りのリクエスト | Hope for the World",
+  description: "祈りのリクエスト、イエス様についての質問、お問い合わせはこちらから。一緒に祈らせてください。",
 };
 
 export default function ContactLayout({ children }: { children: React.ReactNode }) {

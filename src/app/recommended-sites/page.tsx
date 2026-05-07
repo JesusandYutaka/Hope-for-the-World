@@ -4,8 +4,8 @@ import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import type { RecommendedSite, RecommendedSiteGroup } from "@/types";
 
 export const metadata: Metadata = {
-  title: "おすすめサイト | Hope for the World",
-  description: "宣教・聖書学習・礼拝など、信仰生活に役立つおすすめウェブサイトをご紹介します。",
+  title: "お勧めサイト｜信仰の助けになるリソース | Hope for the World",
+  description: "クリスチャンの信仰生活に役立つウェブサイト・リソースをご紹介します。",
 };
 
 const categories: RecommendedSiteGroup[] = [
