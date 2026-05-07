@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import SectionHeader from "@/components/ui/SectionHeader";
 import NumberedCard from "@/components/ui/NumberedCard";
 import InstagramCard from "@/components/ui/InstagramCard";
@@ -8,8 +9,9 @@ import Button from "@/components/ui/Button";
 import { INSTAGRAM, EXTERNAL, ICONS, BRAND_COLORS } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "交わり・Fellowship | Hope for the World",
-  description: "キリストにある兄弟姉妹と共に歩みましょう。能勢川キリスト教会の集いやSNSでつながる方法をご紹介します。",
+  title: "交わり｜クリスチャンのつながり | Hope for the World",
+  description: "共にイエス様を礼拝し、励まし合うクリスチャンのコミュニティです。",
+  alternates: { canonical: "/fellowship" },
 };
 
 const fellowshipCards = [
@@ -22,6 +24,7 @@ const fellowshipCards = [
 export default function FellowshipPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "交わり", href: "/fellowship" }]} />
       <PageHero
         eyebrow="Fellowship"
         title="交わり"

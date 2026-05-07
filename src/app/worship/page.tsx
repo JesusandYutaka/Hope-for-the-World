@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "賛美・Worship | Hope for the World",
-  description: "オリジナル賛美プレイリスト、賛美集会情報、楽譜配信。ともに神への賛美を通して神に近づきましょう。",
+  title: "賛美・Worship｜日本語オリジナルワーシップ曲 | Hope for the World",
+  description: "神への賛美を通して、神様の臨在に近づきましょう。日本語オリジナル賛美曲・楽譜・Spotify配信など。",
+  alternates: { canonical: "/worship" },
 };
 import SectionHeader from "@/components/ui/SectionHeader";
 import NumberedCard from "@/components/ui/NumberedCard";
@@ -39,6 +41,7 @@ const streamingServices: StreamingService[] = [
 export default function WorshipPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "賛美・Worship", href: "/worship" }]} />
       <PageHero
         eyebrow="MUSIC × WORSHIP"
         title="賛美・Worship"
@@ -111,15 +114,7 @@ export default function WorshipPage() {
               className="mb-8"
             />
 
-            {gatherings.length === 0 ? (
-              <div className="rounded-2xl border-2 border-dashed border-sky p-12 text-center">
-                <svg className="w-10 h-10 text-gray-200 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <p className="text-gray-400 text-sm">集会情報をここに追加できます</p>
-                <p className="text-gray-300 text-xs mt-1">page.tsx の gatherings 配列に追加してください</p>
-              </div>
-            ) : (
+            {gatherings.length > 0 && (
               <div className="space-y-6">
                 {gatherings.map((g, i) => (
                   <div key={i} className="rounded-2xl border border-sky hover:border-gold/30 hover:shadow-md transition-all overflow-hidden">

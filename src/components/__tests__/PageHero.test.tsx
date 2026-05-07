@@ -4,9 +4,9 @@ import PageHero from "@/components/PageHero";
 
 describe("PageHero", () => {
   it("eyebrow・title を表示する", () => {
-    render(<PageHero eyebrow="Testimonies" title="証の部屋" />);
+    render(<PageHero eyebrow="Testimonies" title="ストーリー" />);
     expect(screen.getByText("Testimonies")).toBeInTheDocument();
-    expect(screen.getByText("証の部屋")).toBeInTheDocument();
+    expect(screen.getByText("ストーリー")).toBeInTheDocument();
   });
 
   it("subtitle を表示する", () => {

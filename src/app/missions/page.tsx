@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import type { MissionPaper } from "@/types";
 
 export const metadata: Metadata = {
-  title: "宣教・Missions | Hope for the World",
-  description: "世界に福音を届けるミッション活動。海外・国内宣教の現場から、神の働きをお伝えします。",
+  title: "宣教エッセイ｜世界宣教の現場から | Hope for the World",
+  description: "世界宣教の現場から届く宣教エッセイ。すべての民族にイエス様の福音を届けるビジョンを共有します。",
+  alternates: { canonical: "/missions" },
 };
 
 const papers: MissionPaper[] = [
@@ -27,6 +29,7 @@ const papers: MissionPaper[] = [
 export default function MissionsPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "宣教エッセイ", href: "/missions" }]} />
       <PageHero
         eyebrow="Mission Essays"
         title="宣教エッセイ"

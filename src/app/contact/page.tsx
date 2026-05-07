@@ -1,6 +1,7 @@
 "use client";
 
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { useState } from "react";
 import type { ContactFormStatus } from "@/types";
 
@@ -33,6 +34,7 @@ export default function ContactPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "つながる", href: "/contact" }]} />
       <PageHero
         eyebrow="Connect"
         title="つながる"
@@ -97,6 +99,7 @@ export default function ContactPage() {
                   className="w-full px-4 py-3 rounded-xl border border-sky focus:outline-none focus:border-gold text-sm text-gray-600 transition-colors bg-white"
                 >
                   <option value="">選択してください</option>
+                  <option>イエス様について知りたい</option>
                   <option>イエス様を信じてみたい</option>
                   <option>聖書を学んでみたい</option>
                   <option>講演・賛美の依頼</option>

@@ -39,8 +39,8 @@ export default function VisionSection() {
     <section className="py-12 md:py-24 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <p className="text-gold text-sm font-medium tracking-[0.3em] uppercase mb-3">About Us</p>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-navy">私たちについて</h2>
+          <p className="text-gold text-sm font-medium tracking-[0.3em] uppercase mb-3">My Vision</p>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-navy">ビジョンと使命</h2>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
           {visionItems.map((item) => (

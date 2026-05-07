@@ -1,6 +1,7 @@
 "use client";
 
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import Button from "@/components/ui/Button";
 import type { KnowGodStep } from "@/types";
 
@@ -17,7 +18,7 @@ const steps: KnowGodStep[] = [
     title: "すべての人は罪を犯しました",
     verse: "すべての人は罪を犯して、神の栄光を受けられなくなっています。",
     ref: "ローマ 3:23",
-    text: "聖書は、私たちが神様から離れた状態（罪）にあることを教えています。この罪が神様との関係を断ち切っています。",
+    text: "聖書は、私たちが神様から離れた状態（罪）にあることを教えています。この罪が神様との関係を断ち切っています。\n\nここでいう罪とは、犯罪のことではなく、神様から離れた状態のことです。",
   },
   {
     num: "03",
@@ -38,6 +39,7 @@ const steps: KnowGodStep[] = [
 export default function KnowGodPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "人生に答えを探している方へ", href: "/know-god" }]} />
       <PageHero
         eyebrow="Know God"
         title="人生に答えを探している方へ"
@@ -59,7 +61,7 @@ export default function KnowGodPage() {
                     <p className="text-gray-700 italic text-sm leading-relaxed">&ldquo;{s.verse}&rdquo;</p>
                     <cite className="text-xs text-gold not-italic">{s.ref}</cite>
                   </blockquote>
-                  <p className="text-gray-500 text-sm leading-relaxed">{s.text}</p>
+                  <p className="text-gray-500 text-sm leading-relaxed whitespace-pre-line">{s.text}</p>
                 </div>
               </div>
             ))}
@@ -94,7 +96,7 @@ export default function KnowGodPage() {
 
           {/* Prayer */}
           <div id="prayer-section" className="mt-4 p-10 rounded-2xl bg-gradient-to-br from-navy to-navy-dark text-white text-center">
-            <span className="text-gold text-xs tracking-widest uppercase">Sinner&apos;s Prayer</span>
+            <span className="text-gold text-xs tracking-widest uppercase">Prayer of Faith</span>
             <h3 className="text-2xl font-serif font-bold mt-3 mb-6">信仰の祈り</h3>
             <p className="text-white/70 text-sm leading-loose mb-8 max-w-xl mx-auto">
               「イエス様、あなたが神の子であること、私の罪のために死なれ、復活されたことを信じます。

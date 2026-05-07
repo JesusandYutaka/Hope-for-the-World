@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import SectionHeader from "@/components/ui/SectionHeader";
 import NumberedCard from "@/components/ui/NumberedCard";
 import YouTubeEmbed from "@/components/ui/YouTubeEmbed";
@@ -8,8 +9,9 @@ import { ICONS } from "@/lib/constants";
 import Divider from "@/components/ui/Divider";
 
 export const metadata: Metadata = {
-  title: "日々のみことば | Hope for the World",
-  description: "神様のみことばを通して、今日も希望と力をお受け取りください。みことば動画・記事・おすすめリンクをお届けします。",
+  title: "日々のみことば｜毎日の聖書からの励まし | Hope for the World",
+  description: "毎日の生活の中で、聖書のみことばから力と励ましを受け取りましょう。",
+  alternates: { canonical: "/daily" },
 };
 
 // ── コンテンツをここに追加してください ──────────────────────────
@@ -83,10 +85,11 @@ const wordCards = [
 export default function DailyPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "日々のみことば", href: "/daily" }]} />
       <PageHero
         eyebrow="Daily Word"
         title="日々のみことば"
-        subtitle="神様のみことばを通して、今日も希望と力をお受け取りください。"
+        subtitle="聖書の言葉は、日々の生きる力になります。"
       />
 
       <div className="bg-white">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import JourneyAccordion from "@/components/JourneyAccordion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import NumberedCard from "@/components/ui/NumberedCard";
@@ -9,8 +10,9 @@ import type { TestimonyArticle, TestimonyVideo, TestimonyCategory } from "@/type
 import { EXTERNAL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "証・Testimony | Hope for the World",
-  description: "神様の恵みと奇跡の証をシェアします。救いの証、癒しの証、日々の信仰の歩みをお読みください。",
+  title: "証の部屋｜神様との出会いの証 | Hope for the World",
+  description: "イエス様に出会い、人生が変わった証をお届けします。あなたも神様の愛を体験できます。",
+  alternates: { canonical: "/testimony" },
 };
 
 // ── 証の記事をここに追加してください ────────────────────────────────
@@ -67,10 +69,11 @@ const hasVideos = videos.length > 0;
 export default function TestimonyPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "ストーリー", href: "/testimony" }]} />
       <PageHero
-        eyebrow="Testimonies"
-        title="証の部屋"
-        subtitle={"神様が働かれた証を分かち合っています。\nこの証が、あなたの希望となりますように。"}
+        eyebrow="Stories"
+        title="ストーリー"
+        subtitle={"神様が働かれたストーリーを分かち合っています。\nこのストーリーが、あなたの希望となりますように。"}
       />
 
       <div className="bg-white">
@@ -107,7 +110,7 @@ export default function TestimonyPage() {
               <div className="w-8 h-0.5 bg-gold" />
               <div>
                 <p className="text-gold text-[10px] font-medium tracking-[0.5em] uppercase mb-0.5">Journey</p>
-                <h2 className="text-xl font-serif font-bold text-navy">証の記録</h2>
+                <h2 className="text-xl font-serif font-bold text-navy">私のストーリー</h2>
               </div>
             </div>
             <JourneyAccordion />

@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import Image from "next/image";
 import { SOCIAL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "宣教パートナー | Hope for the World",
-  description: "祈りの宣教パートナーになりませんか？共に祈りによってこの世界に希望を届けましょう。",
+  title: "宣教パートナー｜共に世界へ | Hope for the World",
+  description: "祈りで世界宣教を共に担う宣教パートナーを募集しています。",
+  alternates: { canonical: "/missions-partner" },
 };
 
 export default function MissionsPartnerPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "宣教パートナー", href: "/missions-partner" }]} />
       <PageHero
         eyebrow="Missions Partner"
         title="宣教パートナー"
