@@ -12,6 +12,7 @@ import { EXTERNAL } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "証の部屋｜神様との出会いの証 | Hope for the World",
   description: "イエス様に出会い、人生が変わった証をお届けします。あなたも神様の愛を体験できます。",
+  alternates: { canonical: "/testimony" },
 };
 
 // ── 証の記事をここに追加してください ────────────────────────────────

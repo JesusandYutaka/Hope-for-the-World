@@ -11,6 +11,7 @@ import Divider from "@/components/ui/Divider";
 export const metadata: Metadata = {
   title: "日々のみことば｜毎日の聖書からの励まし | Hope for the World",
   description: "毎日の生活の中で、聖書のみことばから力と励ましを受け取りましょう。",
+  alternates: { canonical: "/daily" },
 };
 
 // ── コンテンツをここに追加してください ──────────────────────────

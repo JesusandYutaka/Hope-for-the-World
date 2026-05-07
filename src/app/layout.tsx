@@ -34,6 +34,7 @@ const personSchema = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://hope-for-the-world.vercel.app"),
   title: "Hope for the World — 世界に希望を届ける",
   description: "Hope for the Worldは、イエス・キリストの愛と福音を世界に届けるクリスチャンミニストリーです。",
   openGraph: {

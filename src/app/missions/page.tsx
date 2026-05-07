@@ -6,6 +6,7 @@ import type { MissionPaper } from "@/types";
 export const metadata: Metadata = {
   title: "宣教エッセイ｜世界宣教の現場から | Hope for the World",
   description: "世界宣教の現場から届く宣教エッセイ。すべての民族にイエス様の福音を届けるビジョンを共有します。",
+  alternates: { canonical: "/missions" },
 };
 
 const papers: MissionPaper[] = [

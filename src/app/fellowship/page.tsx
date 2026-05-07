@@ -11,6 +11,7 @@ import { INSTAGRAM, EXTERNAL, ICONS, BRAND_COLORS } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "交わり｜クリスチャンのつながり | Hope for the World",
   description: "共にイエス様を礼拝し、励まし合うクリスチャンのコミュニティです。",
+  alternates: { canonical: "/fellowship" },
 };
 
 const fellowshipCards = [

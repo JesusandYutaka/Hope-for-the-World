@@ -7,6 +7,7 @@ import { SOCIAL } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "宣教パートナー｜共に世界へ | Hope for the World",
   description: "祈りで世界宣教を共に担う宣教パートナーを募集しています。",
+  alternates: { canonical: "/missions-partner" },
 };
 
 export default function MissionsPartnerPage() {

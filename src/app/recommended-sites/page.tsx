@@ -6,6 +6,7 @@ import type { RecommendedSite, RecommendedSiteGroup } from "@/types";
 export const metadata: Metadata = {
   title: "お勧めサイト｜信仰の助けになるリソース | Hope for the World",
   description: "クリスチャンの信仰生活に役立つウェブサイト・リソースをご紹介します。",
+  alternates: { canonical: "/recommended-sites" },
 };
 
 const categories: RecommendedSiteGroup[] = [
