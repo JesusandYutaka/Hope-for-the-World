@@ -1,6 +1,7 @@
 "use client";
 
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { useState } from "react";
 import type { ContactFormStatus } from "@/types";
 
@@ -33,6 +34,7 @@ export default function ContactPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "つながる", href: "/contact" }]} />
       <PageHero
         eyebrow="Connect"
         title="つながる"

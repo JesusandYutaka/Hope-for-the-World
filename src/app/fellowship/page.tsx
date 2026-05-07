@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import SectionHeader from "@/components/ui/SectionHeader";
 import NumberedCard from "@/components/ui/NumberedCard";
 import InstagramCard from "@/components/ui/InstagramCard";
@@ -22,6 +23,7 @@ const fellowshipCards = [
 export default function FellowshipPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "交わり", href: "/fellowship" }]} />
       <PageHero
         eyebrow="Fellowship"
         title="交わり"

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import type { MissionPaper } from "@/types";
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ const papers: MissionPaper[] = [
 export default function MissionsPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "宣教エッセイ", href: "/missions" }]} />
       <PageHero
         eyebrow="Mission Essays"
         title="宣教エッセイ"

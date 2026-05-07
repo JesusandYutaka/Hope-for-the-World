@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import type { RecommendedSite, RecommendedSiteGroup } from "@/types";
 
 export const metadata: Metadata = {
@@ -207,6 +208,7 @@ const categoryAccents: Record<string, { from: string; to: string }> = {
 export default function RecommendedSitesPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "お勧めサイト", href: "/recommended-sites" }]} />
       <PageHero
         eyebrow="Recommended"
         title="お勧めサイト"

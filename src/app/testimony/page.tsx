@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import JourneyAccordion from "@/components/JourneyAccordion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import NumberedCard from "@/components/ui/NumberedCard";
@@ -67,6 +68,7 @@ const hasVideos = videos.length > 0;
 export default function TestimonyPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "ストーリー", href: "/testimony" }]} />
       <PageHero
         eyebrow="Stories"
         title="ストーリー"

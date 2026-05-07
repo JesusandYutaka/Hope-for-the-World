@@ -1,6 +1,7 @@
 "use client";
 
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import Button from "@/components/ui/Button";
 import type { KnowGodStep } from "@/types";
 
@@ -38,6 +39,7 @@ const steps: KnowGodStep[] = [
 export default function KnowGodPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "人生に答えを探している方へ", href: "/know-god" }]} />
       <PageHero
         eyebrow="Know God"
         title="人生に答えを探している方へ"

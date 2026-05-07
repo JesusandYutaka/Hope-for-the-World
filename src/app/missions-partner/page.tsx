@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import Image from "next/image";
 import { SOCIAL } from "@/lib/constants";
 
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 export default function MissionsPartnerPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "宣教パートナー", href: "/missions-partner" }]} />
       <PageHero
         eyebrow="Missions Partner"
         title="宣教パートナー"

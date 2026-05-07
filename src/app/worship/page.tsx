@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "賛美・Worship | Hope for the World",
@@ -39,6 +40,7 @@ const streamingServices: StreamingService[] = [
 export default function WorshipPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "賛美・Worship", href: "/worship" }]} />
       <PageHero
         eyebrow="MUSIC × WORSHIP"
         title="賛美・Worship"

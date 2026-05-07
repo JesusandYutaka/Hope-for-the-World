@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import SectionHeader from "@/components/ui/SectionHeader";
 import NumberedCard from "@/components/ui/NumberedCard";
 import YouTubeEmbed from "@/components/ui/YouTubeEmbed";
@@ -83,6 +84,7 @@ const wordCards = [
 export default function DailyPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "日々のみことば", href: "/daily" }]} />
       <PageHero
         eyebrow="Daily Word"
         title="日々のみことば"
