@@ -9,8 +9,8 @@ import { ICONS } from "@/lib/constants";
 import Divider from "@/components/ui/Divider";
 
 export const metadata: Metadata = {
-  title: "日々のみことば | Hope for the World",
-  description: "神様のみことばを通して、今日も希望と力をお受け取りください。みことば動画・記事・おすすめリンクをお届けします。",
+  title: "日々のみことば｜毎日の聖書からの励まし | Hope for the World",
+  description: "毎日の生活の中で、聖書のみことばから力と励ましを受け取りましょう。",
 };
 
 // ── コンテンツをここに追加してください ──────────────────────────

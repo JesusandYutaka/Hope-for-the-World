@@ -9,8 +9,8 @@ import Button from "@/components/ui/Button";
 import { INSTAGRAM, EXTERNAL, ICONS, BRAND_COLORS } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "交わり・Fellowship | Hope for the World",
-  description: "キリストにある兄弟姉妹と共に歩みましょう。能勢川キリスト教会の集いやSNSでつながる方法をご紹介します。",
+  title: "交わり｜クリスチャンのつながり | Hope for the World",
+  description: "共にイエス様を礼拝し、励まし合うクリスチャンのコミュニティです。",
 };
 
 const fellowshipCards = [

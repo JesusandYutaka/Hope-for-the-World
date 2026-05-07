@@ -3,8 +3,8 @@ import PageHero from "@/components/PageHero";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "賛美・Worship | Hope for the World",
-  description: "オリジナル賛美プレイリスト、賛美集会情報、楽譜配信。ともに神への賛美を通して神に近づきましょう。",
+  title: "賛美・Worship｜日本語オリジナルワーシップ曲 | Hope for the World",
+  description: "神への賛美を通して、神様の臨在に近づきましょう。日本語オリジナル賛美曲・楽譜・Spotify配信など。",
 };
 import SectionHeader from "@/components/ui/SectionHeader";
 import NumberedCard from "@/components/ui/NumberedCard";

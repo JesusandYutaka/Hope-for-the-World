@@ -10,8 +10,8 @@ import type { TestimonyArticle, TestimonyVideo, TestimonyCategory } from "@/type
 import { EXTERNAL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "証・Testimony | Hope for the World",
-  description: "神様の恵みと奇跡の証をシェアします。救いの証、癒しの証、日々の信仰の歩みをお読みください。",
+  title: "証の部屋｜神様との出会いの証 | Hope for the World",
+  description: "イエス様に出会い、人生が変わった証をお届けします。あなたも神様の愛を体験できます。",
 };
 
 // ── 証の記事をここに追加してください ────────────────────────────────

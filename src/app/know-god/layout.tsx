@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "神を知る・Know God | Hope for the World",
-  description: "イエス・キリストを通して神様を知りましょう。救いの福音、信仰の一歩をご案内します。",
+  title: "人生の意味を探しているあなたへ | Hope for the World",
+  description: "生きる意味がわからない、心の平安がほしい——そう感じているあなたへ。イエス・キリストとの出会いが、人生を変えるかもしれません。",
 };
 
 export default function KnowGodLayout({ children }: { children: React.ReactNode }) {
