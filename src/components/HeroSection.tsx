@@ -74,7 +74,7 @@ export default function HeroSection() {
             className="text-white text-[11px] font-medium tracking-[0.45em] uppercase"
             style={{ textShadow: "0 1px 12px rgba(0,0,0,0.7), 0 0 30px rgba(0,0,0,0.5)" }}
           >
-            世界に希望を届ける
+            音楽と言葉で、世界に希望を届ける
           </span>
           <span className="block w-10 h-px bg-white/60" />
         </div>
