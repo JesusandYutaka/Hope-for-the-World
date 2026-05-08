@@ -199,6 +199,11 @@ const categories: RecommendedSiteGroup[] = [
         description: "クリスチャン経営者・青木仁志氏の公式サイト。信仰と経営を融合した歩みを発信している。",
         url: "https://www.aokisatoshi.com/",
       },
+      {
+        name: "World Watch",
+        description: "中東・米国・アジアなど世界各地の国際ニュースをAIで厳選・要約して届けるグローバルニュースプラットフォーム。安全保障・経済・社会など幅広いテーマを複数の一次情報源をもとに提供している。",
+        url: "https://worldwatch.media/",
+      },
     ],
   },
 ];
