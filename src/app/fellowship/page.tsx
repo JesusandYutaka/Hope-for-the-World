@@ -29,7 +29,7 @@ export default function FellowshipPage() {
       <PageHero
         eyebrow="Fellowship"
         title="コミニティー"
-        subtitle="イエス様の愛に包まれながら、一緒に歩んでいきませんか。"
+        subtitle={"イエス様の愛に包まれながら、\n一緒に歩んでいきませんか。"}
       />
 
       {/* 交わりとは */}
