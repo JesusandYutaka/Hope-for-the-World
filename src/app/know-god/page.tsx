@@ -43,7 +43,7 @@ export default function KnowGodPage() {
       <PageHero
         eyebrow="Know God"
         title="人生に答えを探している方へ"
-        subtitle="神様があなたを待っておられます。一歩踏み出しませんか。"
+        subtitle={"神様があなたを待っておられます。\n一歩踏み出しませんか。"}
       />
 
       <section className="py-24 px-4 bg-white">

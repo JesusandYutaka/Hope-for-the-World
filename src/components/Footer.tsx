@@ -41,7 +41,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-center md:text-left">
             <p className="text-gold font-serif text-lg font-bold">Hope for the World</p>
-            <p className="text-sm mt-1">「水が海を覆うように、地は主の栄光を知ることで満たされる」</p>
+            <p className="text-sm mt-1">「水が海を覆うように、<br />地は主の栄光を知ることで満たされる」</p>
             <p className="text-xs text-white/40 mt-0.5">ハバクク 2:14</p>
           </div>
 

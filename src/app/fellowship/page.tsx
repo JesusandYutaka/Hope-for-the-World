@@ -24,11 +24,11 @@ const fellowshipCards = [
 export default function FellowshipPage() {
   return (
     <>
-      <BreadcrumbJsonLd items={[{ name: "交わり", href: "/fellowship" }]} />
+      <BreadcrumbJsonLd items={[{ name: "コミニティー", href: "/fellowship" }]} />
       <PageHero
         eyebrow="Fellowship"
-        title="交わり"
-        subtitle="キリストにある兄弟姉妹と共に歩みましょう。"
+        title="コミニティー"
+        subtitle="イエス様の愛で愛し合うコミニティーを求めて、共に歩みましょう。"
       />
 
       {/* 交わりとは */}
@@ -36,9 +36,9 @@ export default function FellowshipPage() {
         <div className="max-w-4xl mx-auto">
           <div className="mb-12 text-center">
             <p className="text-navy font-serif font-bold text-xl md:text-2xl leading-relaxed">
-              「ある人たちの習慣に倣って自分たちの集まりをやめたりせず、<br />むしろ励まし合いましょう。<br />その日が近づいていることが分かっているのですから、<br />ますます励もうではありませんか。」
+              「わたしがあなたがたを愛したように、あなたがたも互いに愛し合うこと、<br />これがわたしの戒めです。」
             </p>
-            <p className="text-gold text-sm mt-2">ヘブル 10:25</p>
+            <p className="text-gold text-sm mt-2">ヨハネ 15:12</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-5">

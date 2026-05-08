@@ -14,6 +14,7 @@ const papers: MissionPaper[] = [
     id: "kbi-thesis",
     title: "7000の未伝道部族に宣教師を派遣する3万人のメガチャーチを日本で開拓するには",
     subtitle: "神の計画が前進するために生き、イエスの来られる道を備えるために",
+    comment: "結論は、メガチャーチを建てるよりも大切なことがあることに気がつきました。",
     label: "KBI 卒業論文",
     file: "/kbi-thesis.pdf",
   },
@@ -21,6 +22,7 @@ const papers: MissionPaper[] = [
     id: "tcu-thesis",
     title: "なぜハドソン・テイラーは神様に用いられたのか",
     subtitle: "チャイナイングランドミッション（現OMF)を創設した、中国奥地宣教の先駆者",
+    comment: "結論は、みことばと聖霊様への従順が鍵であることを学びました。",
     label: "TCU 卒業論文",
     file: "/tcu-thesis.pdf",
   },
@@ -49,14 +51,14 @@ export default function MissionsPage() {
           </div>
 
           <p className="text-navy font-serif font-bold text-2xl md:text-3xl leading-relaxed mb-6">
-            希望を届けるには、どうしたらいいのか。
+            希望を届けるには、<br />どうしたらいいのか。
           </p>
 
           <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-6" />
 
           <p className="text-gray-500 leading-[2] text-sm md:text-base">
             全世界のすべての人に希望を届けるために、<br />
-            どのように歩んだら良いのかを考えて研究した論文です。
+            どのように歩んだら良いのかを考えて書いたエッセイです。
           </p>
           <p className="text-gray-400 leading-[2] text-sm md:text-base mt-4">
             希望をより多くの人に届けていきたいと願う方にとっての<br />
@@ -79,7 +81,12 @@ export default function MissionsPage() {
               <div className="flex-1">
                 <p className="text-xs text-gold tracking-widest uppercase mb-2">{paper.label}</p>
                 <h3 className="font-serif font-bold text-navy text-lg leading-snug mb-1">{paper.title}</h3>
-                {paper.subtitle && <p className="text-gray-400 text-sm mb-4">{paper.subtitle}</p>}
+                {paper.subtitle && <p className="text-gray-400 text-sm mb-3">{paper.subtitle}</p>}
+                {paper.comment && (
+                  <p className="text-xs italic text-gold/80 border-l-2 border-gold/40 pl-3 mb-4 leading-relaxed">
+                    {paper.comment}
+                  </p>
+                )}
                 <div className="flex items-center gap-4 mt-3">
                   <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded">PDF</span>
                   <a

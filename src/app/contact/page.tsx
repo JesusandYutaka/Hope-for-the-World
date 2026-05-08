@@ -102,7 +102,7 @@ export default function ContactPage() {
                   <option>イエス様について知りたい</option>
                   <option>イエス様を信じてみたい</option>
                   <option>聖書を学んでみたい</option>
-                  <option>講演・賛美の依頼</option>
+                  <option>メッセージ・賛美等の依頼</option>
                   <option>近くの教会を教えてほしい</option>
                   <option>神様を感じた出来事を分かち合いたい</option>
                   <option>祈りのリクエスト</option>

@@ -16,6 +16,7 @@ import Button from "@/components/ui/Button";
 import type { Gathering } from "@/types";
 import { YOUTUBE, INSTAGRAM, EXTERNAL, ICONS, BRAND_COLORS } from "@/lib/constants";
 import Divider from "@/components/ui/Divider";
+import Image from "next/image";
 
 // ── 賛美集会情報をここに追加してください ─────────────────────────
 const gatherings: Gathering[] = [];
@@ -52,10 +53,10 @@ export default function WorshipPage() {
       <section className="py-10 md:py-20 px-4 bg-gradient-to-b from-navy-dark/5 to-white">
         <div className="max-w-4xl mx-auto">
           <div className="mb-12 text-center">
-            <p className="text-navy font-serif font-bold text-xl md:text-2xl leading-relaxed">
+            <p className="text-navy font-serif font-bold text-base md:text-2xl leading-loose">
               「主を賛美するために民は創造された。」
             </p>
-            <p className="text-gold text-sm mt-2">詩篇 102:19 — 新共同訳</p>
+            <p className="text-gold text-xs md:text-sm mt-2">詩篇 102:19 — 新共同訳</p>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
             {worshipCards.map((item) => (
@@ -212,6 +213,42 @@ export default function WorshipPage() {
                 </svg>
               }
             />
+            <div className="mt-8 relative overflow-hidden rounded-3xl"
+              style={{ background: "linear-gradient(135deg, #0d1b3e 0%, #1a2e5a 60%, #0d1b3e 100%)" }}>
+              {/* 背景装飾 */}
+              <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none opacity-10"
+                style={{ background: "radial-gradient(circle, #C9A84C 0%, transparent 70%)", transform: "translate(30%,-30%)" }} />
+              <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full pointer-events-none opacity-10"
+                style={{ background: "radial-gradient(circle, #93c5fd 0%, transparent 70%)", transform: "translate(-30%,30%)" }} />
+
+              {/* ゴールドライン上部 */}
+              <div className="relative flex justify-center pt-8">
+                <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+              </div>
+
+              {/* ロゴ */}
+              <div className="relative flex justify-center px-8 py-6">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl"
+                  style={{ boxShadow: "0 0 60px rgba(201,168,76,0.15), 0 20px 60px rgba(0,0,0,0.4)" }}>
+                  <Image
+                    src="/images/glory-logo.jpg"
+                    alt="GLORY — HABAKKUK 2:14"
+                    width={420}
+                    height={236}
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* キャプション */}
+              <div className="relative text-center pb-8 space-y-1">
+                <p className="text-gold text-[10px] tracking-[0.6em] uppercase font-medium">Habakkuk 2 : 14</p>
+                <p className="text-white/40 text-xs">賛美集会 GLORY</p>
+              </div>
+
+              {/* ゴールドライン下部 */}
+              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+            </div>
           </div>
 
           <Divider className="mb-20" />
@@ -229,11 +266,22 @@ export default function WorshipPage() {
                 </svg>
               }
             />
-            <div className="mt-8 text-gray-600 text-sm leading-[1.9] space-y-3">
-              <p className="font-medium text-navy">賛美楽譜、自由にお使いください</p>
-              <p>新しいオリジナル賛美を収録した<br />「希望賛美CD」の楽譜を公開しています。</p>
-              <p>個人の賛美でも、<br />教会の礼拝でも、<br />自由にダウンロード・印刷していただけます。</p>
-              <p>神様への賛美の時間に、お役に立てれば嬉しいです。</p>
+            <div className="mt-8 flex flex-col md:flex-row items-center gap-8">
+              <div className="text-gray-600 text-sm leading-[1.9] space-y-3 flex-1">
+                <p className="font-medium text-navy">賛美楽譜、自由にお使いください</p>
+                <p>新しいオリジナル賛美を収録した<br />「希望賛美CD」の楽譜を公開しています。</p>
+                <p>個人の賛美でも、<br />教会の礼拝でも、<br />自由にダウンロード・印刷していただけます。</p>
+                <p>神様への賛美の時間に、お役に立てれば嬉しいです。</p>
+              </div>
+              <div className="flex-shrink-0">
+                <Image
+                  src="/images/kibou-praise-cd.jpg"
+                  alt="希望賛美CD"
+                  width={220}
+                  height={220}
+                  className="rounded-2xl shadow-lg object-cover"
+                />
+              </div>
             </div>
           </div>
 

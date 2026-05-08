@@ -58,7 +58,7 @@ function CategoryBadge({ cat }: { cat: TestimonyCategory }) {
 }
 
 const testimonyCards = [
-  { number: "01", title: "これは本当の話です",  text: "作り話ではありません。私が実際に体験した、神様との出会いのストーリーです。" },
+  { number: "01", title: "これは本当の話です",  text: "私が実際に体験した、神様との出会いのストーリーを分かち合っています。" },
   { number: "02", title: "あなたにも起こりうる", text: "「自分には関係ない」と思わないでください。同じ神様が、あなたの人生にも働いてくださいます。" },
   { number: "03", title: "人生が変わった",       text: "神様と出会った時、人生は変わりました。苦しみの中にいた私が、希望を見つけた話です。" },
   { number: "04", title: "あなたのストーリーも", text: "神様との出会いを体験したら、ぜひ「つながる」フォームで教えてください。" },
@@ -82,10 +82,10 @@ export default function TestimonyPage() {
         <section className="py-10 md:py-20 px-4 bg-gradient-to-b from-navy-dark/5 to-white">
           <div className="max-w-4xl mx-auto">
             <div className="mb-12 text-center">
-              <p className="text-navy font-serif font-bold text-xl md:text-2xl leading-relaxed">
-                「主に感謝せよ。その御名を呼び求めよ。<br />そのみわざを、もろもろ（すべて）の民の中に知らせよ。<br />御名があがめられていることを語り継げよ。主をほめ歌え。<br />主はすばらしいことをされた。これを全地に知らせよ。」
+              <p className="text-navy font-serif font-bold text-sm md:text-2xl leading-loose">
+                「心を尽くして 私は主に感謝をささげます。<br />あなたの奇しいみわざのすべてを語り告げます。<br />私はあなたを喜び 誇ります。<br />いと高き方よ あなたの御名をほめ歌います。」
               </p>
-              <p className="text-gold text-sm mt-2">イザヤ 12:4,5</p>
+              <p className="text-gold text-xs md:text-sm mt-2">詩篇 9:1,2</p>
             </div>
             <div className="grid md:grid-cols-2 gap-5">
               {testimonyCards.map((item) => (
@@ -154,6 +154,9 @@ export default function TestimonyPage() {
         <section className="py-10 md:py-16 px-4">
           <div className="max-w-4xl mx-auto">
             <SectionHeader title="証の動画" subtitle="— YouTube" />
+            <p className="text-gray-500 text-sm leading-relaxed mb-8">
+              証とは、神様が私の人生にしてくださったストーリーを他の人にシェアすることです。
+            </p>
 
             {!hasVideos ? (
               <div className="rounded-2xl border-2 border-dashed border-sky p-12 text-center">
