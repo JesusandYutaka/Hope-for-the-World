@@ -131,11 +131,26 @@ export default function WorshipPage() {
           {/* ② 賛美集会情報 */}
           <div className="mb-20">
             <SectionHeader title="賛美集会情報" />
-            <div className="text-gray-600 text-sm leading-[1.9] mb-8 space-y-4">
-              <p>一緒に、神様を賛美しませんか？</p>
-              <p>定期的に賛美集会を開催しています。<br />初めての方も、どなたでも大歓迎です。</p>
-              <p>賛美を通して、神様の愛と素晴らしさを<br />共に体験できることを楽しみにしています。</p>
-              <p>集会の日程や詳細は、Instagramでお知らせしています。<br />ぜひフォローして、お気軽にご参加ください。</p>
+            <div className="flex flex-col md:flex-row items-center gap-10 mb-8">
+              <div className="text-gray-600 text-sm leading-[1.9] space-y-4 flex-1">
+                <p>一緒に、神様を賛美しませんか？</p>
+                <p>定期的に賛美集会を開催しています。<br />初めての方も、どなたでも大歓迎です。</p>
+                <p>賛美を通して、神様の愛と素晴らしさを<br />共に体験できることを楽しみにしています。</p>
+                <p>集会の日程や詳細は、Instagramでお知らせしています。<br />ぜひフォローして、お気軽にご参加ください。</p>
+              </div>
+              <div className="flex-shrink-0 w-full md:w-2/5">
+                <div className="relative overflow-hidden rounded-2xl shadow-xl">
+                  <Image
+                    src="/images/glory-gathering.jpg"
+                    alt="賛美集会GLORYの集合写真"
+                    width={800}
+                    height={600}
+                    className="w-full h-auto object-cover"
+                    sizes="(max-width: 768px) 90vw, 40vw"
+                  />
+                  <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
+              </div>
             </div>
 
             <InstagramCard
