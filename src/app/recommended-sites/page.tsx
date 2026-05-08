@@ -14,6 +14,7 @@ const categories: RecommendedSiteGroup[] = [
     id: "mission",
     label: "宣教・伝道",
     en: "Mission & Evangelism",
+    description: "世界中の宣教団体や宣教、伝道に役立つサイトです。",
     sites: [
       {
         name: "ジョシュアプロジェクト",
@@ -61,6 +62,7 @@ const categories: RecommendedSiteGroup[] = [
     id: "bible",
     label: "聖書・学び",
     en: "Bible & Learning",
+    description: "聖書を読む・学ぶための便利なオンラインリソースです。",
     sites: [
       {
         name: "Bible Project",
@@ -93,6 +95,7 @@ const categories: RecommendedSiteGroup[] = [
     id: "devotion",
     label: "デボーション",
     en: "Devotional",
+    description: "日々のみことばと祈りの時間をサポートするサイトです。",
     sites: [
       {
         name: "御言葉の実在",
@@ -110,6 +113,7 @@ const categories: RecommendedSiteGroup[] = [
     id: "youtube",
     label: "YouTube",
     en: "YouTube Channels",
+    description: "聖書や信仰について学べるおすすめのYouTubeチャンネルです。",
     sites: [
       {
         name: "ごうちゃんねる",
@@ -127,6 +131,7 @@ const categories: RecommendedSiteGroup[] = [
     id: "message",
     label: "メッセージ",
     en: "Messages & Teaching",
+    description: "世界的な聖書教師による力強いメッセージを届けるサイトです。",
     sites: [
       {
         name: "リック・ウォーレン",
@@ -149,6 +154,7 @@ const categories: RecommendedSiteGroup[] = [
     id: "student",
     label: "学生・コミュニティ",
     en: "Students & Community",
+    description: "学生や若い世代のクリスチャンを応援するミニストリーです。",
     sites: [
       {
         name: "hi-b.a.（高校生聖書伝道協会）",
@@ -176,6 +182,7 @@ const categories: RecommendedSiteGroup[] = [
     id: "business",
     label: "ビジネス・社会",
     en: "Business & Society",
+    description: "信仰を職場や社会に生かすためのリソース・メディアです。",
     sites: [
       {
         name: "CBMC",
@@ -228,11 +235,16 @@ export default function RecommendedSitesPage() {
                 >
                   <div className="absolute right-0 top-0 w-40 h-40 rounded-full pointer-events-none opacity-10"
                     style={{ background: "radial-gradient(circle, #C9A84C 0%, transparent 70%)", transform: "translate(30%, -30%)" }} />
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <p className="text-gold text-[10px] tracking-[0.5em] uppercase font-medium mb-1">{cat.en}</p>
-                    <h2 className="text-white font-serif font-bold text-xl">{cat.label}</h2>
+                    <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                      <h2 className="text-white font-serif font-bold text-xl flex-shrink-0">{cat.label}</h2>
+                      {cat.description && (
+                        <p className="text-white/40 text-[11px] tracking-wide leading-relaxed">{cat.description}</p>
+                      )}
+                    </div>
                   </div>
-                  <span className="ml-auto text-white/20 font-bold text-4xl font-serif select-none">
+                  <span className="ml-auto text-white/20 font-bold text-4xl font-serif select-none flex-shrink-0">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>

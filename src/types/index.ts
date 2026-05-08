@@ -31,6 +31,7 @@ export type RecommendedSiteGroup = {
   id: string;
   label: string;
   en: string;
+  description?: string;
   sites: RecommendedSite[];
 };
 
