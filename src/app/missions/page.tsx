@@ -51,7 +51,7 @@ export default function MissionsPage() {
           </div>
 
           <p className="text-navy font-serif font-bold text-2xl md:text-3xl leading-relaxed mb-6">
-            希望を届けるには、どうしたらいいのか。
+            希望を届けるには、<br />どうしたらいいのか。
           </p>
 
           <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-6" />
