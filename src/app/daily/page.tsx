@@ -98,7 +98,7 @@ export default function DailyPage() {
         <section className="py-10 md:py-20 px-4 bg-gradient-to-b from-navy-dark/5 to-white">
           <div className="max-w-4xl mx-auto">
             <div className="mb-12 text-center">
-              <p className="text-navy font-serif font-bold text-sm md:text-2xl leading-loose">
+              <p className="text-navy font-serif font-bold text-base md:text-2xl leading-loose">
                 「人はパンだけで生きるのではなく、<br />神の口から出る一つ一つのことばで生きる」
               </p>
               <p className="text-gold text-xs md:text-sm mt-2">マタイ 4:4</p>
