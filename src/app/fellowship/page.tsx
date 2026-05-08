@@ -36,7 +36,7 @@ export default function FellowshipPage() {
         <div className="max-w-4xl mx-auto">
           <div className="mb-12 text-center">
             <p className="text-navy font-serif font-bold text-xl md:text-2xl leading-relaxed">
-              「わたしがあなたがたを愛したように、あなたがたも互いに愛し合うこと、これがわたしの戒めです。」
+              「わたしがあなたがたを愛したように、あなたがたも互いに愛し合うこと、<br />これがわたしの戒めです。」
             </p>
             <p className="text-gold text-sm mt-2">ヨハネ 15:12</p>
           </div>
