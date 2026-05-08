@@ -226,13 +226,30 @@ export default function WorshipPage() {
           {/* 賛美集会GLORY 動画 */}
           <div className="mb-20">
             <SectionHeader title="賛美集会GLORY" subtitle="— 動画" />
-            <div className="text-gray-600 text-sm leading-[1.9] mb-8 space-y-3">
-              <p>賛美集会のアーカイブも公開しています。</p>
-              <p className="text-gray-500 italic">
-                「どんな雰囲気なんだろう？」<br />
-                「参加してみたいけど、まず様子を見たい」
-              </p>
-              <p>そんな方は、ぜひアーカイブをご覧ください。</p>
+            <div className="flex flex-col md:flex-row items-start gap-8 mb-8">
+              <div className="text-gray-600 text-sm leading-[1.9] space-y-3 flex-1">
+                <p>賛美集会のアーカイブも公開しています。</p>
+                <p className="text-gray-500 italic">
+                  「どんな雰囲気なんだろう？」<br />
+                  「参加してみたいけど、まず様子を見たい」
+                </p>
+                <p>そんな方は、ぜひアーカイブをご覧ください。</p>
+              </div>
+              <div className="flex-shrink-0 flex flex-col items-center gap-3">
+                <Image
+                  src="/images/glory-logo.jpg"
+                  alt="GLORY — HABAKKUK 2:14"
+                  width={280}
+                  height={158}
+                  className="rounded-xl object-contain"
+                  style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.10)" }}
+                />
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-px bg-gold/50" />
+                  <p className="text-gray-400 text-[10px] tracking-[0.4em] uppercase">賛美集会 Glory</p>
+                  <div className="w-4 h-px bg-gold/50" />
+                </div>
+              </div>
             </div>
             <YouTubeEmbed
               embedSrc={YOUTUBE.VIDEOS.GLORY}
@@ -249,21 +266,6 @@ export default function WorshipPage() {
                 </svg>
               }
             />
-            <div className="mt-8 flex flex-col items-center gap-4">
-              <Image
-                src="/images/glory-logo.jpg"
-                alt="GLORY — HABAKKUK 2:14"
-                width={480}
-                height={270}
-                className="w-full max-w-md rounded-2xl object-contain"
-                style={{ boxShadow: "0 8px 40px rgba(0,0,0,0.10)" }}
-              />
-              <div className="flex items-center gap-3">
-                <div className="w-6 h-px bg-gold/50" />
-                <p className="text-gray-400 text-xs tracking-[0.4em] uppercase">賛美集会 Glory</p>
-                <div className="w-6 h-px bg-gold/50" />
-              </div>
-            </div>
           </div>
 
           <Divider className="mb-20" />
