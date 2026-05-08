@@ -14,6 +14,7 @@ const papers: MissionPaper[] = [
     id: "kbi-thesis",
     title: "7000の未伝道部族に宣教師を派遣する3万人のメガチャーチを日本で開拓するには",
     subtitle: "神の計画が前進するために生き、イエスの来られる道を備えるために",
+    comment: "結論は、メガチャーチを建てるよりも大切なことがあることに気がつきました。",
     label: "KBI 卒業論文",
     file: "/kbi-thesis.pdf",
   },
@@ -79,7 +80,12 @@ export default function MissionsPage() {
               <div className="flex-1">
                 <p className="text-xs text-gold tracking-widest uppercase mb-2">{paper.label}</p>
                 <h3 className="font-serif font-bold text-navy text-lg leading-snug mb-1">{paper.title}</h3>
-                {paper.subtitle && <p className="text-gray-400 text-sm mb-4">{paper.subtitle}</p>}
+                {paper.subtitle && <p className="text-gray-400 text-sm mb-3">{paper.subtitle}</p>}
+                {paper.comment && (
+                  <p className="text-xs italic text-gold/80 border-l-2 border-gold/40 pl-3 mb-4 leading-relaxed">
+                    {paper.comment}
+                  </p>
+                )}
                 <div className="flex items-center gap-4 mt-3">
                   <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded">PDF</span>
                   <a

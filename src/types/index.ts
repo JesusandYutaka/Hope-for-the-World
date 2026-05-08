@@ -39,6 +39,7 @@ export type MissionPaper = {
   id: string;
   title: string;
   subtitle?: string;
+  comment?: string;
   label: string;
   file: string;
 };
