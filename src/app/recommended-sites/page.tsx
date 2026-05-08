@@ -240,7 +240,7 @@ export default function RecommendedSitesPage() {
                     <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
                       <h2 className="text-white font-serif font-bold text-xl flex-shrink-0">{cat.label}</h2>
                       {cat.description && (
-                        <p className="text-white/40 text-[11px] tracking-wide leading-relaxed">{cat.description}</p>
+                        <p className="text-white text-[11px] tracking-wide leading-relaxed">{cat.description}</p>
                       )}
                     </div>
                   </div>
