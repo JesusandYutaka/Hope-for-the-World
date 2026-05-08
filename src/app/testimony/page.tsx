@@ -83,9 +83,9 @@ export default function TestimonyPage() {
           <div className="max-w-4xl mx-auto">
             <div className="mb-12 text-center">
               <p className="text-navy font-serif font-bold text-xl md:text-2xl leading-relaxed">
-                「主に感謝せよ。その御名を呼び求めよ。<br />そのみわざを、もろもろ（すべて）の民の中に知らせよ。<br />御名があがめられていることを語り継げよ。主をほめ歌え。<br />主はすばらしいことをされた。これを全地に知らせよ。」
+                「心を尽くして 私は主に感謝をささげます。<br />あなたの奇しいみわざのすべてを語り告げます。<br />私はあなたを喜び 誇ります。<br />いと高き方よ あなたの御名をほめ歌います。」
               </p>
-              <p className="text-gold text-sm mt-2">イザヤ 12:4,5</p>
+              <p className="text-gold text-sm mt-2">詩篇 9:1,2</p>
             </div>
             <div className="grid md:grid-cols-2 gap-5">
               {testimonyCards.map((item) => (
