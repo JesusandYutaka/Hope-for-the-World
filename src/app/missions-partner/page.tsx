@@ -37,7 +37,7 @@ export default function MissionsPartnerPage() {
                   私たちは現在は日本にいますが、将来的には海外でもイエス様を伝えるという召しを受け取っています。
                 </p>
                 <p className="text-white font-serif font-bold text-lg md:text-xl leading-relaxed">
-                  イエス様を伝えるというこの宣教の働きに、<br className="hidden md:inline" />祈りをもって共に加わり、参戦していただけませんか？
+                  イエス様を伝えるというこの宣教の働きに、<br />祈りをもって共に加わり、<br />参戦していただけませんか？
                 </p>
               </div>
               <div className="relative flex justify-center mt-6">
