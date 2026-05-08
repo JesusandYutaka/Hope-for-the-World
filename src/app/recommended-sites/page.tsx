@@ -238,29 +238,47 @@ export default function RecommendedSitesPage() {
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {cat.sites.map((site: RecommendedSite) => (
-                    <a
-                      key={site.url}
-                      href={site.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex flex-col bg-white rounded-2xl border border-sky p-6 hover:border-gold/40 hover:shadow-lg transition-all"
-                    >
-                      <div className="flex items-start justify-between gap-2 mb-3">
-                        <h3 className="font-serif font-bold text-navy text-base leading-snug group-hover:text-gold transition-colors">
-                          {site.name}
-                        </h3>
-                        <svg className="flex-shrink-0 w-4 h-4 text-gray-300 group-hover:text-gold transition-colors mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </div>
-                      <p className="text-gray-500 text-[13px] leading-relaxed flex-1">{site.description}</p>
-                      <div className="mt-4 flex items-center gap-1.5">
-                        <div className="w-4 h-px bg-gold/50 group-hover:w-8 transition-all duration-300" />
-                        <span className="text-[11px] text-gray-400 group-hover:text-gold transition-colors truncate">{new URL(site.url).hostname}</span>
-                      </div>
-                    </a>
-                  ))}
+                  {cat.sites.map((site: RecommendedSite) => {
+                    const hostname = new URL(site.url).hostname;
+                    return (
+                      <a
+                        key={site.url}
+                        href={site.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col bg-white rounded-2xl border border-sky p-5 hover:border-gold/40 hover:shadow-xl transition-all duration-300"
+                      >
+                        {/* Header: favicon + name + external icon */}
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-11 h-11 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center flex-shrink-0 overflow-hidden group-hover:border-gold/20 transition-colors">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={`https://www.google.com/s2/favicons?domain=${hostname}&sz=64`}
+                              alt=""
+                              width={28}
+                              height={28}
+                              className="w-7 h-7 object-contain"
+                            />
+                          </div>
+                          <h3 className="font-serif font-bold text-navy text-[15px] leading-snug group-hover:text-gold transition-colors flex-1">
+                            {site.name}
+                          </h3>
+                          <svg className="flex-shrink-0 w-4 h-4 text-gray-200 group-hover:text-gold transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-gray-500 text-[13px] leading-relaxed flex-1">{site.description}</p>
+
+                        {/* Footer: domain */}
+                        <div className="mt-4 pt-3 border-t border-gray-50 flex items-center gap-2">
+                          <div className="w-3 h-px bg-gold/50 group-hover:w-6 transition-all duration-300" />
+                          <span className="text-[11px] text-gray-300 group-hover:text-gold/70 transition-colors tracking-wide truncate">{hostname}</span>
+                        </div>
+                      </a>
+                    );
+                  })}
                 </div>
               </section>
             );
