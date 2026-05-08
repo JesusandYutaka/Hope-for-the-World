@@ -24,10 +24,10 @@ const fellowshipCards = [
 export default function FellowshipPage() {
   return (
     <>
-      <BreadcrumbJsonLd items={[{ name: "交わり", href: "/fellowship" }]} />
+      <BreadcrumbJsonLd items={[{ name: "コミニティー", href: "/fellowship" }]} />
       <PageHero
         eyebrow="Fellowship"
-        title="交わり"
+        title="コミニティー"
         subtitle="キリストにある兄弟姉妹と共に歩みましょう。"
       />
 
