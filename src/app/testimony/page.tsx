@@ -82,7 +82,7 @@ export default function TestimonyPage() {
         <section className="py-10 md:py-20 px-4 bg-gradient-to-b from-navy-dark/5 to-white">
           <div className="max-w-4xl mx-auto">
             <div className="mb-12 text-center">
-              <p className="text-navy font-serif font-bold text-sm md:text-2xl leading-loose">
+              <p className="text-navy font-serif font-bold text-base md:text-2xl leading-loose">
                 「心を尽くして 私は主に感謝をささげます。<br />あなたの奇しいみわざのすべてを語り告げます。<br />私はあなたを喜び 誇ります。<br />いと高き方よ あなたの御名をほめ歌います。」
               </p>
               <p className="text-gold text-xs md:text-sm mt-2">詩篇 9:1,2</p>
