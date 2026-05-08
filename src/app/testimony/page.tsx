@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import JourneyAccordion from "@/components/JourneyAccordion";
 import SectionHeader from "@/components/ui/SectionHeader";
-import NumberedCard from "@/components/ui/NumberedCard";
 import YouTubeEmbed from "@/components/ui/YouTubeEmbed";
 import Button from "@/components/ui/Button";
 import type { TestimonyArticle, TestimonyVideo, TestimonyCategory } from "@/types";
@@ -78,22 +78,61 @@ export default function TestimonyPage() {
 
       <div className="bg-white">
 
-        {/* 証とは */}
-        <section className="py-10 md:py-20 px-4 bg-gradient-to-b from-navy-dark/5 to-white">
-          <div className="max-w-4xl mx-auto">
-            <div className="mb-12 text-center">
-              <p className="text-navy font-serif font-bold text-base md:text-2xl leading-loose">
+        {/* 証とは — 背景フォト */}
+        <section className="relative overflow-hidden py-20 md:py-36 px-4">
+          {/* 背景画像 */}
+          <div className="absolute inset-0">
+            <Image
+              src="/images/testimony-bg.jpg"
+              alt=""
+              fill
+              className="object-cover object-center"
+              priority
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(5,15,40,0.75) 0%, rgba(5,15,40,0.55) 45%, rgba(5,15,40,0.80) 100%)",
+              }}
+            />
+          </div>
+
+          <div className="relative max-w-4xl mx-auto">
+            {/* みことば */}
+            <div className="mb-16 text-center">
+              <div className="flex items-center justify-center gap-3 mb-8">
+                <span className="w-8 h-px bg-gold/60" />
+                <span className="text-gold text-[10px] font-medium tracking-[0.5em] uppercase">Scripture</span>
+                <span className="w-8 h-px bg-gold/60" />
+              </div>
+              <p className="text-white font-serif font-bold text-base md:text-2xl leading-loose drop-shadow-lg">
                 「心を尽くして 私は主に感謝をささげます。<br />あなたの奇しいみわざのすべてを語り告げます。<br />私はあなたを喜び 誇ります。<br />いと高き方よ あなたの御名をほめ歌います。」
               </p>
-              <p className="text-gold text-xs md:text-sm mt-2">詩篇 9:1,2</p>
+              <p className="text-gold/80 text-xs md:text-sm mt-4 tracking-widest">詩篇 9:1,2</p>
             </div>
-            <div className="grid md:grid-cols-2 gap-5">
+
+            {/* カード — ガラスモーフィズム */}
+            <div className="grid md:grid-cols-2 gap-4 mb-14">
               {testimonyCards.map((item) => (
-                <NumberedCard key={item.number} number={item.number} title={item.title} text={item.text} />
+                <div
+                  key={item.number}
+                  className="relative overflow-hidden p-7 rounded-2xl border border-white/10 backdrop-blur-sm"
+                  style={{ background: "rgba(255,255,255,0.07)" }}
+                >
+                  <span className="absolute top-4 right-5 text-6xl font-bold text-white/5 select-none leading-none">
+                    {item.number}
+                  </span>
+                  <div className="w-6 h-0.5 bg-gold mb-4" />
+                  <h3 className="text-white font-serif font-bold text-base mb-2">{item.title}</h3>
+                  <p className="text-white/70 text-sm leading-relaxed">{item.text}</p>
+                </div>
               ))}
             </div>
-            <div className="mt-16 text-center">
-              <Button variant="primary" href="/contact">
+
+            {/* つながるボタン */}
+            <div className="text-center">
+              <Button variant="gold" href="/contact">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
