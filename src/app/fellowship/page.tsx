@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -28,15 +29,15 @@ export default function FellowshipPage() {
       <PageHero
         eyebrow="Fellowship"
         title="コミニティー"
-        subtitle="イエス様の愛で愛し合うコミニティーを求めて、共に歩みましょう。"
+        subtitle={"イエス様の愛に包まれながら、\n一緒に歩んでいきませんか。"}
       />
 
       {/* 交わりとは */}
       <section className="py-10 md:py-20 px-4 bg-gradient-to-b from-navy-dark/5 to-white">
         <div className="max-w-4xl mx-auto">
           <div className="mb-12 text-center">
-            <p className="text-navy font-serif font-bold text-xl md:text-2xl leading-relaxed">
-              「わたしがあなたがたを愛したように、あなたがたも互いに愛し合うこと、<br />これがわたしの戒めです。」
+            <p className="text-navy font-serif font-bold text-base md:text-2xl leading-loose">
+              「わたしがあなたがたを愛したように、<br />あなたがたも互いに愛し合うこと、<br />これがわたしの戒めです。」
             </p>
             <p className="text-gold text-sm mt-2">ヨハネ 15:12</p>
           </div>
@@ -84,6 +85,60 @@ export default function FellowshipPage() {
 
       <section className="py-10 md:py-24 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
+
+          {/* 近日中のイベント */}
+          <div className="mb-16">
+            <SectionHeader title="近日中のイベント" />
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              {/* 画像（左） */}
+              <div className="w-full md:w-5/12 flex-shrink-0">
+                <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+                  <Image
+                    src="/images/event-praise-worship-night.jpg"
+                    alt="Praise & Worship Night — 2026.5/30 Sat. 19:00-20:30 @Nosegawa Christ Church"
+                    width={800}
+                    height={1000}
+                    className="w-full h-auto"
+                    sizes="(max-width: 768px) 90vw, 340px"
+                  />
+                </div>
+              </div>
+
+              {/* テキスト（右） */}
+              <div className="w-full md:w-7/12 flex flex-col gap-6">
+                <div>
+                  <p className="text-gold text-[10px] font-medium tracking-[0.5em] uppercase mb-3">Upcoming Event</p>
+                  <h3 className="font-serif font-bold text-navy text-2xl md:text-3xl leading-snug mb-1">
+                    Praise &amp; Worship Night
+                  </h3>
+                  <p className="text-gray-400 text-sm tracking-widest">〜賛美と祈りの時間〜</p>
+                </div>
+
+                <div className="w-10 h-px bg-gold/40" />
+
+                <p className="text-gray-600 leading-[2] text-[15px]">
+                  Praise &amp; Worshipではこの世界を造られた素晴らしい神様に思いっきり賛美し、祈る時間です。神様を賛美したい方、神様に祈りたい方、イエス様を信じる人と繋がりたい方、どなたでも大歓迎です！
+                </p>
+
+                <div className="flex flex-col gap-2.5">
+                  {[
+                    { icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z", label: "2026年5月30日（土）" },
+                    { icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z", label: "19:00 – 20:30" },
+                    { icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z", label: "能勢川キリスト教会" },
+                  ].map((item) => (
+                    <div key={item.label} className="flex items-center gap-3">
+                      <div className="w-7 h-7 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-3.5 h-3.5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={item.icon} />
+                        </svg>
+                      </div>
+                      <span className="text-navy text-sm font-medium">{item.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* 教会HP */}
           <div className="mb-16">

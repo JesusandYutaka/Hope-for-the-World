@@ -14,6 +14,7 @@ const categories: RecommendedSiteGroup[] = [
     id: "mission",
     label: "宣教・伝道",
     en: "Mission & Evangelism",
+    description: "世界中の宣教団体や宣教、伝道に役立つサイトです。",
     sites: [
       {
         name: "ジョシュアプロジェクト",
@@ -61,6 +62,7 @@ const categories: RecommendedSiteGroup[] = [
     id: "bible",
     label: "聖書・学び",
     en: "Bible & Learning",
+    description: "聖書を読む・学ぶための便利なオンラインリソースです。",
     sites: [
       {
         name: "Bible Project",
@@ -93,6 +95,7 @@ const categories: RecommendedSiteGroup[] = [
     id: "devotion",
     label: "デボーション",
     en: "Devotional",
+    description: "日々のみことばと祈りの時間をサポートするサイトです。",
     sites: [
       {
         name: "御言葉の実在",
@@ -110,6 +113,7 @@ const categories: RecommendedSiteGroup[] = [
     id: "youtube",
     label: "YouTube",
     en: "YouTube Channels",
+    description: "聖書や信仰について学べるおすすめのYouTubeチャンネルです。",
     sites: [
       {
         name: "ごうちゃんねる",
@@ -127,6 +131,7 @@ const categories: RecommendedSiteGroup[] = [
     id: "message",
     label: "メッセージ",
     en: "Messages & Teaching",
+    description: "世界的な聖書教師による力強いメッセージを届けるサイトです。",
     sites: [
       {
         name: "リック・ウォーレン",
@@ -149,6 +154,7 @@ const categories: RecommendedSiteGroup[] = [
     id: "student",
     label: "学生・コミュニティ",
     en: "Students & Community",
+    description: "学生や様々な世代のクリスチャンを応援するミニストリーです。",
     sites: [
       {
         name: "hi-b.a.（高校生聖書伝道協会）",
@@ -176,6 +182,7 @@ const categories: RecommendedSiteGroup[] = [
     id: "business",
     label: "ビジネス・社会",
     en: "Business & Society",
+    description: "信仰を職場や社会に生かすためのリソース・メディアです。",
     sites: [
       {
         name: "CBMC",
@@ -191,6 +198,11 @@ const categories: RecommendedSiteGroup[] = [
         name: "青木仁志（クリスチャン経営者）",
         description: "クリスチャン経営者・青木仁志氏の公式サイト。信仰と経営を融合した歩みを発信している。",
         url: "https://www.aokisatoshi.com/",
+      },
+      {
+        name: "World Watch",
+        description: "中東・米国・アジアなど世界各地の国際ニュースをAIで厳選・要約して届けるグローバルニュースプラットフォーム。安全保障・経済・社会など幅広いテーマを複数の一次情報源をもとに提供している。",
+        url: "https://worldwatch.media/",
       },
     ],
   },
@@ -228,39 +240,62 @@ export default function RecommendedSitesPage() {
                 >
                   <div className="absolute right-0 top-0 w-40 h-40 rounded-full pointer-events-none opacity-10"
                     style={{ background: "radial-gradient(circle, #C9A84C 0%, transparent 70%)", transform: "translate(30%, -30%)" }} />
-                  <div>
+                  <div className="flex-1 min-w-0">
                     <p className="text-gold text-[10px] tracking-[0.5em] uppercase font-medium mb-1">{cat.en}</p>
-                    <h2 className="text-white font-serif font-bold text-xl">{cat.label}</h2>
+                    <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                      <h2 className="text-white font-serif font-bold text-xl flex-shrink-0">{cat.label}</h2>
+                      {cat.description && (
+                        <p className="text-white text-[11px] tracking-wide leading-relaxed">{cat.description}</p>
+                      )}
+                    </div>
                   </div>
-                  <span className="ml-auto text-white/20 font-bold text-4xl font-serif select-none">
+                  <span className="ml-auto text-white/20 font-bold text-4xl font-serif select-none flex-shrink-0">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {cat.sites.map((site: RecommendedSite) => (
-                    <a
-                      key={site.url}
-                      href={site.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex flex-col bg-white rounded-2xl border border-sky p-6 hover:border-gold/40 hover:shadow-lg transition-all"
-                    >
-                      <div className="flex items-start justify-between gap-2 mb-3">
-                        <h3 className="font-serif font-bold text-navy text-base leading-snug group-hover:text-gold transition-colors">
-                          {site.name}
-                        </h3>
-                        <svg className="flex-shrink-0 w-4 h-4 text-gray-300 group-hover:text-gold transition-colors mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </div>
-                      <p className="text-gray-500 text-[13px] leading-relaxed flex-1">{site.description}</p>
-                      <div className="mt-4 flex items-center gap-1.5">
-                        <div className="w-4 h-px bg-gold/50 group-hover:w-8 transition-all duration-300" />
-                        <span className="text-[11px] text-gray-400 group-hover:text-gold transition-colors truncate">{new URL(site.url).hostname}</span>
-                      </div>
-                    </a>
-                  ))}
+                  {cat.sites.map((site: RecommendedSite) => {
+                    const hostname = new URL(site.url).hostname;
+                    return (
+                      <a
+                        key={site.url}
+                        href={site.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col bg-white rounded-2xl border border-sky p-5 hover:border-gold/40 hover:shadow-xl transition-all duration-300"
+                      >
+                        {/* Header: favicon + name + external icon */}
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="w-11 h-11 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center flex-shrink-0 overflow-hidden group-hover:border-gold/20 transition-colors">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={`https://www.google.com/s2/favicons?domain=${hostname}&sz=64`}
+                              alt=""
+                              width={28}
+                              height={28}
+                              className="w-7 h-7 object-contain"
+                            />
+                          </div>
+                          <h3 className="font-serif font-bold text-navy text-[15px] leading-snug group-hover:text-gold transition-colors flex-1">
+                            {site.name}
+                          </h3>
+                          <svg className="flex-shrink-0 w-4 h-4 text-gray-200 group-hover:text-gold transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-gray-500 text-[13px] leading-relaxed flex-1">{site.description}</p>
+
+                        {/* Footer: domain */}
+                        <div className="mt-4 pt-3 border-t border-gray-50 flex items-center gap-2">
+                          <div className="w-3 h-px bg-gold/50 group-hover:w-6 transition-all duration-300" />
+                          <span className="text-[11px] text-gray-300 group-hover:text-gold/70 transition-colors tracking-wide truncate">{hostname}</span>
+                        </div>
+                      </a>
+                    );
+                  })}
                 </div>
               </section>
             );

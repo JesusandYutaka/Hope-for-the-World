@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/worship" },
 };
 import SectionHeader from "@/components/ui/SectionHeader";
-import NumberedCard from "@/components/ui/NumberedCard";
 import YouTubeEmbed from "@/components/ui/YouTubeEmbed";
 import InstagramCard from "@/components/ui/InstagramCard";
 import LinkCard from "@/components/ui/LinkCard";
@@ -49,18 +48,55 @@ export default function WorshipPage() {
         subtitle="ともに、神への賛美を通して、神に近づきましょう。"
       />
 
-      {/* 賛美とは */}
-      <section className="py-10 md:py-20 px-4 bg-gradient-to-b from-navy-dark/5 to-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-12 text-center">
-            <p className="text-navy font-serif font-bold text-base md:text-2xl leading-loose">
+      {/* 賛美とは — 背景フォト */}
+      <section className="relative overflow-hidden py-20 md:py-36 px-4">
+        {/* 背景画像 */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/worship-bg.jpg"
+            alt=""
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to bottom, rgba(5,12,32,0.78) 0%, rgba(5,12,32,0.62) 40%, rgba(5,12,32,0.78) 100%)",
+            }}
+          />
+        </div>
+
+        <div className="relative max-w-4xl mx-auto">
+          {/* みことば */}
+          <div className="mb-16 text-center">
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <span className="w-8 h-px bg-gold/60" />
+              <span className="text-gold text-[10px] font-medium tracking-[0.5em] uppercase">Scripture</span>
+              <span className="w-8 h-px bg-gold/60" />
+            </div>
+            <p className="text-white font-serif font-bold text-base md:text-3xl leading-loose drop-shadow-lg">
               「主を賛美するために民は創造された。」
             </p>
-            <p className="text-gold text-xs md:text-sm mt-2">詩篇 102:19 — 新共同訳</p>
+            <p className="text-gold/80 text-xs md:text-sm mt-3 tracking-widest">詩篇 102:19 — 新共同訳</p>
           </div>
-          <div className="grid md:grid-cols-2 gap-5">
+
+          {/* カード — ガラスモーフィズム */}
+          <div className="grid md:grid-cols-2 gap-4">
             {worshipCards.map((item) => (
-              <NumberedCard key={item.number} number={item.number} title={item.title} text={item.text} />
+              <div
+                key={item.number}
+                className="relative overflow-hidden p-7 rounded-2xl border border-white/10 backdrop-blur-sm"
+                style={{ background: "rgba(255,255,255,0.07)" }}
+              >
+                <span className="absolute top-4 right-5 text-6xl font-bold text-white/5 select-none leading-none">
+                  {item.number}
+                </span>
+                <div className="w-6 h-0.5 bg-gold mb-4" />
+                <h3 className="text-white font-serif font-bold text-base mb-2">{item.title}</h3>
+                <p className="text-white/70 text-sm leading-relaxed">{item.text}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -95,11 +131,26 @@ export default function WorshipPage() {
           {/* ② 賛美集会情報 */}
           <div className="mb-20">
             <SectionHeader title="賛美集会情報" />
-            <div className="text-gray-600 text-sm leading-[1.9] mb-8 space-y-4">
-              <p>一緒に、神様を賛美しませんか？</p>
-              <p>定期的に賛美集会を開催しています。<br />初めての方も、どなたでも大歓迎です。</p>
-              <p>賛美を通して、神様の愛と素晴らしさを<br />共に体験できることを楽しみにしています。</p>
-              <p>集会の日程や詳細は、Instagramでお知らせしています。<br />ぜひフォローして、お気軽にご参加ください。</p>
+            <div className="flex flex-col md:flex-row items-center gap-10 mb-8">
+              <div className="text-gray-600 text-sm leading-[1.9] space-y-4 flex-1">
+                <p>一緒に、神様を賛美しませんか？</p>
+                <p>定期的に賛美集会を開催しています。<br />初めての方も、どなたでも大歓迎です。</p>
+                <p>賛美を通して、神様の愛と素晴らしさを<br />共に体験できることを楽しみにしています。</p>
+                <p>集会の日程や詳細は、Instagramでお知らせしています。<br />ぜひフォローして、お気軽にご参加ください。</p>
+              </div>
+              <div className="flex-shrink-0 w-full md:w-2/5">
+                <div className="relative overflow-hidden rounded-2xl shadow-xl">
+                  <Image
+                    src="/images/glory-gathering.jpg"
+                    alt="賛美集会GLORYの集合写真"
+                    width={800}
+                    height={600}
+                    className="w-full h-auto object-cover"
+                    sizes="(max-width: 768px) 90vw, 40vw"
+                  />
+                  <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
+              </div>
             </div>
 
             <InstagramCard
@@ -190,13 +241,30 @@ export default function WorshipPage() {
           {/* 賛美集会GLORY 動画 */}
           <div className="mb-20">
             <SectionHeader title="賛美集会GLORY" subtitle="— 動画" />
-            <div className="text-gray-600 text-sm leading-[1.9] mb-8 space-y-3">
-              <p>賛美集会のアーカイブも公開しています。</p>
-              <p className="text-gray-500 italic">
-                「どんな雰囲気なんだろう？」<br />
-                「参加してみたいけど、まず様子を見たい」
-              </p>
-              <p>そんな方は、ぜひアーカイブをご覧ください。</p>
+            <div className="flex flex-col md:flex-row items-start gap-8 mb-8">
+              <div className="text-gray-600 text-sm leading-[1.9] space-y-3 flex-1">
+                <p>賛美集会のアーカイブも公開しています。</p>
+                <p className="text-gray-500 italic">
+                  「どんな雰囲気なんだろう？」<br />
+                  「参加してみたいけど、まず様子を見たい」
+                </p>
+                <p>そんな方は、ぜひアーカイブをご覧ください。</p>
+              </div>
+              <div className="flex-shrink-0 flex flex-col items-center gap-3">
+                <Image
+                  src="/images/glory-logo.jpg"
+                  alt="GLORY — HABAKKUK 2:14"
+                  width={280}
+                  height={158}
+                  className="rounded-xl object-contain"
+                  style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.10)" }}
+                />
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-px bg-gold/50" />
+                  <p className="text-gray-400 text-[10px] tracking-[0.4em] uppercase">賛美集会 Glory</p>
+                  <div className="w-4 h-px bg-gold/50" />
+                </div>
+              </div>
             </div>
             <YouTubeEmbed
               embedSrc={YOUTUBE.VIDEOS.GLORY}
@@ -213,42 +281,6 @@ export default function WorshipPage() {
                 </svg>
               }
             />
-            <div className="mt-8 relative overflow-hidden rounded-3xl"
-              style={{ background: "linear-gradient(135deg, #0d1b3e 0%, #1a2e5a 60%, #0d1b3e 100%)" }}>
-              {/* 背景装飾 */}
-              <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none opacity-10"
-                style={{ background: "radial-gradient(circle, #C9A84C 0%, transparent 70%)", transform: "translate(30%,-30%)" }} />
-              <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full pointer-events-none opacity-10"
-                style={{ background: "radial-gradient(circle, #93c5fd 0%, transparent 70%)", transform: "translate(-30%,30%)" }} />
-
-              {/* ゴールドライン上部 */}
-              <div className="relative flex justify-center pt-8">
-                <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
-              </div>
-
-              {/* ロゴ */}
-              <div className="relative flex justify-center px-8 py-6">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl"
-                  style={{ boxShadow: "0 0 60px rgba(201,168,76,0.15), 0 20px 60px rgba(0,0,0,0.4)" }}>
-                  <Image
-                    src="/images/glory-logo.jpg"
-                    alt="GLORY — HABAKKUK 2:14"
-                    width={420}
-                    height={236}
-                    className="object-contain"
-                  />
-                </div>
-              </div>
-
-              {/* キャプション */}
-              <div className="relative text-center pb-8 space-y-1">
-                <p className="text-gold text-[10px] tracking-[0.6em] uppercase font-medium">Habakkuk 2 : 14</p>
-                <p className="text-white/40 text-xs">賛美集会 GLORY</p>
-              </div>
-
-              {/* ゴールドライン下部 */}
-              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
-            </div>
           </div>
 
           <Divider className="mb-20" />
