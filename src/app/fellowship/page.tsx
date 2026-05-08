@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -84,6 +85,23 @@ export default function FellowshipPage() {
 
       <section className="py-10 md:py-24 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
+
+          {/* 近日中のイベント */}
+          <div className="mb-16">
+            <SectionHeader title="近日中のイベント" />
+            <div className="flex justify-center">
+              <div className="relative overflow-hidden rounded-3xl shadow-xl max-w-sm w-full">
+                <Image
+                  src="/images/event-praise-worship-night.jpg"
+                  alt="Praise & Worship Night — 2026.5/30 Sat. 19:00-20:30 @Nosegawa Christ Church"
+                  width={800}
+                  height={1000}
+                  className="w-full h-auto"
+                  sizes="(max-width: 768px) 90vw, 384px"
+                />
+              </div>
+            </div>
+          </div>
 
           {/* 教会HP */}
           <div className="mb-16">
