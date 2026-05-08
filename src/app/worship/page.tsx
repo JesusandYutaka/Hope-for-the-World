@@ -213,14 +213,41 @@ export default function WorshipPage() {
                 </svg>
               }
             />
-            <div className="mt-6 flex justify-center">
-              <Image
-                src="/images/glory-logo.jpg"
-                alt="GLORY — HABAKKUK 2:14"
-                width={480}
-                height={270}
-                className="rounded-xl object-contain"
-              />
+            <div className="mt-8 relative overflow-hidden rounded-3xl"
+              style={{ background: "linear-gradient(135deg, #0d1b3e 0%, #1a2e5a 60%, #0d1b3e 100%)" }}>
+              {/* 背景装飾 */}
+              <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none opacity-10"
+                style={{ background: "radial-gradient(circle, #C9A84C 0%, transparent 70%)", transform: "translate(30%,-30%)" }} />
+              <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full pointer-events-none opacity-10"
+                style={{ background: "radial-gradient(circle, #93c5fd 0%, transparent 70%)", transform: "translate(-30%,30%)" }} />
+
+              {/* ゴールドライン上部 */}
+              <div className="relative flex justify-center pt-8">
+                <div className="w-12 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+              </div>
+
+              {/* ロゴ */}
+              <div className="relative flex justify-center px-8 py-6">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl"
+                  style={{ boxShadow: "0 0 60px rgba(201,168,76,0.15), 0 20px 60px rgba(0,0,0,0.4)" }}>
+                  <Image
+                    src="/images/glory-logo.jpg"
+                    alt="GLORY — HABAKKUK 2:14"
+                    width={420}
+                    height={236}
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* キャプション */}
+              <div className="relative text-center pb-8 space-y-1">
+                <p className="text-gold text-[10px] tracking-[0.6em] uppercase font-medium">Habakkuk 2 : 14</p>
+                <p className="text-white/40 text-xs">賛美集会 GLORY</p>
+              </div>
+
+              {/* ゴールドライン下部 */}
+              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
             </div>
           </div>
 
