@@ -16,6 +16,7 @@ import Button from "@/components/ui/Button";
 import type { Gathering } from "@/types";
 import { YOUTUBE, INSTAGRAM, EXTERNAL, ICONS, BRAND_COLORS } from "@/lib/constants";
 import Divider from "@/components/ui/Divider";
+import Image from "next/image";
 
 // ── 賛美集会情報をここに追加してください ─────────────────────────
 const gatherings: Gathering[] = [];
@@ -212,6 +213,15 @@ export default function WorshipPage() {
                 </svg>
               }
             />
+            <div className="mt-6 flex justify-center">
+              <Image
+                src="/images/glory-logo.jpg"
+                alt="GLORY — HABAKKUK 2:14"
+                width={480}
+                height={270}
+                className="rounded-xl object-contain"
+              />
+            </div>
           </div>
 
           <Divider className="mb-20" />
