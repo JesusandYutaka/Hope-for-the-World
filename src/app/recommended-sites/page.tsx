@@ -154,7 +154,7 @@ const categories: RecommendedSiteGroup[] = [
     id: "student",
     label: "学生・コミュニティ",
     en: "Students & Community",
-    description: "学生や若い世代のクリスチャンを応援するミニストリーです。",
+    description: "学生や様々な世代のクリスチャンを応援するミニストリーです。",
     sites: [
       {
         name: "hi-b.a.（高校生聖書伝道協会）",
