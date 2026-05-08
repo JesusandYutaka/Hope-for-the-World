@@ -28,7 +28,7 @@ export default function FellowshipPage() {
       <PageHero
         eyebrow="Fellowship"
         title="コミニティー"
-        subtitle="キリストにある兄弟姉妹と共に歩みましょう。"
+        subtitle="イエス様の愛で愛し合うコミニティーを求めて、共に歩みましょう。"
       />
 
       {/* 交わりとは */}
