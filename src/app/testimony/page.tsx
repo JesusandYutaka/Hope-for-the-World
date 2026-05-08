@@ -154,6 +154,9 @@ export default function TestimonyPage() {
         <section className="py-10 md:py-16 px-4">
           <div className="max-w-4xl mx-auto">
             <SectionHeader title="証の動画" subtitle="— YouTube" />
+            <p className="text-gray-500 text-sm leading-relaxed mb-8">
+              証とは、神様が私の人生にしてくださったストーリーを他の人にシェアすることです。
+            </p>
 
             {!hasVideos ? (
               <div className="rounded-2xl border-2 border-dashed border-sky p-12 text-center">
