@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import HeroSection from "@/components/HeroSection";
 
 export const metadata: Metadata = {
-  title: "Hope for the World｜世界に希望を届けるクリスチャンミニストリー",
+  title: "Hope for the World｜音楽と言葉で、世界に希望を届ける",
   description: "あなたに希望を届けたい。賛美・みことば・証・宣教を通じて、イエス様の愛を日本から世界へ。",
   alternates: { canonical: "/" },
 };
