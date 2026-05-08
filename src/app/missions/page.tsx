@@ -58,7 +58,7 @@ export default function MissionsPage() {
 
           <p className="text-gray-500 leading-[2] text-sm md:text-base">
             全世界のすべての人に希望を届けるために、<br />
-            どのように歩んだら良いのかを考えて書いたエッセイです。
+            どのように歩んだら良いのかを祈りながら書いたエッセイです。
           </p>
           <p className="text-gray-400 leading-[2] text-sm md:text-base mt-4">
             希望をより多くの人に届けていきたいと願う方にとっての<br />
