@@ -22,7 +22,7 @@ const papers: MissionPaper[] = [
     id: "tcu-thesis",
     title: "なぜハドソン・テイラーは神様に用いられたのか",
     subtitle: "チャイナイングランドミッション（現OMF)を創設した、中国奥地宣教の先駆者",
-    comment: "結論は、みことばと聖霊様への従順が神に用いられる鍵であることを教えられました。",
+    comment: "結論は、みことばと聖霊様への従順が鍵であることを学びました。",
     label: "TCU 卒業論文",
     file: "/tcu-thesis.pdf",
   },
