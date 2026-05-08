@@ -95,6 +95,14 @@ export default function HeroSection() {
           Hope for the World
         </h1>
 
+        {/* Subtext */}
+        <p
+          className="text-sm md:text-base mb-6 drop-shadow"
+          style={{ color: "rgba(255,255,255,0.7)", letterSpacing: "0.03em" }}
+        >
+          中島豊 — 人生に希望を届けるための賛美・メッセージ・宣教活動
+        </p>
+
         {/* Thin divider */}
         <div className="w-16 h-px bg-gradient-to-r from-transparent via-gold to-transparent mb-10" />
 
