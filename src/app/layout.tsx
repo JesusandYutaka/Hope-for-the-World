@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   description: "Hope for the Worldは、イエス・キリストの愛と福音を世界に届けるクリスチャンミニストリーです。",
   openGraph: {
     title: "Hope for the World",
-    description: "世界に希望を届けるクリスチャンミニストリー",
+    description: "音楽と言葉で、世界に希望を届ける",
     locale: "ja_JP",
     type: "website",
     images: [
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Hope for the World",
-    description: "世界に希望を届けるクリスチャンミニストリー",
+    description: "音楽と言葉で、世界に希望を届ける",
     images: ["/images/hero-sunset.jpg"],
   },
 };
