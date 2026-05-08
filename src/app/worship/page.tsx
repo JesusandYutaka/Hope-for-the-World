@@ -239,11 +239,22 @@ export default function WorshipPage() {
                 </svg>
               }
             />
-            <div className="mt-8 text-gray-600 text-sm leading-[1.9] space-y-3">
-              <p className="font-medium text-navy">賛美楽譜、自由にお使いください</p>
-              <p>新しいオリジナル賛美を収録した<br />「希望賛美CD」の楽譜を公開しています。</p>
-              <p>個人の賛美でも、<br />教会の礼拝でも、<br />自由にダウンロード・印刷していただけます。</p>
-              <p>神様への賛美の時間に、お役に立てれば嬉しいです。</p>
+            <div className="mt-8 flex flex-col md:flex-row items-center gap-8">
+              <div className="text-gray-600 text-sm leading-[1.9] space-y-3 flex-1">
+                <p className="font-medium text-navy">賛美楽譜、自由にお使いください</p>
+                <p>新しいオリジナル賛美を収録した<br />「希望賛美CD」の楽譜を公開しています。</p>
+                <p>個人の賛美でも、<br />教会の礼拝でも、<br />自由にダウンロード・印刷していただけます。</p>
+                <p>神様への賛美の時間に、お役に立てれば嬉しいです。</p>
+              </div>
+              <div className="flex-shrink-0">
+                <Image
+                  src="/images/kibou-praise-cd.jpg"
+                  alt="希望賛美CD"
+                  width={220}
+                  height={220}
+                  className="rounded-2xl shadow-lg object-cover"
+                />
+              </div>
             </div>
           </div>
 
