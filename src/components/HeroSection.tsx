@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "@/components/ui/Button";
 
 const ROTATION_INTERVAL_MS = 5000;
@@ -19,6 +19,13 @@ const scriptures: Scripture[] = [
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
   const [visible, setVisible] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.play().catch(() => {});
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -38,11 +45,12 @@ export default function HeroSection() {
 
       {/* Background video (silent, looping) */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="auto"
         poster="/videos/hero-bg-poster.jpg"
         className="absolute inset-0 w-full h-full object-cover object-center"
       >
