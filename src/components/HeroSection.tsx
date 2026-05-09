@@ -57,15 +57,16 @@ export default function HeroSection() {
       {/* Background video (silent, looping) */}
       <video
         ref={videoRef}
-        src="/videos/hero-bg.mp4"
         autoPlay
-        loop
         muted
+        loop
         playsInline
         preload="auto"
         poster="/videos/hero-bg-poster.jpg"
         className="absolute inset-0 w-full h-full object-cover object-center"
-      />
+      >
+        <source src="/videos/hero-bg.mp4" type="video/mp4" />
+      </video>
 
       {/* Overlay: top dark for text readability, bottom subtle dark */}
       <div
