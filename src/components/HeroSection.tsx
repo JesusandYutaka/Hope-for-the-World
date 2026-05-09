@@ -24,10 +24,18 @@ export default function HeroSection() {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    // iOS Safari向けに属性をJSからも明示的に設定
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+    video.muted = true;
     const tryPlay = () => { video.play().catch(() => {}); };
     tryPlay();
     video.addEventListener("canplay", tryPlay, { once: true });
-    return () => video.removeEventListener("canplay", tryPlay);
+    video.addEventListener("loadeddata", tryPlay, { once: true });
+    return () => {
+      video.removeEventListener("canplay", tryPlay);
+      video.removeEventListener("loadeddata", tryPlay);
+    };
   }, []);
 
   useEffect(() => {
@@ -57,8 +65,8 @@ export default function HeroSection() {
         poster="/videos/hero-bg-poster.jpg"
         className="absolute inset-0 w-full h-full object-cover object-center"
       >
-        <source src="/videos/hero-bg.webm" type="video/webm" />
         <source src="/videos/hero-bg.mp4" type="video/mp4" />
+        <source src="/videos/hero-bg.webm" type="video/webm" />
       </video>
 
       {/* Overlay: top dark for text readability, bottom subtle dark */}
