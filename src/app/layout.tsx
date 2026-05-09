@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import ClarityInit from "@/components/ClarityInit";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hope-for-the-world.vercel.app";
 
@@ -82,6 +83,9 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <Analytics />
+        {process.env.NEXT_PUBLIC_CLARITY_ID && (
+          <ClarityInit clarityId={process.env.NEXT_PUBLIC_CLARITY_ID} />
+        )}
       </body>
       {process.env.NEXT_PUBLIC_GA_ID && (
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
