@@ -33,3 +33,11 @@ html {
 h1, h2, h3 {
   font-family: 'Playfair Display', 'Noto Sans JP', serif;
 }
+
+/* iOS Safariの動画ネイティブ再生ボタンを非表示 */
+video::-webkit-media-controls {
+  display: none !important;
+}
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
