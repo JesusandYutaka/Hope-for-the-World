@@ -37,7 +37,7 @@
 | UI ライブラリ | React | 19.2.4 |
 | 言語 | TypeScript | 5.x |
 | スタイリング | Tailwind CSS v4 | 4.x |
-| フォーム管理 | React Hook Form | 7.x |
+| フォーム管理 | React（useState） | — |
 | メール送信 | Resend | 6.x |
 | レート制限 | Upstash Ratelimit + Redis | 2.x / 1.x |
 | アニメーション | Framer Motion | 12.x |
@@ -65,25 +65,32 @@
 │   │   │       └── route.ts        # クライアント IP 確認 API
 │   │   ├── contact/page.tsx
 │   │   ├── daily/page.tsx
+│   │   ├── error.tsx               # エラーバウンダリ
 │   │   ├── fellowship/page.tsx
+│   │   ├── global-error.tsx        # グローバルエラーバウンダリ
 │   │   ├── know-god/page.tsx
 │   │   ├── michiya/page.tsx
 │   │   ├── missions/page.tsx
 │   │   ├── missions-partner/page.tsx
 │   │   ├── newsletter/page.tsx
+│   │   ├── not-found.tsx           # 404ページ
 │   │   ├── prayer-partner/page.tsx
 │   │   ├── recommended-sites/page.tsx
+│   │   ├── robots.ts               # robots.txt 生成
+│   │   ├── sitemap.ts              # sitemap.xml 生成
 │   │   ├── testimony/page.tsx
 │   │   ├── worship/page.tsx
-│   │   ├── layout.tsx              # ルートレイアウト（Header + Footer）
+│   │   ├── layout.tsx              # ルートレイアウト（Header・Footer・Analytics・JSON-LD）
 │   │   ├── page.tsx                # ホームページ
 │   │   └── globals.css             # グローバルスタイル・CSS変数
 │   ├── components/
-│   │   ├── Header.tsx              # ナビゲーションヘッダー
+│   │   ├── BreadcrumbJsonLd.tsx    # パンくずJSON-LD構造化データ
+│   │   ├── ClarityInit.tsx         # Microsoft Clarity 初期化
 │   │   ├── Footer.tsx              # フッター
+│   │   ├── Header.tsx              # ナビゲーションヘッダー
 │   │   ├── HeroSection.tsx         # ホームヒーロー
-│   │   ├── PageHero.tsx            # 各ページヘッダー
 │   │   ├── JourneyAccordion.tsx    # 証アコーディオン
+│   │   ├── PageHero.tsx            # 各ページヘッダー
 │   │   └── ui/                     # 汎用UIコンポーネント
 │   │       ├── Button.tsx
 │   │       ├── SectionHeader.tsx
@@ -143,7 +150,7 @@ YouTube RSS Feed
   FeaturedContent（クライアントへ配信）
 
 お問い合わせフォーム:
-  クライアント (React Hook Form)
+  クライアント (React useState)
       ↓ (POST /api/contact)
   Server (validation + レート制限)
       ↓ (Resend API)
@@ -710,6 +717,10 @@ npm run build              # TypeScript + ビルドチェック
 | `CONTACT_EMAIL` | お問い合わせ受信先メールアドレス |
 | `UPSTASH_REDIS_REST_URL` | Upstash Redis REST エンドポイント |
 | `UPSTASH_REDIS_REST_TOKEN` | Upstash Redis 認証トークン |
+| `NEXT_PUBLIC_SITE_URL` | サイトの正規 URL（OGP・JSON-LD 用） |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics 測定 ID |
+| `NEXT_PUBLIC_CLARITY_ID` | Microsoft Clarity プロジェクト ID |
+| `STAGING_ALLOWED_IPS` | Vercel preview 環境の許可 IP リスト（カンマ区切り） |
 
 ---
 
