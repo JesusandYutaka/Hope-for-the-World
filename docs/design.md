@@ -59,14 +59,17 @@
 │   │   │   ├── FeaturedContent.tsx
 │   │   │   └── PrayerCta.tsx
 │   │   ├── api/
-│   │   │   └── contact/
-│   │   │       └── route.ts        # お問い合わせ API
+│   │   │   ├── contact/
+│   │   │   │   └── route.ts        # お問い合わせ API
+│   │   │   └── my-ip/
+│   │   │       └── route.ts        # クライアント IP 確認 API
 │   │   ├── contact/page.tsx
 │   │   ├── daily/page.tsx
 │   │   ├── fellowship/page.tsx
 │   │   ├── know-god/page.tsx
 │   │   ├── michiya/page.tsx
 │   │   ├── missions/page.tsx
+│   │   ├── missions-partner/page.tsx
 │   │   ├── newsletter/page.tsx
 │   │   ├── prayer-partner/page.tsx
 │   │   ├── recommended-sites/page.tsx
@@ -93,6 +96,8 @@
 │   │   └── journeyItems.tsx        # 証の記録データ
 │   ├── lib/
 │   │   ├── constants.ts            # 全定数
+│   │   ├── env.ts                  # 環境変数バリデーション
+│   │   ├── ip.ts                   # クライアント IP 取得
 │   │   ├── validation.ts           # 入力バリデーション
 │   │   └── youtube.ts              # YouTube RSS 取得
 │   └── types/
@@ -184,6 +189,7 @@ page.tsx (ホーム)
 | 証の部屋 | `/testimony` | Static | 証アコーディオン・YouTube・ブログ |
 | 交わり | `/fellowship` | Static | 教会紹介・SNS |
 | 宣教論文 | `/missions` | Static | KBI・TCU 卒業論文PDF |
+| 宣教パートナー | `/missions-partner` | Static | 宣教パートナー募集 |
 | お勧めサイト | `/recommended-sites` | Static | カテゴリ別リンク集 |
 | 神を知りたい人へ | `/know-god` | Static | 4ステップの救いの説明 |
 | つながる | `/contact` | Static | お問い合わせフォーム |
@@ -207,14 +213,14 @@ page.tsx (ホーム)
 - **ナビゲーション構造:**
   ```
   賛美・Worship (/worship)
-  日々の励まし (/daily)
+  日々のみことば (/daily)
   Hopeを広げる [ドロップダウン]
-    ├── 祈りのパートナー (/prayer-partner)
-    ├── 証の部屋 (/testimony)
-    ├── 交わり (/fellowship)
-    ├── 宣教論文 (/missions)
-    └── お勧めサイト (/recommended-sites)
-  神を知りたい人へ (/know-god)
+    ├── ストーリー (/testimony)
+    ├── コミニティー (/fellowship)
+    ├── 宣教エッセイ (/missions)
+    ├── お勧めサイト (/recommended-sites)
+    └── 宣教パートナー (/missions-partner)
+  人生に答えを探している方へ (/know-god)
   [CTA] つながる (/contact)
   ```
 
@@ -390,13 +396,14 @@ type RecommendedLink = { title: string; description: string; url: string; label:
 type RecommendedSiteCategory = "bible" | "church" | "ministry" | "other";
 type RecommendedSite = { name: string; description: string; url: string };
 type RecommendedSiteGroup = {
-  id: RecommendedSiteCategory; label: string; en: string;
+  id: string; label: string; en: string;
+  description?: string;
   sites: RecommendedSite[];
 };
 
 // 宣教論文
 type MissionPaper = {
-  id: string; title: string; subtitle?: string; label: string; file: string;
+  id: string; title: string; subtitle?: string; comment?: string; label: string; file: string;
 };
 ```
 
@@ -481,7 +488,7 @@ ICONS = {
 ### キャッシュ
 ```typescript
 CACHE = {
-  YOUTUBE_REVALIDATE_SECONDS: 86400,  // 24時間
+  YOUTUBE_REVALIDATE_SECONDS: 3600,  // 1時間
 }
 ```
 
@@ -532,18 +539,18 @@ async function fetchLatestYouTubeVideo(): Promise<YouTubeVideo | null>
 ```
 - YouTube RSS フィードから最新動画を取得（API キー不要）
 - 取得先: `https://www.youtube.com/feeds/videos.xml?channel_id={CHANNEL_ID}`
-- キャッシュ: `next: { revalidate: 86400 }`（24時間 ISR）
+- キャッシュ: `next: { revalidate: 3600 }`（1時間 ISR）
 - 失敗時は `null` を返す
 
 ### `src/lib/validation.ts`
 
 | 関数 | 引数 | 戻り値 | 役割 |
 |------|------|--------|------|
-| `validateName` | `string` | `string \| null` | 1〜100文字。違反時エラー文 |
-| `validateEmail` | `string` | `string \| null` | 正規表現でメール形式を確認 |
-| `validateMessage` | `string` | `string \| null` | 1〜2000文字 |
-| `sanitizeHeader` | `string` | `string` | 改行・タブを除去（ヘッダーインジェクション対策） |
-| `sanitizeMessage` | `string` | `string` | `\r\n` を `\n` に正規化 |
+| `validateName` | `unknown` | `{ ok: boolean; error?: string }` | 1〜100文字。違反時 `error` にメッセージ |
+| `validateEmail` | `unknown` | `{ ok: boolean; error?: string }` | 正規表現でメール形式を確認 |
+| `validateMessage` | `unknown` | `{ ok: boolean; error?: string }` | 2000文字以内 |
+| `sanitizeHeader` | `string` | `string` | 改行（`\r\n`）を除去（ヘッダーインジェクション対策） |
+| `sanitizeMessage` | `string` | `string` | 連続5行以上の改行を `\n\n` に圧縮 |
 
 ---
 
@@ -667,9 +674,15 @@ Lines: 85%以上 / Functions: 85%以上 / Branches: 85%以上
 | `JourneyAccordion` | `components/__tests__/JourneyAccordion.test.tsx` | — |
 | `validation.ts` | `lib/__tests__/validation.test.ts` | — |
 | `youtube.ts` | `lib/__tests__/youtube.test.ts` | — |
+| `env.ts` | `lib/__tests__/env.test.ts` | — |
+| `ip.ts` | `lib/__tests__/ip.test.ts` | — |
 | `POST /api/contact` | `api/contact/__tests__/route.test.ts` | — |
+| `GET /api/my-ip` | `api/my-ip/__tests__/route.test.ts` | — |
+| `contact/page.tsx` | `app/contact/__tests__/page.test.tsx` | — |
+| `middleware.ts` | `__tests__/middleware.test.ts` | — |
+| `not-found.tsx` | `app/__tests__/not-found.test.tsx` | — |
 
-**合計: 78件**
+**合計: 100件**
 
 ### テスト実行
 
