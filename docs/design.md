@@ -129,8 +129,19 @@
 │   └── images/                     # 画像（hero-sunset.jpg, profile.jpg 等）
 ├── docs/
 │   └── design.md                   # 本設計資料
+├── AGENTS.md
+├── CLAUDE.md
+├── PLAN.md
+├── README.md
+├── eslint.config.mjs
+├── next-env.d.ts
 ├── next.config.ts                  # セキュリティヘッダー等
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+├── tsconfig.json
 ├── vitest.config.ts
+├── vitest.setup.ts
 └── vercel.json
 ```
 
@@ -152,7 +163,8 @@
             ├── Header（スクロール検知、ドロップダウン）
             ├── HeroSection（スクリプチャースライダー）
             ├── JourneyAccordion（展開状態管理）
-            └── contact/page.tsx（フォーム送信）
+            ├── contact/page.tsx（フォーム送信）
+            └── know-god/page.tsx（ステップ状態管理）
 ```
 
 ### データフロー
@@ -214,7 +226,7 @@ page.tsx (ホーム)
 | 宣教エッセイ | `/missions` | Static | KBI・TCU 卒業論文PDF |
 | 宣教パートナー | `/missions-partner` | Static | 祈りの宣教パートナー募集 |
 | お勧めサイト | `/recommended-sites` | Static | カテゴリ別リンク集 |
-| 神を知りたい人へ | `/know-god` | Static | 4ステップの救いの説明 |
+| 神を知りたい人へ | `/know-god` | Client | 4ステップの救いの説明 |
 | つながる | `/contact` | Static | お問い合わせフォーム |
 | みちや牧師の心にバスドラム | `/michiya` | Static | みちや牧師 LINE QR コード |
 | ニュースレター | `/newsletter` | Static | メールニュース（準備中） |
