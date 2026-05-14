@@ -468,6 +468,13 @@ EXTERNAL = {
 }
 ```
 
+### 連絡先
+```typescript
+CONTACT = {
+  EMAIL: "...",  // お問い合わせ受信先メールアドレス
+}
+```
+
 ### SNS
 ```typescript
 SOCIAL = {
@@ -652,8 +659,8 @@ ghost:    border-white/25 白テキスト       backdrop-blur  暗背景専用
 X-Frame-Options: DENY
 X-Content-Type-Options: nosniff
 Referrer-Policy: strict-origin-when-cross-origin
-Content-Security-Policy: ...
-Permissions-Policy: ...
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+X-DNS-Prefetch-Control: on
 ```
 
 ---
@@ -695,7 +702,7 @@ Lines: 85%以上 / Functions: 85%以上 / Branches: 85%以上
 | `middleware.ts` | `__tests__/middleware.test.ts` | — |
 | `not-found.tsx` | `app/__tests__/not-found.test.tsx` | — |
 
-**合計: 100件**
+**合計: 99件**
 
 ### テスト実行
 
@@ -728,15 +735,14 @@ npm run build              # TypeScript + ビルドチェック
 
 ### Vercel 設定（`vercel.json`）
 
-- フレームワーク: Next.js（自動検出）
-- ビルドコマンド: `next build`
-- 出力ディレクトリ: `.next`
+- フレームワーク: `"framework": "nextjs"` のみ明示（ビルド設定は Vercel が自動推定）
 
 ### ブランチ戦略
 
 | ブランチ | 環境 |
 |---------|------|
 | `main` | 本番（Vercel 本番デプロイ） |
+| `develop` | 開発（本番マージ前の作業ブランチ） |
 
 ### デプロイフロー
 
