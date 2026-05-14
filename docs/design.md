@@ -40,7 +40,7 @@
 | フォーム管理 | React（useState） | — |
 | メール送信 | Resend | 6.x |
 | レート制限 | Upstash Ratelimit + Redis | 2.x / 1.x |
-| アニメーション | Framer Motion | 12.x |
+| アナリティクス | Vercel Analytics / Google Analytics / Microsoft Clarity | — |
 | テスト | Vitest + Testing Library | 4.x |
 | テスト環境 | happy-dom | 20.x |
 | デプロイ | Vercel | — |
@@ -63,23 +63,38 @@
 │   │   │   │   └── route.ts        # お問い合わせ API
 │   │   │   └── my-ip/
 │   │   │       └── route.ts        # クライアント IP 確認 API
-│   │   ├── contact/page.tsx
-│   │   ├── daily/page.tsx
+│   │   ├── contact/
+│   │   │   ├── layout.tsx
+│   │   │   ├── opengraph-image.tsx
+│   │   │   └── page.tsx
+│   │   ├── daily/
+│   │   │   ├── opengraph-image.tsx
+│   │   │   └── page.tsx
 │   │   ├── error.tsx               # エラーバウンダリ
 │   │   ├── fellowship/page.tsx
 │   │   ├── global-error.tsx        # グローバルエラーバウンダリ
-│   │   ├── know-god/page.tsx
+│   │   ├── know-god/
+│   │   │   ├── layout.tsx
+│   │   │   ├── opengraph-image.tsx
+│   │   │   └── page.tsx
 │   │   ├── michiya/page.tsx
-│   │   ├── missions/page.tsx
+│   │   ├── missions/
+│   │   │   ├── opengraph-image.tsx
+│   │   │   └── page.tsx
 │   │   ├── missions-partner/page.tsx
 │   │   ├── newsletter/page.tsx
 │   │   ├── not-found.tsx           # 404ページ
+│   │   ├── opengraph-image.tsx     # ルート OG 画像
 │   │   ├── prayer-partner/page.tsx
 │   │   ├── recommended-sites/page.tsx
 │   │   ├── robots.ts               # robots.txt 生成
 │   │   ├── sitemap.ts              # sitemap.xml 生成
-│   │   ├── testimony/page.tsx
-│   │   ├── worship/page.tsx
+│   │   ├── testimony/
+│   │   │   ├── opengraph-image.tsx
+│   │   │   └── page.tsx
+│   │   ├── worship/
+│   │   │   ├── opengraph-image.tsx
+│   │   │   └── page.tsx
 │   │   ├── layout.tsx              # ルートレイアウト（Header・Footer・Analytics・JSON-LD）
 │   │   ├── page.tsx                # ホームページ
 │   │   └── globals.css             # グローバルスタイル・CSS変数
@@ -707,9 +722,10 @@ Lines: 85%以上 / Functions: 85%以上 / Branches: 85%以上
 ### テスト実行
 
 ```bash
-npm test -- --run          # 全テスト実行
-npm run coverage           # カバレッジ付き実行
-npm run build              # TypeScript + ビルドチェック
+npm test                   # 全テスト実行（watch モード）
+npm run test:coverage      # カバレッジ付き実行
+npm run type-check         # TypeScript 型チェック
+npm run build              # ビルド
 ```
 
 ---
