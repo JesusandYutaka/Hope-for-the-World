@@ -227,7 +227,7 @@ page.tsx (ホーム)
 | 宣教パートナー | `/missions-partner` | Static | 祈りの宣教パートナー募集 |
 | お勧めサイト | `/recommended-sites` | Static | カテゴリ別リンク集 |
 | 神を知りたい人へ | `/know-god` | Client | 4ステップの救いの説明 |
-| つながる | `/contact` | Static | お問い合わせフォーム |
+| つながる | `/contact` | Client | お問い合わせフォーム |
 | みちや牧師の心にバスドラム | `/michiya` | Static | みちや牧師 LINE QR コード |
 | ニュースレター | `/newsletter` | Static | メールニュース（準備中） |
 
@@ -262,6 +262,17 @@ page.tsx (ホーム)
 #### `Footer`
 - **種類:** Server Component
 - **機能:** SNS リンク（LINE, Instagram, Facebook）、著作権表記
+
+#### `BreadcrumbJsonLd`
+- **種類:** Server Component
+- **Props:** `{ items: BreadcrumbItem[] }` ただし `BreadcrumbItem = { name: string; href: string }`
+- **機能:** JSON-LD 形式のパンくず構造化データを `<script type="application/ld+json">` タグとして出力。ホームは自動先頭追加。
+- **注意:** `NEXT_PUBLIC_SITE_URL` 環境変数がなければ `https://hope-for-the-world.vercel.app` にフォールバック
+
+#### `ClarityInit`
+- **種類:** Client Component (`"use client"`)
+- **Props:** `{ clarityId: string }`
+- **機能:** `useEffect` 内で `Clarity.init(clarityId)` を呼び出して Microsoft Clarity を初期化する
 
 ---
 
