@@ -317,7 +317,7 @@ page.tsx (ホーム)
 ```typescript
 type Props = { title: string; subtitle?: string }
 ```
-金色下線付きのセクション見出し。
+左に金色横線を配置したセクション見出し（`flex` レイアウト）。
 
 #### `YouTubeEmbed`
 ```typescript
@@ -421,7 +421,7 @@ type DailyVideo = {
 type RecommendedLink = { title: string; description: string; url: string; label: string };
 
 // お勧めサイト
-type RecommendedSiteCategory = "bible" | "church" | "ministry" | "other";
+type RecommendedSiteCategory = "bible" | "church" | "ministry" | "other"; // 定義のみ・現在未使用
 type RecommendedSite = { name: string; description: string; url: string };
 type RecommendedSiteGroup = {
   id: string; label: string; en: string;
@@ -558,6 +558,7 @@ export const journeySteps: JourneyItem[] = [
 | ページ | データ場所 | 追加方法 |
 |--------|---------|---------|
 | 賛美集会 | `worship/page.tsx` の `gatherings[]` | 配列に `Gathering` オブジェクトを追加 |
+| 賛美配信 | `worship/page.tsx` の `streamingServices[]` | 配列に配信サービス情報を追加 |
 | 証の記録 | `testimony/page.tsx` の `articles[]` / `videos[]` | 配列にオブジェクトを追加 |
 | 日々の励まし | `daily/page.tsx` の `noteArticles[]` / `youtubeVideos[]` | 配列にオブジェクトを追加 |
 | 宣教エッセイ | `missions/page.tsx` の `papers[]` | 配列に `MissionPaper` オブジェクトを追加 |
