@@ -100,14 +100,14 @@
 │   │   ├── ip.ts                   # クライアント IP 取得
 │   │   ├── validation.ts           # 入力バリデーション
 │   │   └── youtube.ts              # YouTube RSS 取得
-│   └── types/
-│       └── index.ts                # 全型定義
+│   ├── types/
+│   │   └── index.ts                # 全型定義
+│   └── middleware.ts               # エッジミドルウェア（Vercel preview IP制限）
 ├── public/
 │   └── images/                     # 画像（hero-sunset.jpg, profile.jpg 等）
 ├── docs/
 │   └── design.md                   # 本設計資料
 ├── next.config.ts                  # セキュリティヘッダー等
-├── middleware.ts                   # エッジミドルウェア
 ├── vitest.config.ts
 └── vercel.json
 ```
@@ -125,7 +125,7 @@
       ↓
   Next.js App Router
       ├── Server Components（大半のページ・セクション）
-      │     └── ISR キャッシュ（ホームページ: 24時間）
+      │     └── ISR キャッシュ（ホームページ: 1時間）
       └── Client Components（最小限）
             ├── Header（スクロール検知、ドロップダウン）
             ├── HeroSection（スクリプチャースライダー）
@@ -160,9 +160,10 @@ layout.tsx
 
 page.tsx (ホーム)
   ├── HeroSection
-  ├── VisionSection
+  ├── JourneyAccordion（"私のストーリー" セクション）
   ├── IntroSection
   ├── FeaturedContent
+  ├── VisionSection
   └── PrayerCta
 
 各ページ (例: worship)
@@ -182,7 +183,7 @@ page.tsx (ホーム)
 
 | ページ名 | パス | 種類 | 役割 |
 |---------|------|------|------|
-| ホーム | `/` | ISR (24h) | ビジョン・自己紹介・最新動画 |
+| ホーム | `/` | ISR (1h) | ビジョン・自己紹介・最新動画 |
 | 賛美・Worship | `/worship` | Static | プレイリスト・集会情報・楽譜配信 |
 | 日々の励まし | `/daily` | Static | みことば動画・デボーション記事 |
 | 祈りのパートナー | `/prayer-partner` | Static | LINE登録・祈りレター |
@@ -259,6 +260,7 @@ page.tsx (ホーム)
 #### `JourneyAccordion`
 - **種類:** Client Component
 - **機能:** `journeySteps` データをアコーディオン表示
+- **Props:** `defaultOpen?: number | null`（初期展開インデックス、デフォルト `null`）
 - **状態:** `expandedItemIndex: number | null`
 
 ---
@@ -306,7 +308,8 @@ type Props = { embedSrc: string; title: string; className?: string }
 type Props = {
   href: string;
   handle: string;
-  label: string;
+  label?: string;       // 省略時: "Instagram"
+  description?: string;
   className?: string;
 }
 ```
@@ -322,9 +325,12 @@ type Props = { number: string; title: string; text: string }
 ```typescript
 type Props = {
   href: string;
-  label: string;    // バッジ（例: "YouTube", "PDF"）
+  label: string;        // バッジ（例: "YouTube", "PDF"）
   title: string;
-  icon: React.ReactNode;
+  description?: string;
+  icon?: React.ReactNode;
+  className?: string;
+  external?: boolean;   // デフォルト true（target="_blank"）
 }
 ```
 
