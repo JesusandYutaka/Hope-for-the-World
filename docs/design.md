@@ -208,15 +208,15 @@ page.tsx (ホーム)
 | ホーム | `/` | ISR (1h) | ビジョン・自己紹介・最新動画 |
 | 賛美・Worship | `/worship` | Static | プレイリスト・集会情報・楽譜配信 |
 | 日々の励まし | `/daily` | Static | みことば動画・デボーション記事 |
-| 祈りのパートナー | `/prayer-partner` | Static | LINE登録・祈りレター |
+| 祈りのパートナー | `/prayer-partner` | Redirect | `/missions-partner` へリダイレクト |
 | 証の部屋 | `/testimony` | Static | 証アコーディオン・YouTube・ブログ |
 | 交わり | `/fellowship` | Static | 教会紹介・SNS |
-| 宣教論文 | `/missions` | Static | KBI・TCU 卒業論文PDF |
-| 宣教パートナー | `/missions-partner` | Static | 宣教パートナー募集 |
+| 宣教エッセイ | `/missions` | Static | KBI・TCU 卒業論文PDF |
+| 宣教パートナー | `/missions-partner` | Static | 祈りの宣教パートナー募集 |
 | お勧めサイト | `/recommended-sites` | Static | カテゴリ別リンク集 |
 | 神を知りたい人へ | `/know-god` | Static | 4ステップの救いの説明 |
 | つながる | `/contact` | Static | お問い合わせフォーム |
-| みちや牧師LINE | `/michiya` | Static | みちや牧師の LINE 紹介 |
+| みちや牧師の心にバスドラム | `/michiya` | Static | みちや牧師 LINE QR コード |
 | ニュースレター | `/newsletter` | Static | メールニュース（準備中） |
 
 ---
@@ -559,9 +559,9 @@ export const journeySteps: JourneyItem[] = [
 |--------|---------|---------|
 | 賛美集会 | `worship/page.tsx` の `gatherings[]` | 配列に `Gathering` オブジェクトを追加 |
 | 証の記録 | `testimony/page.tsx` の `articles[]` / `videos[]` | 配列にオブジェクトを追加 |
-| 日々の励まし | `daily/page.tsx` の `videos[]` / `articles[]` | 配列にオブジェクトを追加 |
-| 宣教論文 | `missions/page.tsx` の `papers[]` | 配列に `MissionPaper` オブジェクトを追加 |
-| お勧めサイト | `recommended-sites/page.tsx` の `siteGroups[]` | 各グループの `sites[]` に追加 |
+| 日々の励まし | `daily/page.tsx` の `noteArticles[]` / `youtubeVideos[]` | 配列にオブジェクトを追加 |
+| 宣教エッセイ | `missions/page.tsx` の `papers[]` | 配列に `MissionPaper` オブジェクトを追加 |
+| お勧めサイト | `recommended-sites/page.tsx` の `categories[]` | 各グループの `sites[]` に追加 |
 
 ---
 
