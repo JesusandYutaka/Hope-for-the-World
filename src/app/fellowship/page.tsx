@@ -95,9 +95,9 @@ export default function FellowshipPage() {
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                   <Image
                     src="/images/event-praise-worship-night.jpg"
-                    alt="Praise & Worship Night — 2026.5/30 Sat. 19:00-20:30 @Nosegawa Christ Church"
-                    width={800}
-                    height={1000}
+                    alt="Praise & Worship Night — 毎月土曜日 19:00-20:30 @Nosegawa Christ Church"
+                    width={1080}
+                    height={1253}
                     className="w-full h-auto"
                     sizes="(max-width: 768px) 90vw, 340px"
                   />
@@ -122,7 +122,7 @@ export default function FellowshipPage() {
 
                 <div className="flex flex-col gap-2.5">
                   {[
-                    { icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z", label: "2026年5月30日（土）" },
+                    { icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z", label: "毎月土曜日" },
                     { icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z", label: "19:00 – 20:30" },
                     { icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z", label: "能勢川キリスト教会" },
                   ].map((item) => (
