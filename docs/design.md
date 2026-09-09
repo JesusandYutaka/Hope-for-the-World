@@ -62,7 +62,7 @@
 │   │   │   ├── contact/
 │   │   │   │   └── route.ts        # お問い合わせ API
 │   │   │   └── my-ip/
-│   │   │       └── route.ts        # クライアント IP 確認 API
+│   │   │       └── route.ts        # クライアント IP 確認 API（preview 限定）
 │   │   ├── contact/
 │   │   │   ├── layout.tsx
 │   │   │   ├── opengraph-image.tsx
@@ -506,13 +506,6 @@ EXTERNAL = {
 }
 ```
 
-### 連絡先
-```typescript
-CONTACT = {
-  EMAIL: "...",  // お問い合わせ受信先メールアドレス
-}
-```
-
 ### SNS
 ```typescript
 SOCIAL = {
@@ -645,6 +638,26 @@ async function fetchLatestYouTubeVideo(): Promise<YouTubeVideo | null>
 - サーバー側バリデーション（クライアント側と二重）
 - ヘッダーインジェクション対策（sanitizeHeader）
 - 環境変数でのシークレット管理
+- 送信先は `CONTACT_EMAIL` のみ（未設定時はメールを送信せず 500 を返す）
+
+### `GET /api/my-ip`
+
+**場所:** `src/app/api/my-ip/route.ts`
+
+`STAGING_ALLOWED_IPS` に自分の IP を追加するための確認用エンドポイント。
+`middleware.ts` の matcher から除外されているため、IP 制限で弾かれている状態でもアクセスできる。
+
+**レスポンス:**
+
+| ステータス | 意味 |
+|----------|------|
+| 200 | `VERCEL_ENV=preview` のとき。`x-real-ip` / `x-forwarded-for` / `x-vercel-forwarded-for` を返す |
+| 404 | それ以外の環境（本番・ローカル）。エンドポイントの存在を伏せる |
+
+**セキュリティ:**
+- preview 環境限定（`VERCEL_ENV !== "preview"` は 404）
+- 許可 IP リスト（`STAGING_ALLOWED_IPS`）はレスポンスに含めない
+- `middleware.ts` の 403 本文もクライアント IP のみを表示し、許可リストは出さない
 
 ---
 
@@ -741,7 +754,7 @@ Lines: 85%以上 / Functions: 85%以上 / Branches: 85%以上
 | `middleware.ts` | `__tests__/middleware.test.ts` | — |
 | `not-found.tsx` | `app/__tests__/not-found.test.tsx` | — |
 
-**合計: 99件**
+**合計: 107件**
 
 ### テスト実行
 

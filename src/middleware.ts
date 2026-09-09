@@ -15,10 +15,7 @@ export function middleware(req: NextRequest) {
 
   if (allowedIps.includes(clientIp)) return NextResponse.next();
 
-  return new NextResponse(
-    `403 Forbidden\nYour IP: ${clientIp}\nAllowed: ${allowedIps.join(", ")}`,
-    { status: 403 }
-  );
+  return new NextResponse(`403 Forbidden\nYour IP: ${clientIp}`, { status: 403 });
 }
 
 export const config = {

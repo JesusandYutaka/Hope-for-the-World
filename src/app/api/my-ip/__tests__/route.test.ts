@@ -7,7 +7,8 @@ afterEach(() => {
 });
 
 describe("GET /api/my-ip", () => {
-  it("リクエストヘッダーの IP 情報を返す", async () => {
+  it("preview 環境ではリクエストヘッダーの IP 情報を返す", async () => {
+    vi.stubEnv("VERCEL_ENV", "preview");
     const req = new NextRequest("http://localhost/api/my-ip", {
       headers: {
         "x-real-ip": "1.2.3.4",
@@ -23,7 +24,8 @@ describe("GET /api/my-ip", () => {
     expect(json["x-vercel-forwarded-for"]).toBe("9.10.11.12");
   });
 
-  it("ヘッダーが未設定のとき null を返す", async () => {
+  it("preview 環境でヘッダーが未設定のとき null を返す", async () => {
+    vi.stubEnv("VERCEL_ENV", "preview");
     const req = new NextRequest("http://localhost/api/my-ip");
     const res = await GET(req);
     const json = await res.json();
@@ -31,10 +33,27 @@ describe("GET /api/my-ip", () => {
     expect(json["x-forwarded-for"]).toBeNull();
   });
 
-  it("STAGING_ALLOWED_IPS が未設定のとき '(not set)' を返す", async () => {
+  it("許可IPリストをレスポンスに含めない", async () => {
+    vi.stubEnv("VERCEL_ENV", "preview");
+    vi.stubEnv("STAGING_ALLOWED_IPS", "1.2.3.4,5.6.7.8");
     const req = new NextRequest("http://localhost/api/my-ip");
     const res = await GET(req);
-    const json = await res.json();
-    expect(json["STAGING_ALLOWED_IPS"]).toBe("(not set)");
+    const text = await res.text();
+    expect(text).not.toContain("STAGING_ALLOWED_IPS");
+    expect(text).not.toContain("1.2.3.4");
+  });
+
+  it("本番環境では 404 を返す", async () => {
+    vi.stubEnv("VERCEL_ENV", "production");
+    const req = new NextRequest("http://localhost/api/my-ip");
+    const res = await GET(req);
+    expect(res.status).toBe(404);
+  });
+
+  it("VERCEL_ENV が未設定のとき 404 を返す", async () => {
+    vi.stubEnv("VERCEL_ENV", "");
+    const req = new NextRequest("http://localhost/api/my-ip");
+    const res = await GET(req);
+    expect(res.status).toBe(404);
   });
 });

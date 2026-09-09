@@ -68,8 +68,12 @@ export async function POST(req: NextRequest) {
     const safeSubject = sanitizeHeader(subject || "");
     const safeMsg     = sanitizeMessage(message || "");
 
+    const to = process.env.CONTACT_EMAIL;
+    if (!to) {
+      return NextResponse.json({ ok: false }, { status: 500 });
+    }
+
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const to = process.env.CONTACT_EMAIL ?? "u16106@st.tci.ac.jp";
     const from = "Hope for the World <onboarding@resend.dev>";
 
     await Promise.all([
