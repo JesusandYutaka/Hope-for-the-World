@@ -17,10 +17,10 @@ jobs:
 
     steps:
       - name: コードをチェックアウト
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Node.js をセットアップ
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: "npm"
@@ -56,7 +56,7 @@ jobs:
 
     steps:
       - name: コードをチェックアウト
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Vercel にデプロイ（ステージング）
         run: npx vercel --token=${{ secrets.VERCEL_TOKEN }} --yes
@@ -72,7 +72,7 @@ jobs:
 
     steps:
       - name: コードをチェックアウト
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Vercel にデプロイ（本番）
         run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
