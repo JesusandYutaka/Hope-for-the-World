@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
 import { SOCIAL, INSTAGRAM, EXTERNAL, ICONS } from "@/lib/constants";
 
 type SnsLink = { label: string; href: string; icon: ReactNode };
