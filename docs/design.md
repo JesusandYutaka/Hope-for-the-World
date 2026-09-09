@@ -37,10 +37,10 @@
 | UI ライブラリ | React | 19.2.4 |
 | 言語 | TypeScript | 5.x |
 | スタイリング | Tailwind CSS v4 | 4.x |
-| フォーム管理 | React Hook Form | 7.x |
+| フォーム管理 | React（useState） | — |
 | メール送信 | Resend | 6.x |
 | レート制限 | Upstash Ratelimit + Redis | 2.x / 1.x |
-| アニメーション | Framer Motion | 12.x |
+| アナリティクス | Vercel Analytics / Google Analytics / Microsoft Clarity | — |
 | テスト | Vitest + Testing Library | 4.x |
 | テスト環境 | happy-dom | 20.x |
 | デプロイ | Vercel | — |
@@ -59,28 +59,53 @@
 │   │   │   ├── FeaturedContent.tsx
 │   │   │   └── PrayerCta.tsx
 │   │   ├── api/
-│   │   │   └── contact/
-│   │   │       └── route.ts        # お問い合わせ API
-│   │   ├── contact/page.tsx
-│   │   ├── daily/page.tsx
+│   │   │   ├── contact/
+│   │   │   │   └── route.ts        # お問い合わせ API
+│   │   │   └── my-ip/
+│   │   │       └── route.ts        # クライアント IP 確認 API（preview 限定）
+│   │   ├── contact/
+│   │   │   ├── layout.tsx
+│   │   │   ├── opengraph-image.tsx
+│   │   │   └── page.tsx
+│   │   ├── daily/
+│   │   │   ├── opengraph-image.tsx
+│   │   │   └── page.tsx
+│   │   ├── error.tsx               # エラーバウンダリ
 │   │   ├── fellowship/page.tsx
-│   │   ├── know-god/page.tsx
+│   │   ├── global-error.tsx        # グローバルエラーバウンダリ
+│   │   ├── know-god/
+│   │   │   ├── layout.tsx
+│   │   │   ├── opengraph-image.tsx
+│   │   │   └── page.tsx
 │   │   ├── michiya/page.tsx
-│   │   ├── missions/page.tsx
+│   │   ├── missions/
+│   │   │   ├── opengraph-image.tsx
+│   │   │   └── page.tsx
+│   │   ├── missions-partner/page.tsx
 │   │   ├── newsletter/page.tsx
+│   │   ├── not-found.tsx           # 404ページ
+│   │   ├── opengraph-image.tsx     # ルート OG 画像
 │   │   ├── prayer-partner/page.tsx
 │   │   ├── recommended-sites/page.tsx
-│   │   ├── testimony/page.tsx
-│   │   ├── worship/page.tsx
-│   │   ├── layout.tsx              # ルートレイアウト（Header + Footer）
+│   │   ├── robots.ts               # robots.txt 生成
+│   │   ├── sitemap.ts              # sitemap.xml 生成
+│   │   ├── testimony/
+│   │   │   ├── opengraph-image.tsx
+│   │   │   └── page.tsx
+│   │   ├── worship/
+│   │   │   ├── opengraph-image.tsx
+│   │   │   └── page.tsx
+│   │   ├── layout.tsx              # ルートレイアウト（Header・Footer・Analytics・JSON-LD）
 │   │   ├── page.tsx                # ホームページ
 │   │   └── globals.css             # グローバルスタイル・CSS変数
 │   ├── components/
-│   │   ├── Header.tsx              # ナビゲーションヘッダー
+│   │   ├── BreadcrumbJsonLd.tsx    # パンくずJSON-LD構造化データ
+│   │   ├── ClarityInit.tsx         # Microsoft Clarity 初期化
 │   │   ├── Footer.tsx              # フッター
+│   │   ├── Header.tsx              # ナビゲーションヘッダー
 │   │   ├── HeroSection.tsx         # ホームヒーロー
-│   │   ├── PageHero.tsx            # 各ページヘッダー
 │   │   ├── JourneyAccordion.tsx    # 証アコーディオン
+│   │   ├── PageHero.tsx            # 各ページヘッダー
 │   │   └── ui/                     # 汎用UIコンポーネント
 │   │       ├── Button.tsx
 │   │       ├── SectionHeader.tsx
@@ -93,17 +118,30 @@
 │   │   └── journeyItems.tsx        # 証の記録データ
 │   ├── lib/
 │   │   ├── constants.ts            # 全定数
+│   │   ├── env.ts                  # 環境変数バリデーション
+│   │   ├── ip.ts                   # クライアント IP 取得
 │   │   ├── validation.ts           # 入力バリデーション
 │   │   └── youtube.ts              # YouTube RSS 取得
-│   └── types/
-│       └── index.ts                # 全型定義
+│   ├── types/
+│   │   └── index.ts                # 全型定義
+│   └── middleware.ts               # エッジミドルウェア（Vercel preview IP制限）
 ├── public/
 │   └── images/                     # 画像（hero-sunset.jpg, profile.jpg 等）
 ├── docs/
 │   └── design.md                   # 本設計資料
+├── AGENTS.md
+├── CLAUDE.md
+├── PLAN.md
+├── README.md
+├── eslint.config.mjs
+├── next-env.d.ts
 ├── next.config.ts                  # セキュリティヘッダー等
-├── middleware.ts                   # エッジミドルウェア
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+├── tsconfig.json
 ├── vitest.config.ts
+├── vitest.setup.ts
 └── vercel.json
 ```
 
@@ -120,12 +158,13 @@
       ↓
   Next.js App Router
       ├── Server Components（大半のページ・セクション）
-      │     └── ISR キャッシュ（ホームページ: 24時間）
+      │     └── ISR キャッシュ（ホームページ: 1時間）
       └── Client Components（最小限）
             ├── Header（スクロール検知、ドロップダウン）
             ├── HeroSection（スクリプチャースライダー）
             ├── JourneyAccordion（展開状態管理）
-            └── contact/page.tsx（フォーム送信）
+            ├── contact/page.tsx（フォーム送信）
+            └── know-god/page.tsx（ステップ状態管理）
 ```
 
 ### データフロー
@@ -138,7 +177,7 @@ YouTube RSS Feed
   FeaturedContent（クライアントへ配信）
 
 お問い合わせフォーム:
-  クライアント (React Hook Form)
+  クライアント (React useState)
       ↓ (POST /api/contact)
   Server (validation + レート制限)
       ↓ (Resend API)
@@ -155,9 +194,10 @@ layout.tsx
 
 page.tsx (ホーム)
   ├── HeroSection
-  ├── VisionSection
+  ├── JourneyAccordion（"私のストーリー" セクション）
   ├── IntroSection
   ├── FeaturedContent
+  ├── VisionSection
   └── PrayerCta
 
 各ページ (例: worship)
@@ -177,17 +217,18 @@ page.tsx (ホーム)
 
 | ページ名 | パス | 種類 | 役割 |
 |---------|------|------|------|
-| ホーム | `/` | ISR (24h) | ビジョン・自己紹介・最新動画 |
+| ホーム | `/` | ISR (1h) | ビジョン・自己紹介・最新動画 |
 | 賛美・Worship | `/worship` | Static | プレイリスト・集会情報・楽譜配信 |
 | 日々の励まし | `/daily` | Static | みことば動画・デボーション記事 |
-| 祈りのパートナー | `/prayer-partner` | Static | LINE登録・祈りレター |
+| 祈りのパートナー | `/prayer-partner` | Redirect | `/missions-partner` へリダイレクト |
 | 証の部屋 | `/testimony` | Static | 証アコーディオン・YouTube・ブログ |
 | 交わり | `/fellowship` | Static | 教会紹介・SNS |
-| 宣教論文 | `/missions` | Static | KBI・TCU 卒業論文PDF |
+| 宣教エッセイ | `/missions` | Static | KBI・TCU 卒業論文PDF |
+| 宣教パートナー | `/missions-partner` | Static | 祈りの宣教パートナー募集 |
 | お勧めサイト | `/recommended-sites` | Static | カテゴリ別リンク集 |
-| 神を知りたい人へ | `/know-god` | Static | 4ステップの救いの説明 |
-| つながる | `/contact` | Static | お問い合わせフォーム |
-| みちや牧師LINE | `/michiya` | Static | みちや牧師の LINE 紹介 |
+| 神を知りたい人へ | `/know-god` | Client | 4ステップの救いの説明 |
+| つながる | `/contact` | Client | お問い合わせフォーム |
+| みちや牧師の心にバスドラム | `/michiya` | Static | みちや牧師 LINE QR コード |
 | ニュースレター | `/newsletter` | Static | メールニュース（準備中） |
 
 ---
@@ -207,20 +248,31 @@ page.tsx (ホーム)
 - **ナビゲーション構造:**
   ```
   賛美・Worship (/worship)
-  日々の励まし (/daily)
+  日々のみことば (/daily)
   Hopeを広げる [ドロップダウン]
-    ├── 祈りのパートナー (/prayer-partner)
-    ├── 証の部屋 (/testimony)
-    ├── 交わり (/fellowship)
-    ├── 宣教論文 (/missions)
-    └── お勧めサイト (/recommended-sites)
-  神を知りたい人へ (/know-god)
+    ├── ストーリー (/testimony)
+    ├── コミニティー (/fellowship)
+    ├── 宣教エッセイ (/missions)
+    ├── お勧めサイト (/recommended-sites)
+    └── 宣教パートナー (/missions-partner)
+  人生に答えを探している方へ (/know-god)
   [CTA] つながる (/contact)
   ```
 
 #### `Footer`
 - **種類:** Server Component
 - **機能:** SNS リンク（LINE, Instagram, Facebook）、著作権表記
+
+#### `BreadcrumbJsonLd`
+- **種類:** Server Component
+- **Props:** `{ items: BreadcrumbItem[] }` ただし `BreadcrumbItem = { name: string; href: string }`
+- **機能:** JSON-LD 形式のパンくず構造化データを `<script type="application/ld+json">` タグとして出力。ホームは自動先頭追加。
+- **注意:** `NEXT_PUBLIC_SITE_URL` 環境変数がなければ `https://hope-for-the-world.vercel.app` にフォールバック
+
+#### `ClarityInit`
+- **種類:** Client Component (`"use client"`)
+- **Props:** `{ clarityId: string }`
+- **機能:** `useEffect` 内で `Clarity.init(clarityId)` を呼び出して Microsoft Clarity を初期化する
 
 ---
 
@@ -253,6 +305,7 @@ page.tsx (ホーム)
 #### `JourneyAccordion`
 - **種類:** Client Component
 - **機能:** `journeySteps` データをアコーディオン表示
+- **Props:** `defaultOpen?: number | null`（初期展開インデックス、デフォルト `null`）
 - **状態:** `expandedItemIndex: number | null`
 
 ---
@@ -287,7 +340,7 @@ page.tsx (ホーム)
 ```typescript
 type Props = { title: string; subtitle?: string }
 ```
-金色下線付きのセクション見出し。
+左に金色横線を配置したセクション見出し（`flex` レイアウト）。
 
 #### `YouTubeEmbed`
 ```typescript
@@ -300,7 +353,8 @@ type Props = { embedSrc: string; title: string; className?: string }
 type Props = {
   href: string;
   handle: string;
-  label: string;
+  label?: string;       // 省略時: "Instagram"
+  description?: string;
   className?: string;
 }
 ```
@@ -316,9 +370,12 @@ type Props = { number: string; title: string; text: string }
 ```typescript
 type Props = {
   href: string;
-  label: string;    // バッジ（例: "YouTube", "PDF"）
+  label: string;        // バッジ（例: "YouTube", "PDF"）
   title: string;
-  icon: React.ReactNode;
+  description?: string;
+  icon?: React.ReactNode;
+  className?: string;
+  external?: boolean;   // デフォルト true（target="_blank"）
 }
 ```
 
@@ -387,16 +444,17 @@ type DailyVideo = {
 type RecommendedLink = { title: string; description: string; url: string; label: string };
 
 // お勧めサイト
-type RecommendedSiteCategory = "bible" | "church" | "ministry" | "other";
+type RecommendedSiteCategory = "bible" | "church" | "ministry" | "other"; // 定義のみ・現在未使用
 type RecommendedSite = { name: string; description: string; url: string };
 type RecommendedSiteGroup = {
-  id: RecommendedSiteCategory; label: string; en: string;
+  id: string; label: string; en: string;
+  description?: string;
   sites: RecommendedSite[];
 };
 
 // 宣教論文
 type MissionPaper = {
-  id: string; title: string; subtitle?: string; label: string; file: string;
+  id: string; title: string; subtitle?: string; comment?: string; label: string; file: string;
 };
 ```
 
@@ -481,7 +539,7 @@ ICONS = {
 ### キャッシュ
 ```typescript
 CACHE = {
-  YOUTUBE_REVALIDATE_SECONDS: 86400,  // 24時間
+  YOUTUBE_REVALIDATE_SECONDS: 3600,  // 1時間
 }
 ```
 
@@ -516,10 +574,11 @@ export const journeySteps: JourneyItem[] = [
 | ページ | データ場所 | 追加方法 |
 |--------|---------|---------|
 | 賛美集会 | `worship/page.tsx` の `gatherings[]` | 配列に `Gathering` オブジェクトを追加 |
+| 賛美配信 | `worship/page.tsx` の `streamingServices[]` | 配列に配信サービス情報を追加 |
 | 証の記録 | `testimony/page.tsx` の `articles[]` / `videos[]` | 配列にオブジェクトを追加 |
-| 日々の励まし | `daily/page.tsx` の `videos[]` / `articles[]` | 配列にオブジェクトを追加 |
-| 宣教論文 | `missions/page.tsx` の `papers[]` | 配列に `MissionPaper` オブジェクトを追加 |
-| お勧めサイト | `recommended-sites/page.tsx` の `siteGroups[]` | 各グループの `sites[]` に追加 |
+| 日々の励まし | `daily/page.tsx` の `noteArticles[]` / `youtubeVideos[]` | 配列にオブジェクトを追加 |
+| 宣教エッセイ | `missions/page.tsx` の `papers[]` | 配列に `MissionPaper` オブジェクトを追加 |
+| お勧めサイト | `recommended-sites/page.tsx` の `categories[]` | 各グループの `sites[]` に追加 |
 
 ---
 
@@ -532,18 +591,18 @@ async function fetchLatestYouTubeVideo(): Promise<YouTubeVideo | null>
 ```
 - YouTube RSS フィードから最新動画を取得（API キー不要）
 - 取得先: `https://www.youtube.com/feeds/videos.xml?channel_id={CHANNEL_ID}`
-- キャッシュ: `next: { revalidate: 86400 }`（24時間 ISR）
+- キャッシュ: `next: { revalidate: 3600 }`（1時間 ISR）
 - 失敗時は `null` を返す
 
 ### `src/lib/validation.ts`
 
 | 関数 | 引数 | 戻り値 | 役割 |
 |------|------|--------|------|
-| `validateName` | `string` | `string \| null` | 1〜100文字。違反時エラー文 |
-| `validateEmail` | `string` | `string \| null` | 正規表現でメール形式を確認 |
-| `validateMessage` | `string` | `string \| null` | 1〜2000文字 |
-| `sanitizeHeader` | `string` | `string` | 改行・タブを除去（ヘッダーインジェクション対策） |
-| `sanitizeMessage` | `string` | `string` | `\r\n` を `\n` に正規化 |
+| `validateName` | `unknown` | `{ ok: boolean; error?: string }` | 1〜100文字。違反時 `error` にメッセージ |
+| `validateEmail` | `unknown` | `{ ok: boolean; error?: string }` | 正規表現でメール形式を確認 |
+| `validateMessage` | `unknown` | `{ ok: boolean; error?: string }` | 2000文字以内 |
+| `sanitizeHeader` | `string` | `string` | 改行（`\r\n`）を除去（ヘッダーインジェクション対策） |
+| `sanitizeMessage` | `string` | `string` | 連続5行以上の改行を `\n\n` に圧縮 |
 
 ---
 
@@ -579,6 +638,26 @@ async function fetchLatestYouTubeVideo(): Promise<YouTubeVideo | null>
 - サーバー側バリデーション（クライアント側と二重）
 - ヘッダーインジェクション対策（sanitizeHeader）
 - 環境変数でのシークレット管理
+- 送信先は `CONTACT_EMAIL` のみ（未設定時はメールを送信せず 500 を返す）
+
+### `GET /api/my-ip`
+
+**場所:** `src/app/api/my-ip/route.ts`
+
+`STAGING_ALLOWED_IPS` に自分の IP を追加するための確認用エンドポイント。
+`middleware.ts` の matcher から除外されているため、IP 制限で弾かれている状態でもアクセスできる。
+
+**レスポンス:**
+
+| ステータス | 意味 |
+|----------|------|
+| 200 | `VERCEL_ENV=preview` のとき。`x-real-ip` / `x-forwarded-for` / `x-vercel-forwarded-for` を返す |
+| 404 | それ以外の環境（本番・ローカル）。エンドポイントの存在を伏せる |
+
+**セキュリティ:**
+- preview 環境限定（`VERCEL_ENV !== "preview"` は 404）
+- 許可 IP リスト（`STAGING_ALLOWED_IPS`）はレスポンスに含めない
+- `middleware.ts` の 403 本文もクライアント IP のみを表示し、許可リストは出さない
 
 ---
 
@@ -632,8 +711,8 @@ ghost:    border-white/25 白テキスト       backdrop-blur  暗背景専用
 X-Frame-Options: DENY
 X-Content-Type-Options: nosniff
 Referrer-Policy: strict-origin-when-cross-origin
-Content-Security-Policy: ...
-Permissions-Policy: ...
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+X-DNS-Prefetch-Control: on
 ```
 
 ---
@@ -667,16 +746,23 @@ Lines: 85%以上 / Functions: 85%以上 / Branches: 85%以上
 | `JourneyAccordion` | `components/__tests__/JourneyAccordion.test.tsx` | — |
 | `validation.ts` | `lib/__tests__/validation.test.ts` | — |
 | `youtube.ts` | `lib/__tests__/youtube.test.ts` | — |
+| `env.ts` | `lib/__tests__/env.test.ts` | — |
+| `ip.ts` | `lib/__tests__/ip.test.ts` | — |
 | `POST /api/contact` | `api/contact/__tests__/route.test.ts` | — |
+| `GET /api/my-ip` | `api/my-ip/__tests__/route.test.ts` | — |
+| `contact/page.tsx` | `app/contact/__tests__/page.test.tsx` | — |
+| `middleware.ts` | `__tests__/middleware.test.ts` | — |
+| `not-found.tsx` | `app/__tests__/not-found.test.tsx` | — |
 
-**合計: 78件**
+**合計: 107件**
 
 ### テスト実行
 
 ```bash
-npm test -- --run          # 全テスト実行
-npm run coverage           # カバレッジ付き実行
-npm run build              # TypeScript + ビルドチェック
+npm test                   # 全テスト実行（watch モード）
+npm run test:coverage      # カバレッジ付き実行
+npm run type-check         # TypeScript 型チェック
+npm run build              # ビルド
 ```
 
 ---
@@ -691,6 +777,10 @@ npm run build              # TypeScript + ビルドチェック
 | `CONTACT_EMAIL` | お問い合わせ受信先メールアドレス |
 | `UPSTASH_REDIS_REST_URL` | Upstash Redis REST エンドポイント |
 | `UPSTASH_REDIS_REST_TOKEN` | Upstash Redis 認証トークン |
+| `NEXT_PUBLIC_SITE_URL` | サイトの正規 URL（OGP・JSON-LD 用） |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics 測定 ID |
+| `NEXT_PUBLIC_CLARITY_ID` | Microsoft Clarity プロジェクト ID |
+| `STAGING_ALLOWED_IPS` | Vercel preview 環境の許可 IP リスト（カンマ区切り） |
 
 ---
 
@@ -698,15 +788,14 @@ npm run build              # TypeScript + ビルドチェック
 
 ### Vercel 設定（`vercel.json`）
 
-- フレームワーク: Next.js（自動検出）
-- ビルドコマンド: `next build`
-- 出力ディレクトリ: `.next`
+- フレームワーク: `"framework": "nextjs"` のみ明示（ビルド設定は Vercel が自動推定）
 
 ### ブランチ戦略
 
 | ブランチ | 環境 |
 |---------|------|
 | `main` | 本番（Vercel 本番デプロイ） |
+| `develop` | 開発（本番マージ前の作業ブランチ） |
 
 ### デプロイフロー
 

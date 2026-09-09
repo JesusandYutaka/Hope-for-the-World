@@ -6,7 +6,7 @@ import JourneyAccordion from "@/components/JourneyAccordion";
 import SectionHeader from "@/components/ui/SectionHeader";
 import YouTubeEmbed from "@/components/ui/YouTubeEmbed";
 import Button from "@/components/ui/Button";
-import type { TestimonyArticle, TestimonyVideo, TestimonyCategory } from "@/types";
+import type { TestimonyVideo, TestimonyCategory } from "@/types";
 import { EXTERNAL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -14,11 +14,6 @@ export const metadata: Metadata = {
   description: "イエス様に出会い、人生が変わった証をお届けします。あなたも神様の愛を体験できます。",
   alternates: { canonical: "/testimony" },
 };
-
-// ── 証の記事をここに追加してください ────────────────────────────────
-// category: "seminary" | "marriage" | "love" | "salvation"
-
-const articles: TestimonyArticle[] = [];
 
 // ── 証の動画をここに追加してください ────────────────────────────────
 

@@ -35,6 +35,7 @@ describe("POST /api/contact（レートリミットなし）", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockEmailSend.mockResolvedValue({ id: "email_123" });
+    vi.stubEnv("CONTACT_EMAIL", "admin@example.com");
   });
 
   it("正常なリクエストで 200 を返す", async () => {
@@ -103,6 +104,15 @@ describe("POST /api/contact（レートリミットなし）", () => {
     expect(json.error).toBe("メッセージは2000文字以内にしてください");
   });
 
+  it("CONTACT_EMAIL が未設定のとき 500 を返しメールを送信しない", async () => {
+    vi.stubEnv("CONTACT_EMAIL", "");
+    const { POST } = await import("@/app/api/contact/route");
+    const req = makeRequest({ name: "テスト", email: "test@example.com" });
+    const res = await POST(req);
+    expect(res.status).toBe(500);
+    expect(mockEmailSend).not.toHaveBeenCalled();
+  });
+
   it("メール送信失敗のとき 500 を返す", async () => {
     mockEmailSend.mockRejectedValue(new Error("Resend error"));
     const { POST } = await import("@/app/api/contact/route");
@@ -117,6 +127,7 @@ describe("POST /api/contact（レートリミット有効）", () => {
     vi.clearAllMocks();
     vi.resetModules();
     mockEmailSend.mockResolvedValue({ id: "email_123" });
+    vi.stubEnv("CONTACT_EMAIL", "admin@example.com");
     vi.stubEnv("UPSTASH_REDIS_REST_URL", "https://fake.upstash.io");
     vi.stubEnv("UPSTASH_REDIS_REST_TOKEN", "fake-token");
   });

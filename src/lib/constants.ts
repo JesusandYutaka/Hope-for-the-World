@@ -67,11 +67,6 @@ export const EXTERNAL = {
   AMEBLO: "https://ameblo.jp/jesusismyall/entrylist.html",
 } as const;
 
-// ── 連絡先 ────────────────────────────────────────────────────────
-export const CONTACT = {
-  EMAIL: "u16106@st.tci.ac.jp",
-} as const;
-
 // ── SNS リンク ────────────────────────────────────────────────────
 export const SOCIAL = {
   LINE_OFFICIAL: "https://lin.ee/ya1Mu7D",
