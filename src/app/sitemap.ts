@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
+import { SITE } from "@/lib/constants";
 
-const BASE_URL = "https://hopefortheworld.jp";
+const BASE_URL = SITE.URL;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
