@@ -1,4 +1,6 @@
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hope-for-the-world.vercel.app";
+import { SITE } from "@/lib/constants";
+
+const BASE_URL = SITE.URL;
 
 type BreadcrumbItem = {
   name: string;

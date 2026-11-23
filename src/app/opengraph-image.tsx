@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { SITE } from "@/lib/constants";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -64,7 +65,7 @@ export default function Image() {
             letterSpacing: "0.05em",
           }}
         >
-          hopefortheworld.jp
+          {SITE.DISPLAY_DOMAIN}
         </div>
       </div>
     ),

@@ -5,8 +5,9 @@ import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import ClarityInit from "@/components/ClarityInit";
+import { SITE } from "@/lib/constants";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hope-for-the-world.vercel.app";
+const BASE_URL = SITE.URL;
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -36,7 +37,7 @@ const personSchema = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://hope-for-the-world.vercel.app"),
+  metadataBase: new URL(BASE_URL),
   title: "Hope for the World — 世界に希望を届ける",
   description: "Hope for the Worldは、イエス・キリストの愛と福音を世界に届けるクリスチャンミニストリーです。",
   openGraph: {
