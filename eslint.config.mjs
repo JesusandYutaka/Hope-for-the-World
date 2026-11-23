@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // 自動生成物（Vercel のビルド出力・カバレッジレポート）
+    ".vercel/**",
+    "coverage/**",
   ]),
 ]);
 
